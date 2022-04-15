@@ -10,6 +10,9 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+# User settings I guess?
+/[Uu]serSettings/
+
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 

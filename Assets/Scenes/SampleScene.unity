@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 343233099}
   - component: {fileID: 343233098}
   - component: {fileID: 343233097}
-  - component: {fileID: 343233096}
   - component: {fileID: 343233095}
   - component: {fileID: 343233094}
   - component: {fileID: 343233100}
@@ -228,34 +227,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.04, y: -0.065}
   m_Size: {x: 0.14, y: 0.35}
   m_Direction: 0
---- !u!114 &343233096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343233093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1984842d8e9a1334194ce2175f70e952, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_JumpForce: 600
-  m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0
-  m_AirControl: 1
-  m_WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 55
-  m_GroundCheck: {fileID: 371058035}
-  m_CeilingCheck: {fileID: 756225885}
-  m_CrouchDisableCollider: {fileID: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!95 &343233097
 Animator:
   serializedVersion: 4
@@ -354,11 +325,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 343233093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976120254c63db24a8f818e14fb44c35, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c646bb44d2945e7a247f9f76380257e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 343233096}
-  runSpeed: 50
+  mSolidsLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  fJumpHeight: 10
+  fJumpPressedRememberDuration: 0.2
+  fGroundedRememberDuration: 0.2
+  fMaxHorizontalVelocity: 10
+  fAccelerateDuration: 0.2
+  fDecelerateDuration: 0.2
 --- !u!1 &371058034
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +927,7 @@ GameObject:
   - component: {fileID: 2052724261}
   - component: {fileID: 2052724260}
   - component: {fileID: 2052724259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tilemap_Solid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

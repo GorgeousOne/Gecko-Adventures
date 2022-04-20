@@ -28,6 +28,11 @@
 # Visual Studio cache directory
 .vs/
 
+# JetBrains directory
+.idea/
+# This file belongs to user settings
+ProjectSettings/RiderScriptEditorPersistedState.asset
+
 # Gradle cache directory
 .gradle/
 

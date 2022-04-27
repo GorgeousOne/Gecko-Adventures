@@ -9,9 +9,7 @@ public class WallSwitchController : MonoBehaviour {
     public Transform targetPosition;
     private Vector3 oldPosition;
     public float movingSpeed;
-    private int counter = 0;
-    private bool up;
-    private bool down;
+    private bool switchEnabled;
     
     // Start is called before the first frame update
     private void Start() {
@@ -28,19 +26,8 @@ public class WallSwitchController : MonoBehaviour {
 
     public void EnableWallSwitch() {
 
-        counter += 1;
-
-        if (counter % 2 != 0) {
-            _renderer.flipY = true;
-            up = true;
-            down = false;
-            
-        }
-        else {
-            _renderer.flipY = false;
-            up = false;
-            down = true;
-        }
+        _renderer.flipY = !_renderer.flipY;
+        switchEnabled = _renderer.flipY;
     }
 
     public void MoveDoorUp() {
@@ -48,7 +35,6 @@ public class WallSwitchController : MonoBehaviour {
         Vector3 a = objectToMove.transform.position;
         Vector3 b = targetPosition.position;
         objectToMove.transform.position = Vector3.Lerp(a, b, movingSpeed);
-   
     }
 
     public void MoveDoorDown() {
@@ -56,22 +42,16 @@ public class WallSwitchController : MonoBehaviour {
         Vector3 a = objectToMove.transform.position;
         Vector3 b = initialPosition.position;
         objectToMove.transform.position = Vector3.Lerp(a, b, movingSpeed);
-
     }
 
     public void Update() {
 
-        if (up == true) {
+        if (switchEnabled) {
             MoveDoorUp();
         }
-
-        //up = false;
     
-        if (down == true) {
+        else {
             MoveDoorDown();
         }
-
-        //down = false;
-        
     }
 }

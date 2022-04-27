@@ -16,14 +16,6 @@ public class WallSwitchController : MonoBehaviour {
         _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void setOldGameobjectPosition(Vector3 position) {
-        oldPosition = position;
-    }
-
-    public Vector3 getOldGameobjectPosition() {
-        return objectToMove.transform.position;
-    }
-
     public void EnableWallSwitch() {
 
         _renderer.flipY = !_renderer.flipY;

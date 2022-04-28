@@ -3547,9 +3547,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.20880616
+    x: 0.2090909
     y: 0.13076924
-    width: 0.58102584
+    width: 0.58181816
     height: 0.73846155
   near clip plane: 0.3
   far clip plane: 1000
@@ -4963,7 +4963,7 @@ PrefabInstance:
       objectReference: {fileID: 1213067787}
     - target: {fileID: 6872663922335979625, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
       propertyPath: m_Name
-      value: hebel_aus
+      value: WallSwitch
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979628, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
       propertyPath: m_RootOrder

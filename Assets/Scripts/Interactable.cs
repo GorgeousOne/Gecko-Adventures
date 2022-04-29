@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour {
 	
-	[SerializeField] private UnityEvent interactAction;
+	[SerializeField] protected UnityEvent interactAction;
 	
 	private bool _isInPlayerRange;
 	private PlayerControls _controls;

@@ -1,49 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class WallSwitchController : MonoBehaviour {
+[System.Serializable]
+public class SwitchToggleEvent : UnityEvent<bool> {}
+
+public class WallSwitchController : Interactable {
 
     private SpriteRenderer _renderer;
+    private bool _isEnabled;
     
-    public GameObject objectToMove;
-    public Transform initialPosition;
-    public Transform targetPosition;
-    private Vector3 oldPosition;
-    public float movingSpeed;
-    private bool switchEnabled;
-    
+    public SwitchToggleEvent toggleAction;
+
     // Start is called before the first frame update
     private void Start() {
         _renderer = GetComponent<SpriteRenderer>();
+		interactAction.AddListener(ToggleSwitch);
     }
 
-    public void EnableWallSwitch() {
-
+    public void ToggleSwitch() {
         _renderer.flipY = !_renderer.flipY;
-        switchEnabled = _renderer.flipY;
-    }
-
-    public void MoveDoorUp() {
-
-        Vector3 a = objectToMove.transform.position;
-        Vector3 b = targetPosition.position;
-        objectToMove.transform.position = Vector3.Lerp(a, b, movingSpeed);
-    }
-
-    public void MoveDoorDown() {
-
-        Vector3 a = objectToMove.transform.position;
-        Vector3 b = initialPosition.position;
-        objectToMove.transform.position = Vector3.Lerp(a, b, movingSpeed);
-    }
-
-    public void Update() {
-
-        if (switchEnabled) {
-            MoveDoorUp();
-        }
-    
-        else {
-            MoveDoorDown();
-        }
+        _isEnabled = _renderer.flipY;
+		toggleAction.Invoke(_isEnabled);
     }
 }

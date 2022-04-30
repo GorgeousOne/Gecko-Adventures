@@ -20,7 +20,7 @@ public class TongueMovement : MonoBehaviour {
 
 	private void Update() {
 		//makes tongue tip touch attach point while being attached
-		if (tongue.IstAttached()) {
+		if (tongue.IsAttached()) {
 			Vector2 attachPoint = tongue.GetAttachPoint();
 			transform.right = GetAimDir(attachPoint);
 			float distance = (attachPoint - (Vector2) transform.position).magnitude;

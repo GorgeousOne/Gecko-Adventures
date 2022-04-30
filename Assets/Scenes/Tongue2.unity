@@ -397,9 +397,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.08260869
+    x: 0
     y: 0.10727273
-    width: 0.8347826
+    width: 0.9986996
     height: 0.7854546
   near clip plane: 0.3
   far clip plane: 1000
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a70433d9a4fe8a4fb28aa2576944a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 0.415
+  smoothSpeed: 1
   target: {fileID: 343233099}
 --- !u!1 &540664812
 GameObject:
@@ -1314,6 +1314,10 @@ PrefabInstance:
       propertyPath: ropingSpeed
       value: 0.03
       objectReference: {fileID: 0}
+    - target: {fileID: 3857400769282164726, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
+      propertyPath: jumpPressedRememberDuration
+      value: 0.22
+      objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164727, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1373,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950342167691250928, guid: d5aae1f0aeaa9604d82cf1caf44025b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.4375
+      value: 2.5625
       objectReference: {fileID: 0}
     - target: {fileID: 5950342167691250928, guid: d5aae1f0aeaa9604d82cf1caf44025b4, type: 3}
       propertyPath: m_LocalPosition.y

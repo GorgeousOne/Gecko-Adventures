@@ -14,8 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float jumpPressedRememberDuration = 0.2f;
 	[SerializeField] private float groundedRememberDuration = 0.2f;
 	[SerializeField] private float maxHorizontalVelocity = 10;
-	[SerializeField] private float accelerateDuration = 0.2f;
-	[SerializeField] private float decelerateDuration = 0.2f;
+	[SerializeField] private float intertiaTime = 0.2f;
 	
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if (_controls.Player.Jump.WasPerformedThisFrame()) {
 			//detaches tongue when jumping
-			if (tongue.IstAttached()) {
+			if (tongue.IsAttached()) {
 				tongue.Detach();
 				Jump();
 			} else {
@@ -72,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 		//retract and extend tongue
-		if (tongue.IstAttached()) {
+		if (tongue.IsAttached()) {
 			float newTongueLength = _tongueConnection.distance;
 			
 			if (_isExtendingTongue) {
@@ -95,7 +94,7 @@ public class PlayerMovement : MonoBehaviour {
 		//starts slowing down when if vertical player input stops
 		if (Mathf.Abs(horizontalInput) < 0.01f) {
 			//only slows down if not dangling from tongue
-			if (!tongue.IstAttached() || isGrounded) {
+			if (!tongue.IsAttached() || isGrounded) {
 				horizontalVelocity = GetDecelerated(horizontalVelocity);
 			}
 		//accelerates continuously when moving towards one direction
@@ -120,29 +119,19 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	//uses shifted and stretched quadratic function to smooth velocity during acceleration
 	private float GetAccelerated(float currentSpeed, float direction) {
-		float tmax = accelerateDuration;
-		float tmax2 = tmax * tmax;
-		float vmax = maxHorizontalVelocity;
-		float y = Mathf.Abs(currentSpeed);
-		
-		float t = tmax - Mathf.Sqrt(-tmax2 * (y - vmax) / vmax);
-		float tNext = Mathf.Clamp01(t + Time.deltaTime);
-
-		float yNext = -vmax / tmax2 * Mathf.Pow(tNext - tmax, 2) + vmax;
-		return yNext * direction;
+		float acceleration = Time.deltaTime / intertiaTime * maxHorizontalVelocity;
+		float newSpeed = currentSpeed + direction * acceleration;
+		return Math.Clamp(newSpeed, -maxHorizontalVelocity, maxHorizontalVelocity);
 	}
 	
 	private float GetDecelerated(float currentSpeed) {
-		float tmax = decelerateDuration;
-		float tmax2 = tmax * tmax;
-		float vmax = maxHorizontalVelocity;
-		float y = Mathf.Abs(currentSpeed);
-		
-		float t = tmax - Mathf.Sqrt(tmax2 * y / vmax);
-		float tNext = Mathf.Clamp01(t + Time.deltaTime);
-		float yNext = vmax / tmax2 * Mathf.Pow(tNext - tmax, 2);
-		
-		return yNext * Mathf.Sign(currentSpeed);
+		float deceleration = (Time.deltaTime / intertiaTime * maxHorizontalVelocity);
+
+		if (Mathf.Abs(currentSpeed) < deceleration) {
+			return 0;
+		} 
+		float newSpeed = currentSpeed - Mathf.Sign(currentSpeed) * deceleration;
+		return Math.Clamp(newSpeed, -maxHorizontalVelocity, maxHorizontalVelocity);
 	}
 
 	/**

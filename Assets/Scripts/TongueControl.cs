@@ -49,7 +49,7 @@ public class TongueControl : MonoBehaviour {
 		return _attachment.bounds.center;
 	}
 	
-	public bool IstAttached() {
+	public bool IsAttached() {
 		return _attachment != null;
 	}
 
@@ -65,6 +65,9 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public void Attach(Collider2D other) {
+		if (IsAttached()) {
+			return;
+		}
 		_attachment = other;
 		_animator.Play("Idle");
 		_animator.enabled = false;

@@ -2081,9 +2081,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.10526316
-    y: 0.19009902
-    width: 0.84210527
+    x: 0.14835165
+    y: 0.21386139
+    width: 0.7032967
     height: 0.57029706
   near clip plane: 0.3
   far clip plane: 1000
@@ -2777,14 +2777,6 @@ PrefabInstance:
     - target: {fileID: 3857400767592311170, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
       propertyPath: m_Color.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3857400769282164713, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
-      propertyPath: m_LinearDrag
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3857400769282164713, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
-      propertyPath: m_GravityScale
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164724, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
       propertyPath: m_Name
@@ -3569,18 +3561,6 @@ PrefabInstance:
     - target: {fileID: 6872663922335979628, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6872663922335979629, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6872663922335979629, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6872663922335979629, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6872663922335979627, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}

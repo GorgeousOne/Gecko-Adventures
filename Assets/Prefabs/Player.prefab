@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3857400767475587471}
   - component: {fileID: 3857400767475587470}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Hide Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3857400767592311172}
   - component: {fileID: 3857400767592311174}
   - component: {fileID: 3857400767592311175}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: TongueSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3857400769159288903}
   - component: {fileID: 3857400769159288902}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Tongue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 3857400769282164712}
   - component: {fileID: 3857400769282164713}
   - component: {fileID: 3857400769282164726}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,8 +507,8 @@ MonoBehaviour:
     m_Bits: 128
   tongue: {fileID: 3857400767592311175}
   ropingSpeed: 0.03
-  jumpHeight: 10
+  jumpHeight: 4.25
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
-  maxHorizontalVelocity: 10
+  maxHorizontalVelocity: 12
   intertiaTime: 0.2

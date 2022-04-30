@@ -338,7 +338,7 @@ SpriteRenderer:
   m_SortingLayerID: -862980261
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2a5c2f3ca4ae14e7e91149316db1e054, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70bef63a3fb6f874aa74747f30a11743, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -357,7 +357,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400767784642716}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5247b4072c47f994cb49ad8a79154c57, type: 2}
   m_CullingMode: 0
@@ -465,8 +465,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.40625}
-  m_Size: {x: 0.875, y: 2.1875}
+  m_Offset: {x: 0.125, y: -0.125}
+  m_Size: {x: 0.875, y: 1.75}
   m_Direction: 0
 --- !u!50 &3857400769282164713
 Rigidbody2D:
@@ -511,5 +511,4 @@ MonoBehaviour:
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
   maxHorizontalVelocity: 10
-  accelerateDuration: 0.2
-  decelerateDuration: 0.2
+  intertiaTime: 0.2

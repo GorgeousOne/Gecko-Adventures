@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,8 @@ public class TongueControl : MonoBehaviour {
 	private Vector2 _defaultPos;
 	
 	private Collider2D _attachment;
+	private GameObject _pickup;
+	
 	private float _extendStart;
 	private float _extendDistance;
 	private float _length;
@@ -33,11 +36,13 @@ public class TongueControl : MonoBehaviour {
 			} else {
 				SetExtendDistance(Mathf.SmoothStep(_length, 0, 2 * (elapsedPercent - .5f)));
 			}
+		} else if (_pickup) {
+			Destroy(_pickup);
 		}
 	}
 
+	//returns the width of the unscaled tongue sprite I think
 	public float GetMaxLength() {
-		//returns the width of the unscaled tongue sprite I think
 		return _length;
 	}
 
@@ -46,7 +51,7 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public bool IsExtending() {
-		return Time.time - _extendStart <= extendTime;
+		return Time.time - _extendStart < extendTime;
 	}
 
 	public Vector2 GetAttachPoint() {
@@ -63,11 +68,10 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public void PlayExtend() {
-		// _animator.Play("Extend");
 		_extendStart = Time.time;
 	}
 
-	public void Attach(Collider2D other) {
+	public void AttachTo(Collider2D other) {
 		if (IsAttached()) {
 			return;
 		}
@@ -80,6 +84,21 @@ public class TongueControl : MonoBehaviour {
 		_attachment = null;
 		SetExtendDistance(0);
 		detachAction.Invoke();
+	}
+
+	public void PickUp(GameObject pickup) {
+		if (_pickup) {
+			return;
+		}
+		_extendStart = Time.time - extendTime * GetRetractDistancePercent(pickup.transform.position);
+		pickup.transform.localPosition = Vector3.zero;
+		pickup.transform.parent = transform;
+		_pickup = pickup;
+	}
+
+	private float GetRetractDistancePercent(Vector3 point) {
+		float distance = Mathf.Clamp((transform.position - point).magnitude, 0, _length);
+		return 0.5f + 0.5f * distance / _length;
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other) {

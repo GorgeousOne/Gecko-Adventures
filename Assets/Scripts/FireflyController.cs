@@ -8,9 +8,4 @@ public class FireflyController : MonoBehaviour {
         _animator = GetComponent<Animator>();
         _animator.SetFloat("Offset", Random.Range(0f, 1f));
     }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Hold on");
-        Destroy(transform.parent.gameObject);
-    }
 }

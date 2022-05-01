@@ -4,6 +4,7 @@ public class TongueMovement : MonoBehaviour {
 	
 	[SerializeField] private TongueControl tongue;
 	[SerializeField] private LayerMask attachLayerMask;
+	[SerializeField] private LayerMask collectLayerMask;
 
 	private PlayerControls _controls;
 	
@@ -45,12 +46,16 @@ public class TongueMovement : MonoBehaviour {
 		if (!tongue.IsExtending()) {
 			return;
 		}
-		if (IsAttachable(other.gameObject)) {
-			tongue.Attach(other);
+		GameObject otherObject = other.gameObject;
+		
+		if (MaskContains(attachLayerMask, otherObject)) {
+			tongue.AttachTo(other);
+		} else if (MaskContains(collectLayerMask, otherObject)) {
+			tongue.PickUp(otherObject);
 		}
 	}
 
-	private bool IsAttachable(GameObject other) {
-		return (attachLayerMask & 1 << other.layer) != 0;
+	private bool MaskContains(LayerMask mask, GameObject other) {
+		return (mask & 1 << other.layer) != 0;
 	}
 }

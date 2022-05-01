@@ -3183,13 +3183,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 822774504127651123, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
-      propertyPath: m_Animations.Array.data[0]
-      value: 
-      objectReference: {fileID: 7400000, guid: 736169fd8900be04b9fd118872e4b65e, type: 2}
     - target: {fileID: 3857400767592311175, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
       propertyPath: attachLayerMask.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857400769159288902, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
+      propertyPath: collectLayerMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164724, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
       propertyPath: m_Name

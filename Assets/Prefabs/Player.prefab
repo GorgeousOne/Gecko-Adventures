@@ -94,9 +94,7 @@ GameObject:
   - component: {fileID: 3857400767592311173}
   - component: {fileID: 3857400767592311170}
   - component: {fileID: 8442058769367328568}
-  - component: {fileID: 3857400767592311174}
   - component: {fileID: 3857400767592311175}
-  - component: {fileID: 822774504127651123}
   m_Layer: 8
   m_Name: TongueSprite
   m_TagString: Untagged
@@ -187,26 +185,6 @@ CapsuleCollider2D:
   m_Offset: {x: -2.5, y: 0.03125}
   m_Size: {x: 5, y: 0.1875}
   m_Direction: 1
---- !u!95 &3857400767592311174
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857400767592311169}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e6bd4770d4bdf540ac81e5f729ac0d2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3857400767592311175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,22 +242,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  extendDuration: 0.5
---- !u!111 &822774504127651123
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857400767592311169}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 736169fd8900be04b9fd118872e4b65e, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  extendTime: 0.5
 --- !u!1 &3857400767784642716
 GameObject:
   m_ObjectHideFlags: 0

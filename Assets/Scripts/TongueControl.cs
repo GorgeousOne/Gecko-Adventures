@@ -7,43 +7,38 @@ public class TongueControl : MonoBehaviour {
 	[SerializeField] private TriggerEvent triggerAction;
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
-	[SerializeField] private float extendDuration;
+	[SerializeField] private float extendTime;
 	
 	private SpriteRenderer _renderer;
-	private Animator _animator;
-	private Animation _extendAnimation;
 	private Vector2 _defaultPos;
 	
 	private Collider2D _attachment;
 	private float _extendStart;
 	private float _extendDistance;
+	private float _length;
 	
 	private void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
-		_animator = GetComponent<Animator>();
-		_extendAnimation = GetComponent<Animation>();
 		_defaultPos = transform.localPosition;
-		CalculateExtendAnimation();
+		_length = _renderer.sprite.rect.width / _renderer.sprite.pixelsPerUnit;
+		_extendStart = -extendTime;
 	}
 
-	/**
-	 * Adaptes tongue extend animation to tongue length and extend duration on start
-	 */
-	private void CalculateExtendAnimation() {
-		Keyframe[] frames = {
-			new(0, 0),
-			new(.5f * extendDuration, GetMaxLength()),
-			new(extendDuration, 0)
-		};
-		AnimationCurve curve = new AnimationCurve(frames);
-		_extendAnimation.clip.ClearCurves();
-		_extendAnimation.clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
-		_animator.SetFloat("extendSpeed", extendDuration);
+	private void Update() {
+		if (IsExtending()) {
+			float elapsedPercent = (Time.time - _extendStart) / extendTime;
+
+			if (elapsedPercent < .5f) {
+				SetExtendDistance(Mathf.SmoothStep(0, _length, 2 * elapsedPercent));
+			} else {
+				SetExtendDistance(Mathf.SmoothStep(_length, 0, 2 * (elapsedPercent - .5f)));
+			}
+		}
 	}
-	
+
 	public float GetMaxLength() {
 		//returns the width of the unscaled tongue sprite I think
-		return _renderer.sprite.rect.width / _renderer.sprite.pixelsPerUnit;
+		return _length;
 	}
 
 	public float GetLength() {
@@ -51,7 +46,7 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public bool IsExtending() {
-		return Time.time - _extendStart < extendDuration;
+		return Time.time - _extendStart <= extendTime;
 	}
 
 	public Vector2 GetAttachPoint() {
@@ -68,7 +63,7 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public void PlayExtend() {
-		_animator.Play("Extend");
+		// _animator.Play("Extend");
 		_extendStart = Time.time;
 	}
 
@@ -76,15 +71,14 @@ public class TongueControl : MonoBehaviour {
 		if (IsAttached()) {
 			return;
 		}
+		_extendStart = Time.time - extendTime;
 		_attachment = other;
-		_animator.Play("Idle");
-		_animator.enabled = false;
 		attachAction.Invoke(other);
 	}
 
 	public void Detach() {
 		_attachment = null;
-		_animator.enabled = true;
+		SetExtendDistance(0);
 		detachAction.Invoke();
 	}
 	

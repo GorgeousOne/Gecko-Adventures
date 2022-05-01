@@ -3,10 +3,12 @@ using UnityEngine;
 public class DoorController : MonoBehaviour {
 
 	[SerializeField] private Vector2 openOffset;
-	[SerializeField] private float movingSpeed;
+	[SerializeField] private float moveTime;
 
 	private Vector2 _startPos;
 	private bool _isOpen;
+
+	private float _moveStart;
 	
 	private void Start() {
 		_startPos = transform.position;
@@ -14,16 +16,23 @@ public class DoorController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		Vector2 startPos = _startPos;
 		Vector2 targetPos = _startPos;
 
 		if (_isOpen) {
 			targetPos += openOffset;
 		}
-		transform.position = Vector2.Lerp(transform.position, targetPos, movingSpeed);
+		else {
+			startPos += openOffset;
+		}
+		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
+		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
 	}
 
 	public void OnSwitchToggle(bool isEnabled) {
 		_isOpen = isEnabled;
+		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
+		_moveStart = Time.time - (1 - elapsedTime);
 	}
 
 	private void OnDrawGizmos() {

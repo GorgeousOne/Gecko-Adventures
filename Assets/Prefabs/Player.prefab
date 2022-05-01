@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400767475587468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.375, y: -0.03125, z: 0}
+  m_LocalPosition: {x: -2.5625, y: 0.03125, z: 0}
   m_LocalScale: {x: 5.124514, y: 0.31270757, z: 1.0049}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -93,9 +93,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3857400767592311173}
   - component: {fileID: 3857400767592311170}
-  - component: {fileID: 3857400767592311172}
+  - component: {fileID: 8442058769367328568}
   - component: {fileID: 3857400767592311174}
   - component: {fileID: 3857400767592311175}
+  - component: {fileID: 822774504127651123}
   m_Layer: 8
   m_Name: TongueSprite
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400767592311169}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.375, y: -0.0625, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4d0d9dad517ef42449b9b2b5748c5bd9, type: 3}
-  m_Color: {r: 0.0915296, g: 1, b: 0.042452812, a: 1}
+  m_Color: {r: 1, g: 0.4943396, b: 0.8154977, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -170,8 +171,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!58 &3857400767592311172
-CircleCollider2D:
+--- !u!70 &8442058769367328568
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -180,12 +181,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.406, y: 0.03125}
-  serializedVersion: 2
-  m_Radius: 0.09375
+  m_Offset: {x: -2.5, y: 0.03125}
+  m_Size: {x: 5, y: 0.1875}
+  m_Direction: 1
 --- !u!95 &3857400767592311174
 Animator:
   serializedVersion: 4
@@ -264,6 +265,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   extendDuration: 0.5
+--- !u!111 &822774504127651123
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857400767592311169}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 736169fd8900be04b9fd118872e4b65e, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3857400767784642716
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400769159288900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5625, z: 1}
+  m_LocalPosition: {x: 0.375, y: 0.1875, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -416,6 +432,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tongue: {fileID: 3857400767592311175}
+  attachLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &3857400769282164724
 GameObject:
   m_ObjectHideFlags: 0

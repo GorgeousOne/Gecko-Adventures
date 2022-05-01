@@ -3,9 +3,10 @@ using UnityEngine;
 public class TongueMovement : MonoBehaviour {
 	
 	[SerializeField] private TongueControl tongue;
-	
+	[SerializeField] private LayerMask attachLayerMask;
+
 	private PlayerControls _controls;
-	// private Collider2D _
+	
 	private void Awake() {
 		_controls = new PlayerControls();
 	}
@@ -26,15 +27,11 @@ public class TongueMovement : MonoBehaviour {
 			float distance = (attachPoint - (Vector2) transform.position).magnitude;
 			tongue.SetExtendDistance(distance);
 			
-		//makes tongue follow cursor if not extending
-		} else if (!tongue.IsExtending()) {
+		//animates tongue extend on left click
+		} else if (!tongue.IsExtending() && _controls.Player.TongueShoot.WasPerformedThisFrame()) {
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(_controls.Player.MousePos.ReadValue<Vector2>());
 			transform.right = GetAimDir(mousePos);
-			
-			//animates tongue extend on left click
-			if (_controls.Player.TongueShoot.WasPerformedThisFrame()) {
-				tongue.PlayExtend();
-			}
+			tongue.PlayExtend();
 		}
 	}
 
@@ -45,8 +42,15 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void OnTongueTrigger(Collider2D other) {
-		if (tongue.IsExtending()) {
+		if (!tongue.IsExtending()) {
+			return;
+		}
+		if (IsAttachable(other.gameObject)) {
 			tongue.Attach(other);
 		}
+	}
+
+	private bool IsAttachable(GameObject other) {
+		return (attachLayerMask & 1 << other.layer) != 0;
 	}
 }

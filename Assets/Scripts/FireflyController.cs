@@ -10,6 +10,7 @@ public class FireflyController : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Hold on");
         Destroy(transform.parent.gameObject);
     }
 }

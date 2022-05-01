@@ -8,28 +8,37 @@ public class TongueControl : MonoBehaviour {
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
 	[SerializeField] private float extendDuration;
-
 	
 	private SpriteRenderer _renderer;
 	private Animator _animator;
+	private Animation _extendAnimation;
 	private Vector2 _defaultPos;
 	
 	private Collider2D _attachment;
-	private bool _isExtending;
 	private float _extendStart;
 	private float _extendDistance;
 	
 	private void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
 		_animator = GetComponent<Animator>();
+		_extendAnimation = GetComponent<Animation>();
 		_defaultPos = transform.localPosition;
+		CalculateExtendAnimation();
 	}
 
-	private void Update() {
-		// stops tongue from attaching while retracting
-		if (_isExtending && Time.time - _extendStart > extendDuration) {
-			_isExtending = false;
-		}
+	/**
+	 * Adaptes tongue extend animation to tongue length and extend duration on start
+	 */
+	private void CalculateExtendAnimation() {
+		Keyframe[] frames = {
+			new(0, 0),
+			new(.5f * extendDuration, GetMaxLength()),
+			new(extendDuration, 0)
+		};
+		AnimationCurve curve = new AnimationCurve(frames);
+		_extendAnimation.clip.ClearCurves();
+		_extendAnimation.clip.SetCurve("", typeof(Transform), "localPosition.x", curve);
+		_animator.SetFloat("extendSpeed", extendDuration);
 	}
 	
 	public float GetMaxLength() {
@@ -42,7 +51,7 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public bool IsExtending() {
-		return _isExtending;
+		return Time.time - _extendStart < extendDuration;
 	}
 
 	public Vector2 GetAttachPoint() {
@@ -61,7 +70,6 @@ public class TongueControl : MonoBehaviour {
 	public void PlayExtend() {
 		_animator.Play("Extend");
 		_extendStart = Time.time;
-		_isExtending = true;
 	}
 
 	public void Attach(Collider2D other) {
@@ -85,5 +93,5 @@ public class TongueControl : MonoBehaviour {
 	}
 }
 
-[System.Serializable]
+[Serializable]
 public class TriggerEvent : UnityEvent<Collider2D> {}

@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float groundedRememberDuration = 0.2f;
 	[SerializeField] private float maxHorizontalVelocity = 10;
 	[SerializeField] private float inertiaTime = 0.2f;
+	[SerializeField] private Animator spriteAnimator;
 	
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
@@ -107,6 +108,7 @@ public class PlayerMovement : MonoBehaviour {
 			Flip();
 		}
 		_rigid.velocity = new Vector2(horizontalVelocity, _rigid.velocity.y);
+		spriteAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(horizontalVelocity) : 0f);
 	}
 	
 	//approximates velocity needed to reach given jump height
@@ -150,9 +152,6 @@ public class PlayerMovement : MonoBehaviour {
 		
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
-		// Vector2 localScale = playerTransform.localScale;
-		// capsuleSize.Scale(localScale);
-		// capsuleOffset.Scale(localScale);
 		
 		Vector2 capsuleOrigin = (Vector2) playerTransform.position + capsuleOffset + new Vector2(0, -0.01f);
 		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);

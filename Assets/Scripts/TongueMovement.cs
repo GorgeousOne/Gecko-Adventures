@@ -3,9 +3,11 @@ using UnityEngine;
 public class TongueMovement : MonoBehaviour {
 	
 	[SerializeField] private TongueControl tongue;
-	
+	[SerializeField] private LayerMask attachLayerMask;
+	[SerializeField] private LayerMask collectLayerMask;
+
 	private PlayerControls _controls;
-	// private Collider2D _
+	
 	private void Awake() {
 		_controls = new PlayerControls();
 	}
@@ -26,15 +28,11 @@ public class TongueMovement : MonoBehaviour {
 			float distance = (attachPoint - (Vector2) transform.position).magnitude;
 			tongue.SetExtendDistance(distance);
 			
-		//makes tongue follow cursor if not extending
-		} else if (!tongue.IsExtending()) {
+		//animates tongue extend on left click
+		} else if (!tongue.IsExtending() && _controls.Player.TongueShoot.WasPerformedThisFrame()) {
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint(_controls.Player.MousePos.ReadValue<Vector2>());
 			transform.right = GetAimDir(mousePos);
-			
-			//animates tongue extend on left click
-			if (_controls.Player.TongueShoot.WasPerformedThisFrame()) {
-				tongue.PlayExtend();
-			}
+			tongue.PlayExtend();
 		}
 	}
 
@@ -45,8 +43,20 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void OnTongueTrigger(Collider2D other) {
-		if (tongue.IsExtending()) {
-			tongue.Attach(other);
+		if (!tongue.IsExtending()) {
+			return;
 		}
+		GameObject otherObject = other.gameObject;
+		
+		if (MaskContains(attachLayerMask, otherObject)) {
+			tongue.AttachTo(other);
+		} else if (MaskContains(collectLayerMask, otherObject)) {
+			transform.right = GetAimDir(otherObject.transform.position);
+			tongue.PickUp(otherObject);
+		}
+	}
+
+	private bool MaskContains(LayerMask mask, GameObject other) {
+		return (mask & 1 << other.layer) != 0;
 	}
 }

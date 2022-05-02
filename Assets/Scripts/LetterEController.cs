@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SquareController : MonoBehaviour {
+public class LetterEController : MonoBehaviour {
 
     private SpriteRenderer _renderer;
     

@@ -1,6 +1,5 @@
 ﻿using System;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -14,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float jumpPressedRememberDuration = 0.2f;
 	[SerializeField] private float groundedRememberDuration = 0.2f;
 	[SerializeField] private float maxHorizontalVelocity = 10;
-	[SerializeField] private float intertiaTime = 0.2f;
+	[SerializeField] private float inertiaTime = 0.2f;
 	
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
@@ -89,7 +88,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		float horizontalVelocity = _rigid.velocity.x;
 		float horizontalInput = _controls.Player.Move.ReadValue<float>();
-		bool isMoving = Mathf.Abs(horizontalVelocity) > 0.01f;
 		
 		//starts slowing down when if vertical player input stops
 		if (Mathf.Abs(horizontalInput) < 0.01f) {
@@ -100,32 +98,41 @@ public class PlayerMovement : MonoBehaviour {
 		//accelerates continuously when moving towards one direction
 		} else {
 			//damps horizontal velocity when switching direction
-			if (isMoving && Mathf.Sign(horizontalInput) != Mathf.Sign(horizontalVelocity)) {
+			if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalInput) != Mathf.Sign(horizontalVelocity)) {
 				horizontalVelocity = 0;
 			}
 			horizontalVelocity = GetAccelerated(horizontalVelocity, Mathf.Sign(horizontalInput));
 		}
-		if (isMoving && Mathf.Sign(horizontalVelocity) != (_isFacingRight ? -1 : 1)) {
+		if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalVelocity) != (_isFacingRight ? -1 : 1)) {
 			Flip();
-		}
-		if (float.IsNaN(horizontalVelocity)) {
-			horizontalVelocity = 0;
 		}
 		_rigid.velocity = new Vector2(horizontalVelocity, _rigid.velocity.y);
 	}
-
+	
+	//approximates velocity needed to reach given jump height
+	/*
+	 * Velocity is calculated every update, so perfectly calculating it probably won't work.
+	 * Assuming that the velocity is calculated each update with: vNew = (v - g) / (1 + drag)
+	 * and the formula for the start velocity needed in perpendicular throw to reach a certain height is: v = sqrt(yMax * 2 * g)
+	 * perhaps they can be combined like v = sqrt(yMax * 2 * g * (1 + 0.5 * drag))
+	 */
 	private void Jump() {
-		_rigid.velocity = new Vector2(_rigid.velocity.x, Mathf.Sqrt(-2.0f * Physics2D.gravity.y * jumpHeight));
+		float gravity = _rigid.gravityScale * -Physics2D.gravity.y;
+		float dragFactor = (1 + 0.5f * _rigid.drag);
+		float velocity = Mathf.Sqrt(jumpHeight * 2 * gravity * dragFactor);
+		
+		_rigid.velocity = new Vector2(_rigid.velocity.x, velocity);
 	}
+	
 	//uses shifted and stretched quadratic function to smooth velocity during acceleration
 	private float GetAccelerated(float currentSpeed, float direction) {
-		float acceleration = Time.deltaTime / intertiaTime * maxHorizontalVelocity;
+		float acceleration = Time.deltaTime / inertiaTime * maxHorizontalVelocity;
 		float newSpeed = currentSpeed + direction * acceleration;
 		return Math.Clamp(newSpeed, -maxHorizontalVelocity, maxHorizontalVelocity);
 	}
 	
 	private float GetDecelerated(float currentSpeed) {
-		float deceleration = (Time.deltaTime / intertiaTime * maxHorizontalVelocity);
+		float deceleration = (Time.deltaTime / inertiaTime * maxHorizontalVelocity);
 
 		if (Mathf.Abs(currentSpeed) < deceleration) {
 			return 0;
@@ -138,12 +145,14 @@ public class PlayerMovement : MonoBehaviour {
 	 * Creates a capsule close below the players capsule and checks if it intersects with any ground
 	 */
 	private bool IsGrounded() {
-		Vector2 localScale = playerTransform.localScale;
-		Vector2 capsuleSize = _capsule.size;
 		Vector2 capsuleOffset = _capsule.offset;
+		Vector2 capsuleSize = _capsule.size;
 		
-		capsuleSize.Scale(localScale);
-		capsuleOffset.Scale(localScale);
+		//shrinks capsule width to avoid wall jumps
+		capsuleSize.x -= 0.1f;
+		// Vector2 localScale = playerTransform.localScale;
+		// capsuleSize.Scale(localScale);
+		// capsuleOffset.Scale(localScale);
 		
 		Vector2 capsuleOrigin = (Vector2) playerTransform.position + capsuleOffset + new Vector2(0, -0.01f);
 		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);

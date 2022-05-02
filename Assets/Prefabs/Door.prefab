@@ -124,6 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a1e743ba5750f4283f0ee69421515d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closedPosition: {x: 20.88, y: 4.46, z: 0}
-  openPosition: {x: 20.88, y: 9.71, z: 0}
-  movingSpeed: 0.05
+  openOffset: {x: 0, y: 4}
+  moveTime: 1

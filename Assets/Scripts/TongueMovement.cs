@@ -51,6 +51,7 @@ public class TongueMovement : MonoBehaviour {
 		if (MaskContains(attachLayerMask, otherObject)) {
 			tongue.AttachTo(other);
 		} else if (MaskContains(collectLayerMask, otherObject)) {
+			transform.right = GetAimDir(otherObject.transform.position);
 			tongue.PickUp(otherObject);
 		}
 	}

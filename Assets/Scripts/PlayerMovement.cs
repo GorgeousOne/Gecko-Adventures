@@ -1,6 +1,5 @@
 ﻿using System;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -89,7 +88,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		float horizontalVelocity = _rigid.velocity.x;
 		float horizontalInput = _controls.Player.Move.ReadValue<float>();
-		bool isMoving = Mathf.Abs(horizontalVelocity) > 0.01f;
 		
 		//starts slowing down when if vertical player input stops
 		if (Mathf.Abs(horizontalInput) < 0.01f) {
@@ -100,16 +98,13 @@ public class PlayerMovement : MonoBehaviour {
 		//accelerates continuously when moving towards one direction
 		} else {
 			//damps horizontal velocity when switching direction
-			if (isMoving && Mathf.Sign(horizontalInput) != Mathf.Sign(horizontalVelocity)) {
+			if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalInput) != Mathf.Sign(horizontalVelocity)) {
 				horizontalVelocity = 0;
 			}
 			horizontalVelocity = GetAccelerated(horizontalVelocity, Mathf.Sign(horizontalInput));
 		}
-		if (isMoving && Mathf.Sign(horizontalVelocity) != (_isFacingRight ? -1 : 1)) {
+		if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalVelocity) != (_isFacingRight ? -1 : 1)) {
 			Flip();
-		}
-		if (float.IsNaN(horizontalVelocity)) {
-			horizontalVelocity = 0;
 		}
 		_rigid.velocity = new Vector2(horizontalVelocity, _rigid.velocity.y);
 	}

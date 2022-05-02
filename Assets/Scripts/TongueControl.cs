@@ -29,12 +29,12 @@ public class TongueControl : MonoBehaviour {
 
 	private void Update() {
 		if (IsExtending()) {
-			float elapsedPercent = (Time.time - _extendStart) / extendTime;
+			float extendProgress = GetExtendProgress();
 
-			if (elapsedPercent < .5f) {
-				SetExtendDistance(Mathf.SmoothStep(0, _length, 2 * elapsedPercent));
+			if (extendProgress < .5f) {
+				SetExtendDistance(Mathf.SmoothStep(0, _length, 2 * extendProgress));
 			} else {
-				SetExtendDistance(Mathf.SmoothStep(_length, 0, 2 * (elapsedPercent - .5f)));
+				SetExtendDistance(Mathf.SmoothStep(_length, 0, 2 * (extendProgress - .5f)));
 			}
 		} else if (_pickup) {
 			Destroy(_pickup);
@@ -86,21 +86,27 @@ public class TongueControl : MonoBehaviour {
 		detachAction.Invoke();
 	}
 
+	public float GetExtendProgress() {
+		return (Time.time - _extendStart) / extendTime;
+	}
+
+	public void SetExtendProgress(float percent) {
+		_extendStart = Time.time - extendTime * Mathf.Clamp01(percent);
+	}
+	
 	public void PickUp(GameObject pickup) {
 		if (_pickup) {
 			return;
 		}
-		_extendStart = Time.time - extendTime * GetRetractDistancePercent(pickup.transform.position);
-		pickup.transform.localPosition = Vector3.zero;
-		pickup.transform.parent = transform;
+		float extendProgress = GetExtendProgress();
+
+		if (extendProgress < .5f) {
+			SetExtendProgress(1 - extendProgress);
+		}
 		_pickup = pickup;
+		_pickup.transform.parent = transform;
 	}
 
-	private float GetRetractDistancePercent(Vector3 point) {
-		float distance = Mathf.Clamp((transform.position - point).magnitude, 0, _length);
-		return 0.5f + 0.5f * distance / _length;
-	}
-	
 	private void OnTriggerEnter2D(Collider2D other) {
 		triggerAction.Invoke(other);
 	}

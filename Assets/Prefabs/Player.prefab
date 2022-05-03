@@ -336,9 +336,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400767784642716}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5247b4072c47f994cb49ad8a79154c57, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5d324de83aa0f8345964ab6fcfbe17f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -497,3 +497,4 @@ MonoBehaviour:
   groundedRememberDuration: 0.2
   maxHorizontalVelocity: 12
   inertiaTime: 0.2
+  spriteAnimator: {fileID: 3857400767784642704}

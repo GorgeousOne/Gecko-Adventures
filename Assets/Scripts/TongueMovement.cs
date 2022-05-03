@@ -43,7 +43,7 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void OnTongueTrigger(Collider2D other) {
-		if (!tongue.IsExtending()) {
+		if (!tongue.IsExtending() || IsBehindTongue(other.transform.position)) {
 			return;
 		}
 		GameObject otherObject = other.gameObject;
@@ -58,5 +58,9 @@ public class TongueMovement : MonoBehaviour {
 
 	private bool MaskContains(LayerMask mask, GameObject other) {
 		return (mask & 1 << other.layer) != 0;
+	}
+
+	private bool IsBehindTongue(Vector3 point) {
+		return Vector2.Dot(transform.right, point - transform.position) < 0;
 	}
 }

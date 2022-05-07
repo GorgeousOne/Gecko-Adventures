@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private TongueControl tongue;
 	[SerializeField] private Animator spriteAnimator;
 
-	[SerializeField] private float ropingSpeed = 10;
 	[SerializeField] private float jumpHeight = 3.25f;
 	[SerializeField] private float jumpPressedRememberDuration = 0.2f;
-	[SerializeField] private float groundedRememberDuration = 0.2f;
-	[SerializeField] private float maxHorizontalVelocity = 10;
-	[SerializeField] private float inertiaTime = 0.2f;
+	[SerializeField] private float groundedRememberDuration = 0.1f;
+	[SerializeField] private float maxHorizontalVelocity = 12;
+	[SerializeField] private float accelerateTime = 0.2f;
+	[SerializeField] private float swingForce = 20;
+	[SerializeField] private float ropingSpeed = 10;
 	
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
@@ -54,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
 		bool isGrounded = CheckGrounding();
 		CheckJumping();
 		CheckTongueLengthChange();
-		CheckHorizontalMovement(isGrounded);
+		CheckHorizontalMovement(isGrounded, tongue.IsAttached() && !isGrounded);
 	}
 	
 	private bool CheckGrounding() {
@@ -67,6 +68,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		return isGrounded;
 	}
+	
 	/**
 	 * Creates a capsule close below the players capsule and checks if it intersects with any ground
 	 */
@@ -86,7 +88,7 @@ public class PlayerMovement : MonoBehaviour {
 			//detaches tongue when jumping
 			if (tongue.IsAttached()) {
 				tongue.Detach();
-				ApplyJumpVelocity();
+				// ApplyJumpVelocity();
 				return;
 			}
 			_jumpPressedRemember = jumpPressedRememberDuration;
@@ -110,31 +112,58 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 	
-	private void CheckHorizontalMovement(bool isGrounded) {
-		float horizontalVelocity = _rigid.velocity.x;
+	private void CheckHorizontalMovement(bool isGrounded, bool isHanging) {
 		float horizontalInput = _controls.Player.Move.ReadValue<float>();
-		
-		//starts slowing down when if vertical player input stops
-		if (Mathf.Abs(horizontalInput) < 0.01f) {
-			//only slows down if not dangling from tongue
-			if (!tongue.IsAttached() || isGrounded) {
-				horizontalVelocity = GetDecelerated(horizontalVelocity);
-			}
-			//accelerates continuously when moving towards one direction
-		} else {
-			//damps horizontal velocity when switching direction
-			if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalInput) != Mathf.Sign(horizontalVelocity)) {
-				horizontalVelocity = 0;
-			}
-			else {
-				horizontalVelocity = GetAccelerated(horizontalVelocity, Mathf.Sign(horizontalInput));
-			}
-		}
-		if (Mathf.Abs(horizontalVelocity) > 0.01f && Mathf.Sign(horizontalVelocity) != (_isFacingRight ? -1 : 1)) {
+
+		_rigid.velocity = isHanging ?
+				CalcSwingVelocity(_rigid.velocity, horizontalInput):
+				CalcWalkVelocity(_rigid.velocity, horizontalInput);
+
+		bool hasTurnedAround = Mathf.Sign(_rigid.velocity.x) != (_isFacingRight ? -1 : 1);
+
+		if (!isZero(_rigid.velocity.x) && hasTurnedAround) {
 			Flip();
 		}
-		_rigid.velocity = new Vector2(horizontalVelocity, _rigid.velocity.y);
-		spriteAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(horizontalVelocity) : 0f);
+		spriteAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(_rigid.velocity.x) : 0f);
+	}
+
+	private Vector2 CalcWalkVelocity(Vector2 velocity, float horizontalInput) {
+		Vector2 newVelocity = new Vector2(0, velocity.y);
+		
+		if (isZero(horizontalInput)) {
+			newVelocity.x = GetDecelerated(velocity.x);
+		} else {
+			bool isTuningAround = Mathf.Sign(horizontalInput) != Mathf.Sign(velocity.x);
+			
+			if (!isZero(velocity.x) && isTuningAround) {
+				newVelocity.x = 0;
+			}else {
+				newVelocity.x = GetAccelerated(velocity.x, Mathf.Sign(horizontalInput));
+			}
+		}
+		return newVelocity;
+	}
+	
+	private Vector2 CalcSwingVelocity(Vector2 velocity, float horizontalInput) {
+		if (isZero(horizontalInput) || transform.position.y > tongue.GetAttachPoint().y) {
+			return velocity;
+		}
+		// Vector2 impulse = Vector2.right * Mathf.Sign(horizontalInput) * swingForce * Time.deltaTime;
+		Vector2 impulse = GetSwingRightVector2() * Mathf.Sign(horizontalInput) * swingForce * Time.deltaTime;
+		return _rigid.velocity + impulse;
+	}
+	
+	//returns like... the tangent direction for the swinging circle
+	public Vector2 GetSwingRightVector2() {
+		if (tongue.IsAttached()) {
+			Vector2 attachDirection = tongue.GetAttachPoint() - (Vector2) transform.position;
+			return new Vector2(attachDirection.y, -attachDirection.x).normalized;
+		}
+		return Vector2.zero;
+	}
+	
+	private bool isZero(float f, float margin = 0.01f) {
+		return Mathf.Abs(f) < margin;
 	}
 	
 	//approximates velocity needed to reach given jump height
@@ -153,15 +182,14 @@ public class PlayerMovement : MonoBehaviour {
 		_rigid.velocity = new Vector2(_rigid.velocity.x, velocity);
 	}
 	
-	//uses shifted and stretched quadratic function to smooth velocity during acceleration
 	private float GetAccelerated(float currentSpeed, float direction) {
-		float acceleration = Time.deltaTime / inertiaTime * maxHorizontalVelocity;
+		float acceleration = Time.deltaTime / accelerateTime * maxHorizontalVelocity;
 		float newSpeed = currentSpeed + direction * acceleration;
 		return Math.Clamp(newSpeed, -maxHorizontalVelocity, maxHorizontalVelocity);
 	}
-	
+
 	private float GetDecelerated(float currentSpeed) {
-		float deceleration = (Time.deltaTime / inertiaTime * maxHorizontalVelocity);
+		float deceleration = (Time.deltaTime / accelerateTime * maxHorizontalVelocity);
 
 		if (Mathf.Abs(currentSpeed) < deceleration) {
 			return 0;

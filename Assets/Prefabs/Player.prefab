@@ -492,9 +492,10 @@ MonoBehaviour:
     m_Bits: 128
   tongue: {fileID: 3857400767592311175}
   spriteAnimator: {fileID: 3857400767784642704}
-  ropingSpeed: 10
   jumpHeight: 4.25
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
   maxHorizontalVelocity: 12
-  inertiaTime: 0.2
+  accelerateTime: 0.2
+  swingForce: 17
+  ropingSpeed: 10

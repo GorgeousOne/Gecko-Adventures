@@ -8,11 +8,8 @@ public class Interactable : MonoBehaviour {
 	private bool _isInPlayerRange;
 	private PlayerControls _controls;
 
-	private void Awake() {
-		_controls = new PlayerControls();
-	}
-
 	private void OnEnable() {
+		_controls = new PlayerControls();
 		_controls.Enable();
 	}
 

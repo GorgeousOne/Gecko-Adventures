@@ -491,10 +491,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   tongue: {fileID: 3857400767592311175}
-  ropingSpeed: 0.03
+  spriteAnimator: {fileID: 3857400767784642704}
   jumpHeight: 4.25
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
   maxHorizontalVelocity: 12
-  inertiaTime: 0.2
-  spriteAnimator: {fileID: 3857400767784642704}
+  accelerateTime: 0.2
+  swingForce: 17
+  ropingSpeed: 10

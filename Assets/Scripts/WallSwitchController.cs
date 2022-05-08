@@ -18,8 +18,8 @@ public class WallSwitchController : Interactable {
     }
 
     public void ToggleSwitch() {
-        _renderer.flipY = !_renderer.flipY;
-        _isEnabled = _renderer.flipY;
+        _isEnabled = !_isEnabled;
+        _renderer.flipY = _isEnabled;
 		toggleAction.Invoke(_isEnabled);
     }
 }

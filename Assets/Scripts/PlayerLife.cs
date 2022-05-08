@@ -1,10 +1,12 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour {
+
+	[SerializeField] private SpriteRenderer playerRenderer;
 	private Rigidbody2D _rigid;
+	
 	void Start() {
 		_rigid = GetComponent<Rigidbody2D>();
 	}
@@ -22,6 +24,7 @@ public class PlayerLife : MonoBehaviour {
 	}
 
 	private void Die() {
+		playerRenderer.color = Color.red;
 		_rigid.bodyType = RigidbodyType2D.Static;
 		StartCoroutine(RestartLevel(1));
 	}

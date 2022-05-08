@@ -242,7 +242,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  extendTime: 0.5
+  extendTime: 0.3
 --- !u!1 &3857400767784642716
 GameObject:
   m_ObjectHideFlags: 0

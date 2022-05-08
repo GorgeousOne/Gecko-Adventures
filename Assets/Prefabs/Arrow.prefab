@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4772813826840076262}
   m_Layer: 11
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Deadly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

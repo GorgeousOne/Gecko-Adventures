@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3857400767475587468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5625, y: 0, z: 0}
-  m_LocalScale: {x: 5.124514, y: 0.31270757, z: 1.0049}
+  m_LocalScale: {x: 5.125, y: 0.4375, z: 1.0049}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3857400769159288903}
@@ -242,7 +242,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  extendTime: 0.3
+  extendTime: 0.4
 --- !u!1 &3857400767784642716
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400767784642716}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -373,7 +373,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3857400769159288900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1875, y: 0.28125, z: 1}
+  m_LocalPosition: {x: 0.1875, y: 1.28125, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -451,7 +451,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.125, y: -0.125}
+  m_Offset: {x: 0.125, y: 0.885}
   m_Size: {x: 0.875, y: 1.75}
   m_Direction: 0
 --- !u!50 &3857400769282164713
@@ -493,10 +493,10 @@ MonoBehaviour:
     m_Bits: 128
   tongue: {fileID: 3857400767592311175}
   spriteAnimator: {fileID: 3857400767784642704}
-  jumpHeight: 4.25
+  jumpHeight: 3.25
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
-  maxHorizontalVelocity: 12
+  maxHorizontalVelocity: 10
   accelerateTime: 0.2
   swingForce: 17
   ropingSpeed: 10
@@ -512,3 +512,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3132c913c4b3f64784d3e38fd5e0a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRenderer: {fileID: 3857400767784642707}

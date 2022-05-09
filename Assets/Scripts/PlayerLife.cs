@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class PlayerLife : MonoBehaviour {
 
 	[SerializeField] private SpriteRenderer playerRenderer;
+	[SerializeField] private LevelCheckpoints levelCheckpoints;
+	
 	private Rigidbody2D _rigid;
 	
 	void Start() {
@@ -26,9 +28,20 @@ public class PlayerLife : MonoBehaviour {
 	private void Die() {
 		playerRenderer.color = Color.red;
 		_rigid.bodyType = RigidbodyType2D.Static;
-		StartCoroutine(RestartLevel(1));
+		StartCoroutine(RestartFromCheckpoint(1));
 	}
 
+	private void Revive() {
+		playerRenderer.color = Color.white;
+		_rigid.bodyType = RigidbodyType2D.Dynamic;
+	}
+
+	private IEnumerator RestartFromCheckpoint(float delay) {
+		yield return new WaitForSeconds(delay);
+		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
+		Revive();
+	}
+	
 	private IEnumerator RestartLevel(float delay) {
 		yield return new WaitForSeconds(delay);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);

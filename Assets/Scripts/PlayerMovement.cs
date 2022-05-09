@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour {
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
 		
-		Vector2 capsuleOrigin = (Vector2) playerTransform.position + capsuleOffset + new Vector2(0, -0.01f);
+		Vector2 capsuleOrigin = (Vector2) transform.position + capsuleOffset + new Vector2(0, -0.01f);
 		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);
 	}
 	

@@ -545,16 +545,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 14, y: -6, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 13
-      m_TileSpriteIndex: 13
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 15, y: -6, z: 0}
     second:
       serializedVersion: 2
@@ -2093,7 +2083,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: efbf49e94c937114da8eb1928a50ae81, type: 2}
   - m_RefCount: 24
     m_Data: {fileID: 11400000, guid: ab1be2e7f39604342b21aa20c9645dc6, type: 2}
-  - m_RefCount: 23
+  - m_RefCount: 22
     m_Data: {fileID: 11400000, guid: 950eab24dc3199d4fb3ca1b36fd00db1, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -2122,10 +2112,10 @@ Tilemap:
     m_Data: {fileID: 978889158, guid: c1cc53e91a8c27b428ef6bcc3732490e, type: 3}
   - m_RefCount: 24
     m_Data: {fileID: -1049137277, guid: c1cc53e91a8c27b428ef6bcc3732490e, type: 3}
-  - m_RefCount: 23
+  - m_RefCount: 22
     m_Data: {fileID: -17287190, guid: c1cc53e91a8c27b428ef6bcc3732490e, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 173
+  - m_RefCount: 172
     m_Data:
       e00: 1
       e01: 0
@@ -2144,7 +2134,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 173
+  - m_RefCount: 172
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2811,43 +2801,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &579164085 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6872663922335979625, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
-  m_PrefabInstance: {fileID: 639650077}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &579164092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579164085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c14354751b1f1e48937d15d66e79e83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactAction:
-    m_PersistentCalls:
-      m_Calls: []
-  openOffset: {x: 0, y: -0.3}
-  moveTime: 1
-  toggleAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1697640745}
-        m_TargetAssemblyTypeName: DoorController, Assembly-CSharp
-        m_MethodName: OnSwitchToggle
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,13 +2982,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundSwitch
       objectReference: {fileID: 0}
+    - target: {fileID: 6872663922335979625, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979626, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_EdgeRadius
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979627, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979628, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_RootOrder
@@ -3043,11 +3000,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979628, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.6
+      value: 11.99
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979628, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.5
+      value: -4.54
       objectReference: {fileID: 0}
     - target: {fileID: 6872663922335979628, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3080,6 +3037,42 @@ PrefabInstance:
     - target: {fileID: 6872663922335979628, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872663922335979629, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872663922335979629, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -862980261
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1697640745}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSwitchToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DoorController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812904031642053384, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}
+      propertyPath: toggleAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07e9212fcb8661c49ab038ba10ecaf19, type: 3}

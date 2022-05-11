@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ProtoypeScene.unity
     guid: cdd0cbd55e9ee1c469b4c0d1f06ef2bb
+  - enabled: 1
+    path: Assets/Scenes/ChangeTheSceneScene.unity
+    guid: ce4e47b705a6da043972c4a3c9ea215d
   m_configObjects: {}

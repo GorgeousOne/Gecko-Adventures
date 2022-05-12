@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6872663922335979629}
   - component: {fileID: 70941333674305513}
   - component: {fileID: 6872663922335979624}
+  - component: {fileID: 6872663922335979627}
   m_Layer: 0
   m_Name: WallSwitch
   m_TagString: Untagged

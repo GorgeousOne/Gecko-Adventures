@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObjectController : MonoBehaviour {
+public class PlatformController : MonoBehaviour {
 
-	[SerializeField] private Vector2 offSet;
+	[SerializeField] private Vector2 offset;
     [SerializeField] private float moveTime = 2;
     [SerializeField] private float delayTime = 2;
 
-    private Vector2 _currentPos;
+    private Vector2 _startPos;
     private bool _isOnBottom = true;
     private float _moveStart;
 
     // Start is called before the first frame update
     void Start() {
 
-        _currentPos = transform.position;
+        _startPos = transform.position;
         StartCoroutine("Waiter");
     }
 
@@ -27,14 +27,14 @@ public class MovableObjectController : MonoBehaviour {
 
     void Move() {
 
-        Vector2 startPos = _currentPos;
-		Vector2 targetPos = _currentPos;
+        Vector2 startPos = _startPos;
+		Vector2 targetPos = _startPos;
 
         if (_isOnBottom) {
-            targetPos += offSet;
+            targetPos += offset;
         }
         else {
-            startPos += offSet;
+            startPos += offset;
         }
 
         float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
@@ -56,4 +56,22 @@ public class MovableObjectController : MonoBehaviour {
         _moveStart = Time.time;
         StartCoroutine("Waiter");
     }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collider.transform.parent = transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collider.transform.parent = null;
+        }
+    }
+
+    private void OnDrawGizmos() {
+		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
+        Gizmos.DrawLine(position, position + offset);
+	}
+
 }

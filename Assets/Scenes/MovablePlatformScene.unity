@@ -4066,7 +4066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7365480860031701682, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7365480860031701682, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4107,6 +4107,18 @@ PrefabInstance:
     - target: {fileID: 7365480860031701693, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: moveTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365480860031701693, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
+      propertyPath: offSet.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365480860031701693, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
+      propertyPath: offset.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7365480860031701693, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
+      propertyPath: offset.y
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7365480860031701693, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: delayTime

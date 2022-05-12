@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObjectController : MonoBehaviour
-{
+public class MovableObjectController : MonoBehaviour {
 
-	[SerializeField] public Vector2 offSet;
-    [SerializeField] private float moveTime;
+	[SerializeField] private Vector2 offSet;
+    [SerializeField] private float moveTime = 2;
+    [SerializeField] private float delayTime = 2;
 
-    private Vector2 currentPos;
-    private bool isOnBottom = true;
+    private Vector2 _currentPos;
+    private bool _isOnBottom = true;
     private float _moveStart;
 
     // Start is called before the first frame update
     void Start() {
 
-        currentPos = transform.position;
+        _currentPos = transform.position;
         StartCoroutine("Waiter");
     }
 
@@ -27,13 +27,12 @@ public class MovableObjectController : MonoBehaviour
 
     void Move() {
 
-        Vector2 startPos = currentPos;
-		Vector2 targetPos = currentPos;
+        Vector2 startPos = _currentPos;
+		Vector2 targetPos = _currentPos;
 
-        if (isOnBottom) {
+        if (_isOnBottom) {
             targetPos += offSet;
         }
-
         else {
             startPos += offSet;
         }
@@ -44,20 +43,17 @@ public class MovableObjectController : MonoBehaviour
     }
 
     IEnumerator Waiter() {
-        if (!isOnBottom) {
+        
+        if (_isOnBottom) {
             Debug.Log("bottom");
         }
-
         else {
             Debug.Log("on top");
         }
 
-        yield return new WaitForSeconds(4);
-        isOnBottom = !isOnBottom;
-
+        yield return new WaitForSeconds(moveTime + delayTime);
+        _isOnBottom = !_isOnBottom;
+        _moveStart = Time.time;
         StartCoroutine("Waiter");
     }
-
-
- 
 }

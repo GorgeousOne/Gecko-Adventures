@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ProjectileTrapController : MonoBehaviour {
+public class ProjectileTrapController : Triggerable {
 
 	[FormerlySerializedAs("arrowCount")] [SerializeField] private int projectileCount = 1;
 	[SerializeField] private GameObject projectileType;
 	[SerializeField] private float projectileSpeed = 30;
+
+	public override void OnSwitchToggle(bool isEnabled) {
+		Shoot();
+	}
 
 	public void Shoot() {
 		if (projectileCount > 0) {

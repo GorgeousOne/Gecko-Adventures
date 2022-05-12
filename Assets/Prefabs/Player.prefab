@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 8144296564121727022}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,3 +513,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRenderer: {fileID: 3857400767784642707}
+  levelCheckpoints: {fileID: 0}

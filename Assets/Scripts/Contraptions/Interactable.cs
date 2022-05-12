@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour {
-	
-	[SerializeField] protected UnityEvent interactAction;
+public abstract class Interactable : MonoBehaviour {
 	
 	private bool _isInPlayerRange;
 	private PlayerControls _controls;
 
+	protected abstract void OnInteract();
+	
+	
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
@@ -19,19 +20,19 @@ public class Interactable : MonoBehaviour {
 	
 	private void Update() {
 		if (_controls.Player.Interact.WasPerformedThisFrame() && _isInPlayerRange) {
-			interactAction.Invoke();
+			OnInteract();
 		}
 	}
  
 	private void OnTriggerEnter2D(Collider2D other) {
-		// if (other.gameObject.CompareTag("Player")) {
+		if (other.gameObject.CompareTag("Player")) {
 			_isInPlayerRange = true;
-		// }
+		}
 	}
 
 	private void OnTriggerExit2D(Collider2D other) {
-		// if (other.gameObject.CompareTag("Player")) {
+		if (other.gameObject.CompareTag("Player")) {
 			_isInPlayerRange = false;
-		// }
+		}
 	}
 }

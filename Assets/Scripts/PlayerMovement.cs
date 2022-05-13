@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _isExtendingTongue;
 	private bool _isRetractingTongue;
 
+	private float _lastMovementInput;
+	private bool _jumpInputPerformed;
+	
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
@@ -52,12 +55,26 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	private void Update() {
+		// bool isGrounded = CheckGrounding();
+		// CheckJumping();
+		// CheckTongueLengthChange();
+		// CheckHorizontalMovement(isGrounded, tongue.IsAttached() && !isGrounded);
+		_lastMovementInput = _controls.Player.Move.ReadValue<float>();
+		
+		if (_controls.Player.Jump.WasPerformedThisFrame()) {
+			_jumpInputPerformed = true;
+		}
+	}
+
+	private void FixedUpdate() {
 		bool isGrounded = CheckGrounding();
 		CheckJumping();
 		CheckTongueLengthChange();
 		CheckHorizontalMovement(isGrounded, tongue.IsAttached() && !isGrounded);
+		_lastMovementInput = 0;
+		_jumpInputPerformed = false;
 	}
-	
+
 	private bool CheckGrounding() {
 		_groundedRemember -= Time.deltaTime;
 		_jumpPressedRemember -= Time.deltaTime;
@@ -84,7 +101,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	private void CheckJumping() {
-		if (_controls.Player.Jump.WasPerformedThisFrame()) {
+		// if (_controls.Player.Jump.WasPerformedThisFrame()) {
+		if (_jumpInputPerformed) {
 			//detaches tongue when jumping
 			if (tongue.IsAttached()) {
 				tongue.Detach();
@@ -104,16 +122,19 @@ public class PlayerMovement : MonoBehaviour {
 			float newTongueLength = _tongueConnection.distance;
 			
 			if (_isExtendingTongue) {
-				newTongueLength += ropingSpeed * Time.deltaTime;
+				// newTongueLength += ropingSpeed * Time.deltaTime;
+				newTongueLength += ropingSpeed * Time.fixedDeltaTime;
 			} else if (_isRetractingTongue) {
-				newTongueLength -= ropingSpeed * Time.deltaTime;
+				// newTongueLength -= ropingSpeed * Time.deltaTime;
+				newTongueLength -= ropingSpeed * Time.fixedDeltaTime;
 			}
 			_tongueConnection.distance = Mathf.Clamp(newTongueLength, 1, tongue.GetMaxLength());
 		}
 	}
 	
 	private void CheckHorizontalMovement(bool isGrounded, bool isHanging) {
-		float horizontalInput = _controls.Player.Move.ReadValue<float>();
+		// float horizontalInput = _controls.Player.Move.ReadValue<float>();
+		float horizontalInput = _lastMovementInput;
 
 		_rigid.velocity = isHanging ?
 				CalcSwingVelocity(_rigid.velocity, horizontalInput):
@@ -149,7 +170,8 @@ public class PlayerMovement : MonoBehaviour {
 			return velocity;
 		}
 		// Vector2 impulse = Vector2.right * Mathf.Sign(horizontalInput) * swingForce * Time.deltaTime;
-		Vector2 impulse = GetSwingRightVector2() * Mathf.Sign(horizontalInput) * swingForce * Time.deltaTime;
+		// Vector2 impulse = GetSwingRightVector2() * Mathf.Sign(horizontalInput) * swingForce * Time.deltaTime;
+		Vector2 impulse = GetSwingRightVector2() * Mathf.Sign(horizontalInput) * swingForce * Time.fixedDeltaTime;
 		return _rigid.velocity + impulse;
 	}
 	
@@ -183,13 +205,15 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	private float GetAccelerated(float currentSpeed, float direction) {
-		float acceleration = Time.deltaTime / accelerateTime * maxHorizontalVelocity;
+		// float acceleration = Time.deltaTime / accelerateTime * maxHorizontalVelocity;
+		float acceleration = Time.fixedDeltaTime / accelerateTime * maxHorizontalVelocity;
 		float newSpeed = currentSpeed + direction * acceleration;
 		return Math.Clamp(newSpeed, -maxHorizontalVelocity, maxHorizontalVelocity);
 	}
 
 	private float GetDecelerated(float currentSpeed) {
-		float deceleration = (Time.deltaTime / accelerateTime * maxHorizontalVelocity);
+		// float deceleration = (Time.deltaTime / accelerateTime * maxHorizontalVelocity);
+		float deceleration = (Time.fixedDeltaTime / accelerateTime * maxHorizontalVelocity);
 
 		if (Mathf.Abs(currentSpeed) < deceleration) {
 			return 0;

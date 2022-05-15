@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorController : MonoBehaviour {
+public class DoorController : Triggerable {
 
 	[SerializeField] private Vector2 openOffset;
 	[SerializeField] private float moveTime;
@@ -29,7 +29,7 @@ public class DoorController : MonoBehaviour {
 		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
 	}
 
-	public void OnSwitchToggle(bool isEnabled) {
+	public override void OnSwitchToggle(bool isEnabled) {
 		_isOpen = isEnabled;
 		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
 		_moveStart = Time.time - (1 - elapsedTime);

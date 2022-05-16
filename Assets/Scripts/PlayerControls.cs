@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2847d61-4502-4716-b557-35db99e81c40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -223,6 +232,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""TongueRetract"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63d9bb97-f2f4-4adc-ba05-141eabba953d"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -266,6 +286,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_MousePos = m_Player.FindAction("MousePos", throwIfNotFound: true);
         m_Player_TongueExtend = m_Player.FindAction("TongueExtend", throwIfNotFound: true);
         m_Player_TongueRetract = m_Player.FindAction("TongueRetract", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,6 +353,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MousePos;
     private readonly InputAction m_Player_TongueExtend;
     private readonly InputAction m_Player_TongueRetract;
+    private readonly InputAction m_Player_Crouch;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -343,6 +365,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MousePos => m_Wrapper.m_Player_MousePos;
         public InputAction @TongueExtend => m_Wrapper.m_Player_TongueExtend;
         public InputAction @TongueRetract => m_Wrapper.m_Player_TongueRetract;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -373,6 +396,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueRetract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
                 @TongueRetract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
                 @TongueRetract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
+                @Crouch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCrouch;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -398,6 +424,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueRetract.started += instance.OnTongueRetract;
                 @TongueRetract.performed += instance.OnTongueRetract;
                 @TongueRetract.canceled += instance.OnTongueRetract;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
             }
         }
     }
@@ -429,5 +458,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMousePos(InputAction.CallbackContext context);
         void OnTongueExtend(InputAction.CallbackContext context);
         void OnTongueRetract(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }

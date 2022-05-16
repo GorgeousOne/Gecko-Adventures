@@ -13,7 +13,6 @@ public class ParallaxBackground : MonoBehaviour {
 		_cam = Camera.main;
 		_width = GetComponent<SpriteRenderer>().bounds.size.x;
 		_startPos = transform.position;
-		Debug.Log(_width);
 	}
 
 	private void LateUpdate() {

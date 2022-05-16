@@ -244,6 +244,8 @@ public class PlayerMovement : MonoBehaviour {
 	private void Crouch() {
 		_isCrouching = true;
 		spriteAnimator.SetBool("IsCrouching", _isCrouching);
+		tongue.SetAttachable(false);
+		
 		_capsule.size = new Vector2(_capsule.size.x, crouchHeight);
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
 		_rigid.velocity = new Vector2(
@@ -265,6 +267,7 @@ public class PlayerMovement : MonoBehaviour {
 	private void StandUp() {
 		_isCrouching = false;
 		spriteAnimator.SetBool("IsCrouching", _isCrouching);
+		tongue.SetAttachable(true);
 		_capsule.size = new Vector2(_capsule.size.x, _defaultHeight);
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY);
 	}

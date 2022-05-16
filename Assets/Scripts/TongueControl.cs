@@ -16,6 +16,8 @@ public class TongueControl : MonoBehaviour {
 	private Collider2D _attachment;
 	private GameObject _pickup;
 	
+	private bool _canAttach = true;
+
 	private float _extendStart;
 	private float _extendDistance;
 	private float _length;
@@ -41,6 +43,14 @@ public class TongueControl : MonoBehaviour {
 		}
 	}
 
+	public void SetAttachable(bool canAttach) {
+		_canAttach = canAttach;
+
+		if (!_canAttach && IsAttached()) {
+			Detach();
+		}
+	}
+	
 	//returns the width of the unscaled tongue sprite I think
 	public float GetMaxLength() {
 		return _length;
@@ -72,7 +82,8 @@ public class TongueControl : MonoBehaviour {
 	}
 
 	public void AttachTo(Collider2D other) {
-		if (IsAttached()) {
+		if (!_canAttach || IsAttached()) {
+			Debug.Log("Nope");
 			return;
 		}
 		_extendStart = Time.time - extendTime;

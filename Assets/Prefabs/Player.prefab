@@ -493,13 +493,15 @@ MonoBehaviour:
     m_Bits: 128
   tongue: {fileID: 3857400767592311175}
   spriteAnimator: {fileID: 3857400767784642704}
+  maxWalkSpeed: 10
+  accelerateTime: 0.2
   jumpHeight: 3.25
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
-  maxHorizontalVelocity: 10
-  accelerateTime: 0.2
   swingForce: 17
   ropingSpeed: 10
+  crouchHeight: 0.9
+  maxCrouchSpeed: 4
 --- !u!114 &8144296564121727022
 MonoBehaviour:
   m_ObjectHideFlags: 0

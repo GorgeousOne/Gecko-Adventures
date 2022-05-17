@@ -5,6 +5,7 @@ public class WallSwitchController : Switch {
 	private SpriteRenderer _renderer;
 	
 	private void Start() {
+		base.Start();
 		_renderer = GetComponent<SpriteRenderer>();
 	}
 

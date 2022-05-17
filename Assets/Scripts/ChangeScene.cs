@@ -1,16 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChangeScene : MonoBehaviour {
+public class ChangeScene : Interactable {
 
-    [SerializeField] public string scenename;
+    [SerializeField] private string sceneName;
 
-    void Start() {
-        Debug.Log("Load Scene");
-    }
-
-    public void ChangeTheScene() {
-        Debug.Log("loading scene " + scenename);
-        SceneManager.LoadScene(scenename);
+    protected override void OnInteract() {
+        SceneManager.LoadScene(sceneName);
     }
 }

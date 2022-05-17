@@ -18,7 +18,7 @@ public class Switch : Interactable {
 	private void OnDrawGizmos() {
 		Gizmos.color = IsEnabled ? new Color(.75f, 0, 0) : new Color(.25f, 0, 0);
 		foreach (Triggerable triggerable in connected) {
-			Gizmos.DrawLine(transform.position, triggerable.transform.position);
+			Gizmos.DrawLine(transform.position, triggerable.gameObject.transform.position);
 		}
 	}
 }

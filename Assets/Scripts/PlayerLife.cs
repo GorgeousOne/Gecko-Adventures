@@ -11,6 +11,7 @@ public class PlayerLife : MonoBehaviour {
 	
 	void Start() {
 		_rigid = GetComponent<Rigidbody2D>();
+		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

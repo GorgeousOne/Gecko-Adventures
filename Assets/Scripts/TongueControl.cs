@@ -83,7 +83,6 @@ public class TongueControl : MonoBehaviour {
 
 	public void AttachTo(Collider2D other) {
 		if (!_canAttach || IsAttached()) {
-			Debug.Log("Nope");
 			return;
 		}
 		_extendStart = Time.time - extendTime;

@@ -281,6 +281,9 @@ public class PlayerMovement : MonoBehaviour {
 		playerTransform.localScale = scale;
 	}
 
+	/**
+	 * Installs joint onto player body that insures swinging distance for the tongue
+	 */
 	public void OnTongueAttach(Collider2D other) {
 		Rigidbody2D anchor = other.attachedRigidbody;
 		_tongueConnection = this.AddComponent<DistanceJoint2D>();

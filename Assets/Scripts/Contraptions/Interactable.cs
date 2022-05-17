@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class Interactable : MonoBehaviour {
 	
@@ -7,7 +6,6 @@ public abstract class Interactable : MonoBehaviour {
 	private PlayerControls _controls;
 
 	protected abstract void OnInteract();
-	
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();

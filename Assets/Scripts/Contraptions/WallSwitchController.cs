@@ -10,6 +10,6 @@ public class WallSwitchController : Switch {
 
 	protected override void OnInteract() {
 		base.OnInteract();
-		_renderer.flipY = IsEnabled;
+		_renderer.flipX = IsEnabled;
 	}
 }

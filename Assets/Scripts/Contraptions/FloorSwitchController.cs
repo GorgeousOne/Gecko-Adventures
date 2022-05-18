@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FloorSwitchController : MonoBehaviour {
 
-	[SerializeField] private SpriteRenderer renderer;
+	[SerializeField] private SpriteRenderer rendering;
 	[SerializeField] private Vector2 pressedOffset;
 	[SerializeField] private List<Triggerable> connected;
 
@@ -13,7 +13,7 @@ public class FloorSwitchController : MonoBehaviour {
 	private Vector2 _defaultPos;
 
 	private void Start() {
-		_defaultPos = renderer.transform.position;
+		_defaultPos = rendering.transform.position;
 	}
 
 	// public void Update() {
@@ -32,9 +32,9 @@ public class FloorSwitchController : MonoBehaviour {
 
 	private void Toggle() {
 		if (_isEnabled) {
-			renderer.transform.position = _defaultPos + pressedOffset;
+			rendering.transform.position = _defaultPos + pressedOffset;
 		} else {
-			renderer.transform.position = _defaultPos;
+			rendering.transform.position = _defaultPos;
 		}
 		foreach (Triggerable triggerable in connected) {
 			triggerable.OnSwitchToggle(_isEnabled);

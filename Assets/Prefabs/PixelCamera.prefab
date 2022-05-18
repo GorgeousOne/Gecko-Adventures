@@ -46,7 +46,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.5801887, g: 0.794999, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -55,15 +55,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.05922865
+    y: 0.04987531
+    width: 0.8815427
+    height: 0.8977556
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 18.125
+  orthographic size: 11.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 480
-  m_RefResolutionY: 270
-  m_CropFrame: 0
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
+  m_CropFrame: 3
   m_GridSnapping: 2
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -156,6 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  targetOffset: {x: 0, y: 0}
+  targetOffset: {x: 0, y: 1}
   smoothSpeed: 1
   ppu: 16

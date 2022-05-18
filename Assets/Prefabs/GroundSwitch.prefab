@@ -154,11 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c14354751b1f1e48937d15d66e79e83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactAction:
-    m_PersistentCalls:
-      m_Calls: []
-  openOffset: {x: 0, y: -0.3}
-  moveTime: 1
-  toggleAction:
-    m_PersistentCalls:
-      m_Calls: []
+  rendering: {fileID: 6872663922335979629}
+  pressedOffset: {x: 0, y: 0}
+  connected: []

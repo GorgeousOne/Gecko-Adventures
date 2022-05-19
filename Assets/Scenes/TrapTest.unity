@@ -1085,21 +1085,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4fb77b6eea3414b893d66ae3f4bdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 236833148}
-        m_TargetAssemblyTypeName: SquareController, Assembly-CSharp
-        m_MethodName: SwitchColor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!212 &236833145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1412,9 +1397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a70433d9a4fe8a4fb28aa2576944a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 308453447}
+  targetOffset: {x: 0, y: 0}
   smoothSpeed: 1
   ppu: 16
-  target: {fileID: 308453447}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1638,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6872663922335979624, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
+      propertyPath: connected.Array.data[0]
+      value: 
+      objectReference: {fileID: 1577013190}
     - target: {fileID: 6872663922335979624, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.size
       value: 2

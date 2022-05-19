@@ -2403,7 +2403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyHintSprite: {fileID: 0}
   keyHintOffset: {x: 0, y: 1}
-  sceneName: Level0
+  sceneName: Level1
+  player: {fileID: 1656291124}
 --- !u!4 &308453447 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3857400769282164727, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
@@ -3114,6 +3115,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
+--- !u!1 &1656291124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3857400769282164724, guid: a9e2ea32f4012f84eb4cbd69d03a5a96, type: 3}
+  m_PrefabInstance: {fileID: 1656291123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1699765590
 PrefabInstance:
   m_ObjectHideFlags: 0

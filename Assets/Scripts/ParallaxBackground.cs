@@ -16,7 +16,7 @@ public class ParallaxBackground : MonoBehaviour {
 		_startPos = transform.position;
 
 		renderer.drawMode = SpriteDrawMode.Tiled;
-		renderer.size += new Vector2(2 * _width, 0);
+		renderer.size += new Vector2(2 * renderer.size.x, 0);
 	}
 
 	private void LateUpdate() {

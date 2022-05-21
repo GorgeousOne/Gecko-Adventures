@@ -182,7 +182,7 @@ PrefabInstance:
       objectReference: {fileID: 983662805}
     - target: {fileID: 4752560709699241048, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4752560709699241048, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
       propertyPath: sceneName
@@ -254,6 +254,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
+--- !u!1 &677917238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4752560709699241051, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
+  m_PrefabInstance: {fileID: 677917237}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &677917239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677917238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b2f6ba1f674bd42bc4956d59231e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyHintSprite: {fileID: 0}
+  keyHintOffset: {x: 0, y: 1}
+  previousSceneName: Level1
+  currentSceneName: Puzzle1
+  player: {fileID: 983662805}
 --- !u!1001 &701539143
 PrefabInstance:
   m_ObjectHideFlags: 0

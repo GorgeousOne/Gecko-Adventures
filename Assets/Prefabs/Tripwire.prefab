@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4479300883000898547}
   - component: {fileID: 4479300883000898546}
+  - component: {fileID: 591744376}
   m_Layer: 1
   m_Name: Tripwire
   m_TagString: Untagged
@@ -74,8 +75,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 7.1662607, y: 7.996686, z: 0}
-  - {x: 18.031586, y: 0.9883499, z: 1}
+  - {x: 0, y: 0, z: 0}
+  - {x: 10, y: 10, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -131,3 +132,16 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &591744376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479300883000898545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d3fec2449088b04bbc3af368cd8919d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connected: []

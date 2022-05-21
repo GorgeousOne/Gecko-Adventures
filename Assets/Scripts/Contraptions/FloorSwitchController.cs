@@ -5,7 +5,7 @@ public class FloorSwitchController : MonoBehaviour {
 
 	[SerializeField] private SpriteRenderer rendering;
 	[SerializeField] private Vector2 pressedOffset;
-	[SerializeField] private List<Triggerable> connected;
+	[SerializeField] private List<Switchable> connected;
 
 	// [SerializeField] private float moveTime;
 	
@@ -36,8 +36,8 @@ public class FloorSwitchController : MonoBehaviour {
 		} else {
 			rendering.transform.position = _defaultPos;
 		}
-		foreach (Triggerable triggerable in connected) {
-			triggerable.OnSwitchToggle(_isEnabled);
+		foreach (Switchable switchable in connected) {
+			switchable.OnSwitchToggle(_isEnabled);
 		}
 	}
 	
@@ -59,8 +59,8 @@ public class FloorSwitchController : MonoBehaviour {
 	
 	private void OnDrawGizmos() {
 		Gizmos.color = _isEnabled ? new Color(.75f, 0, 0) : new Color(.25f, 0, 0);
-		foreach (Triggerable triggerable in connected) {
-			Gizmos.DrawLine(transform.position, triggerable.transform.position);
+		foreach (Switchable switchable in connected) {
+			Gizmos.DrawLine(transform.position, ((MonoBehaviour) switchable).transform.position);
 		}
 	}
 }

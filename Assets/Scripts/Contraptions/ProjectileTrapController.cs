@@ -7,7 +7,11 @@ public class ProjectileTrapController : Triggerable {
 	[SerializeField] private GameObject projectileType;
 	[SerializeField] private float projectileSpeed = 30;
 
-	public override void OnSwitchToggle(bool isEnabled) {
+	// public void OnSwitchToggle(bool isEnabled) {
+	// 	Shoot();
+	// }
+
+	public override void OnTriggerActivate() {
 		Shoot();
 	}
 

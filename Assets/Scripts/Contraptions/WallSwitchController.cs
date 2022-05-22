@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WallSwitchController : Switch {
+public class WallSwitchController : InteractableSwitch {
 
 	private SpriteRenderer _renderer;
 	
@@ -8,7 +8,7 @@ public class WallSwitchController : Switch {
 		base.Start();
 		_renderer = GetComponent<SpriteRenderer>();
 	}
-
+	
 	protected override void OnInteract() {
 		base.OnInteract();
 		_renderer.flipX = IsEnabled;

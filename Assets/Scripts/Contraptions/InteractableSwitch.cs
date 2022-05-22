@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Switch : MonoBehaviour {
+public abstract class InteractableSwitch : Interactable {
 
 	[SerializeField] private List<Triggerable> connected;
 
 	protected bool IsEnabled;
-	
+	 
+	protected override void OnInteract() {
+		Toggle();
+	}
+
 	protected void Toggle() {
 		IsEnabled = !IsEnabled;
 

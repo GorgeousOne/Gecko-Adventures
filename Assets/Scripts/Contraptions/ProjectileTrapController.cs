@@ -8,7 +8,9 @@ public class ProjectileTrapController : Triggerable {
 	[SerializeField] private float projectileSpeed = 30;
 
 	public override void OnSwitchToggle(bool isEnabled) {
-		Shoot();
+		if (isEnabled) {
+			Shoot();
+		}
 	}
 
 	public void Shoot() {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorController : Switchable {
+public class DoorController : Triggerable {
 
 	[SerializeField] private Vector2 openOffset;
 	[SerializeField] private float moveTime;

@@ -7,14 +7,14 @@ public abstract class Trigger : MonoBehaviour {
 
 	protected void Activate() {
 		foreach (Triggerable triggerable in connected) {
-			triggerable.OnTriggerActivate();
+			triggerable.OnSwitchToggle(true);
 		}
 	}
 	
 	protected void OnDrawGizmos() {
 		Gizmos.color = new Color(.25f, 0, 0);
 		foreach (Triggerable triggerable in connected) {
-			Gizmos.DrawLine(transform.position, ((MonoBehaviour) triggerable).gameObject.transform.position);
+			Gizmos.DrawLine(transform.position, triggerable.gameObject.transform.position);
 		}
 	}
 }

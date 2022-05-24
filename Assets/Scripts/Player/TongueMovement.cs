@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TongueMovement : MonoBehaviour {
@@ -7,6 +8,7 @@ public class TongueMovement : MonoBehaviour {
 	[SerializeField] private LayerMask collectLayerMask;
 
 	private PlayerControls _controls;
+	private Camera _cam;
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
@@ -15,6 +17,10 @@ public class TongueMovement : MonoBehaviour {
 
 	private void OnDisable() {
 		_controls.Disable();
+	}
+
+	private void Start() {
+		_cam = Camera.main;
 	}
 
 	private void Update() {
@@ -27,7 +33,8 @@ public class TongueMovement : MonoBehaviour {
 			
 		//animates tongue extend on left click
 		} else if (!tongue.IsExtending() && _controls.Player.TongueShoot.WasPerformedThisFrame()) {
-			Vector2 mousePos = Camera.main.ScreenToWorldPoint(_controls.Player.MousePos.ReadValue<Vector2>());
+			Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
+			Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
 			transform.right = GetAimDir(mousePos);
 			tongue.PlayExtend();
 		}

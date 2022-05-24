@@ -156,6 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  targetOffset: {x: 0, y: 1}
+  targetOffset: {x: 0, y: 6}
   smoothSpeed: 1
   ppu: 16
+  followX: 1
+  followY: 0

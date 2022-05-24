@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyHintSprite: {fileID: 0}
-  keyHintOffset: {x: 0, y: 1}
+  keyHintOffset: {x: 0, y: 3.5}
   sceneName: ChangeTheSceneScene

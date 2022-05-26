@@ -42,10 +42,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Frequency: 2
+    - _Frequency: 1.5
+    - _LightCutOff: 0.01
+    - _LightFreq: 0.02
+    - _LightSpeed: 0.75
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 0.005
+    - _Scale: 0.01
     m_Colors:
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

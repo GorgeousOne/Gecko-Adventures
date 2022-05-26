@@ -14,6 +14,7 @@ public class ParallaxBackground : MonoBehaviour {
 		_cam = Camera.main;
 		_width = renderer.bounds.size.x;
 		_startPos = transform.position;
+		_startPos.y = _cam.transform.position.y;
 
 		renderer.drawMode = SpriteDrawMode.Tiled;
 		renderer.size += new Vector2(2 * renderer.size.x, 0);
@@ -21,7 +22,8 @@ public class ParallaxBackground : MonoBehaviour {
 
 	private void LateUpdate() {
 		float camDist = _cam.transform.position.x * (1 - parallaxEffect);
-		float dist = _cam.transform.position.x * parallaxEffect;
+		float distX = _cam.transform.position.x * parallaxEffect;
+		float distY = (_cam.transform.position.y - _startPos.y) * parallaxEffect;
 	
 		if (camDist > _startPos.x + 0.5*_width) {
 			_startPos.x += _width;
@@ -29,7 +31,8 @@ public class ParallaxBackground : MonoBehaviour {
 			_startPos.x -= _width;
 		}
 		Vector3 position = transform.position;
-		position.x = _startPos.x + dist;
+		position.x = _startPos.x + distX;
+		position.y = _startPos.y + distY;
 		transform.position = position;
 	}
 	

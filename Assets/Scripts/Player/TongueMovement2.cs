@@ -2,6 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class TongueMovement2 : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class TongueMovement2 : MonoBehaviour {
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
 	[SerializeField] private float extendTime;
+	[SerializeField] private Transform pivot;
 	[SerializeField] private LayerMask attachLayerMask;
 	[SerializeField] private LayerMask collectLayerMask;
 	
@@ -47,8 +49,8 @@ public class TongueMovement2 : MonoBehaviour {
 	private void Update() {
 		if (IsAttached()) {
 			Vector2 attachPoint = GetAttachPoint();
-			transform.right = GetAimDir(attachPoint);
-			float distance = (attachPoint - (Vector2) transform.position).magnitude;
+			pivot.right = GetAimDir(attachPoint);
+			float distance = (attachPoint - (Vector2) pivot.position).magnitude;
 			SetExtendDistance(distance);
 		} else if (IsExtending()) {
 			float extendProgress = GetExtendProgress();
@@ -68,15 +70,15 @@ public class TongueMovement2 : MonoBehaviour {
 		if (!IsExtending() && _controls.Player.TongueShoot.WasPerformedThisFrame()) {
 			Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
 			Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
-			transform.right = GetAimDir(mousePos);
+			pivot.right = GetAimDir(mousePos);
 			PlayExtend();
 		}
 	}
 
 	private Vector2 GetAimDir(Vector2 aim) {
 		return new Vector2(
-			aim.x - transform.position.x,
-			aim.y - transform.position.y);
+			aim.x - pivot.position.x,
+			aim.y - pivot.position.y);
 	}
 	
 	public void SetAttachable(bool canAttach) {
@@ -104,12 +106,11 @@ public class TongueMovement2 : MonoBehaviour {
 		return _attachment.bounds.center;
 	}
 	
-	public float GetAttachAngle() {
-		if (!IsAttached()) {
+	public float GetExtendAngle() {
+		if (!IsAttached() && !IsExtending()) {
 			return 0f;
 		}
-		Vector2 attachDir = GetAttachPoint() - transform.position;
-		return Mathf.Atan2(attachDir.y, attachDir.x);
+		return pivot.rotation.eulerAngles.z;
 	}
 	
 	public bool IsAttached() {

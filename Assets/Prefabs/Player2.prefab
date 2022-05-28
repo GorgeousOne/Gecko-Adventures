@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -862980261
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 04ed2567e59436547bfe21c1346869e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -154,9 +154,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -862980261
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7cafbec7d8054254182e727dd72d94c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 3857400767592311173}
   - component: {fileID: 3857400767592311170}
   - component: {fileID: 8442058769367328568}
+  - component: {fileID: 865660118}
   m_Layer: 8
   m_Name: TongueSprite
   m_TagString: Untagged
@@ -352,47 +353,13 @@ CapsuleCollider2D:
   m_Offset: {x: -2.5, y: 0}
   m_Size: {x: 5, y: 0.1875}
   m_Direction: 1
---- !u!1 &3857400769159288900
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3857400769159288903}
-  - component: {fileID: 1515446423799411568}
-  m_Layer: 8
-  m_Name: Tongue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3857400769159288903
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857400769159288900}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.375, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3857400767475587471}
-  - {fileID: 3857400767592311173}
-  m_Father: {fileID: 3857400769282164727}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1515446423799411568
+--- !u!114 &865660118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857400769159288900}
+  m_GameObject: {fileID: 3857400767592311169}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e90d12b9093543b3aae57bf6bffffd66, type: 3}
@@ -429,12 +396,46 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   extendTime: 0.4
+  pivot: {fileID: 3857400769159288903}
   attachLayerMask:
     serializedVersion: 2
     m_Bits: 512
   collectLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!1 &3857400769159288900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3857400769159288903}
+  m_Layer: 8
+  m_Name: Tongue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3857400769159288903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857400769159288900}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.375, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3857400767475587471}
+  - {fileID: 3857400767592311173}
+  m_Father: {fileID: 3857400769282164727}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3857400769282164724
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,11 +523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9579d430765b4196bdb35761106bcef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 3333492781884991484}
   solidsLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  tongue: {fileID: 0}
+  tongue: {fileID: 865660118}
   maxWalkSpeed: 10
   accelerateTime: 0.2
   jumpHeight: 3.25
@@ -561,7 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152eb2be0f021f44fb8aafab90619815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tongue: {fileID: 0}
+  tongue: {fileID: 865660118}
   headRenderer: {fileID: 4225703270757214519}
   bodyRenderer: {fileID: 4784587876209191445}
   headRotations:

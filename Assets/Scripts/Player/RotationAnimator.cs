@@ -16,21 +16,25 @@ public class RotationAnimator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		float tongueAngle = tongue.GetAttachAngle();
-		
-		if (tongue.IsAttached()) {
-			_UpdateBodySprite(tongueAngle);
-		}
+		float tongueAngle = tongue.GetExtendAngle();
+
+		// if (tongue.IsAttached()) {
+			// _UpdateBodySprite(tongueAngle);
+		// }
 		if (tongue.IsExtending() || tongue.IsAttached()) {
 			_UpdateHeadSprite(tongueAngle);
+		} else {
+			_UpdateHeadSprite(0f);
 		}
 	}
 
 	private void _UpdateHeadSprite(float tongueAngle) {
 		int newSpriteIndex = _GetHeadSprite(tongueAngle);
 
-		if (newSpriteIndex != _lastBodySpriteIndex) {
+		if (newSpriteIndex != _lastHeadSpriteIndex) {
 			_lastHeadSpriteIndex = newSpriteIndex;
+			
+			Debug.Log(newSpriteIndex);
 			headRenderer.sprite = headRotations[_lastHeadSpriteIndex];
 		}
 	}
@@ -46,7 +50,7 @@ public class RotationAnimator : MonoBehaviour {
 	
 	private int _GetHeadSprite(float tongueAngle) {
 		float mirrorXAngle = Math.Abs(MathUtil.WrapToPi(tongueAngle + 90));
-		return (int) Mathf.Round((headRotations.Count - 1) * mirrorXAngle);
+		return (int) Mathf.Round((headRotations.Count - 1) * mirrorXAngle / 180);
 	}
 
 	private int _GetBodySprite(float tongueAngle) {

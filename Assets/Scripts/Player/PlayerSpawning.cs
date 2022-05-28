@@ -20,7 +20,7 @@ public class PlayerSpawning : MonoBehaviour {
 	}
 
 	private void _loadLastPlayerPos() {
-		Vector3 savedPosition = transform.position;
+		Vector3 savedPosition = levelCheckpoints.GetCurrentSpawnPoint();
 		string sceneName = SceneManager.GetActiveScene().name;
 
 		if (PlayerPrefs.HasKey("Player_X_" + sceneName)) {

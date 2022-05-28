@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSpawning : MonoBehaviour {
 
-	[SerializeField] private SpriteRenderer playerRenderer;
+	//TODO uncomment
+	// [SerializeField] private SpriteRenderer playerRenderer;
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
 	
 	private Rigidbody2D _rigid;
@@ -44,13 +45,15 @@ public class PlayerSpawning : MonoBehaviour {
 	}
 
 	private void Die() {
-		playerRenderer.color = Color.red;
+		//TODO uncomment
+		// playerRenderer.color = Color.red;
 		_rigid.bodyType = RigidbodyType2D.Static;
 		StartCoroutine(RestartFromCheckpoint(1));
 	}
 
 	private void Revive() {
-		playerRenderer.color = Color.white;
+		//TODO uncomment
+		// playerRenderer.color = Color.white;
 		_rigid.bodyType = RigidbodyType2D.Dynamic;
 	}
 

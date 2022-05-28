@@ -1,36 +1,56 @@
-using System;
+﻿using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TongueControl : MonoBehaviour {
+public class TongueMovement2 : MonoBehaviour {
 
-	[SerializeField] private TriggerEvent triggerAction;
+	// [SerializeField] private TriggerEvent triggerAction;
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
 	[SerializeField] private float extendTime;
+	[SerializeField] private LayerMask attachLayerMask;
+	[SerializeField] private LayerMask collectLayerMask;
+	
+	private PlayerControls _controls;
+	private Camera _cam;
 	
 	private SpriteRenderer _renderer;
 	private Vector2 _defaultPos;
 	
 	private Collider2D _attachment;
 	private GameObject _pickup;
-	
 	private bool _canAttach = true;
 
 	private float _extendStart;
 	private float _extendDistance;
 	private float _length;
 	
+	private void OnEnable() {
+		_controls = new PlayerControls();
+		_controls.Enable();
+	}
+
+	private void OnDisable() {
+		_controls.Disable();
+	}
+	
 	private void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
 		_defaultPos = transform.localPosition;
 		_length = _renderer.sprite.rect.width / _renderer.sprite.pixelsPerUnit;
 		_extendStart = -extendTime;
+		
+		_cam = Camera.main;
 	}
 
 	private void Update() {
-		if (IsExtending()) {
+		if (IsAttached()) {
+			Vector2 attachPoint = GetAttachPoint();
+			transform.right = GetAimDir(attachPoint);
+			float distance = (attachPoint - (Vector2) transform.position).magnitude;
+			SetExtendDistance(distance);
+		} else if (IsExtending()) {
 			float extendProgress = GetExtendProgress();
 
 			if (extendProgress < .5f) {
@@ -43,6 +63,22 @@ public class TongueControl : MonoBehaviour {
 		}
 	}
 
+	private void FixedUpdate() {
+		//animates tongue extend on left click
+		if (!IsExtending() && _controls.Player.TongueShoot.WasPerformedThisFrame()) {
+			Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
+			Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
+			transform.right = GetAimDir(mousePos);
+			PlayExtend();
+		}
+	}
+
+	private Vector2 GetAimDir(Vector2 aim) {
+		return new Vector2(
+			aim.x - transform.position.x,
+			aim.y - transform.position.y);
+	}
+	
 	public void SetAttachable(bool canAttach) {
 		_canAttach = canAttach;
 
@@ -56,20 +92,28 @@ public class TongueControl : MonoBehaviour {
 		return _length;
 	}
 
-	public float GetLength() {
+	public float GetExtendDistance() {
 		return _extendDistance;
 	}
-
+	
 	public bool IsExtending() {
 		return Time.time - _extendStart < extendTime;
 	}
 
-	public Vector2 GetAttachPoint() {
+	public Vector3 GetAttachPoint() {
 		return _attachment.bounds.center;
 	}
 	
+	public float GetAttachAngle() {
+		if (!IsAttached()) {
+			return 0f;
+		}
+		Vector2 attachDir = GetAttachPoint() - transform.position;
+		return Mathf.Atan2(attachDir.y, attachDir.x);
+	}
+	
 	public bool IsAttached() {
-		return _attachment != null;
+		return _attachment;
 	}
 
 	public void SetExtendDistance(float distance) {
@@ -117,10 +161,10 @@ public class TongueControl : MonoBehaviour {
 		_pickup.transform.parent = transform;
 	}
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		triggerAction.Invoke(other);
-	}
+	// private void OnTriggerEnter2D(Collider2D other) {
+	// 	triggerAction.Invoke(other);
+	// }
 }
 
-[Serializable]
-public class TriggerEvent : UnityEvent<Collider2D> {}
+// [Serializable]
+// public class TriggerEvent : UnityEvent<Collider2D> {}

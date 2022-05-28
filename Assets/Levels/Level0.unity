@@ -1225,7 +1225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43389,7 +43389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.15884861
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
@@ -43397,7 +43397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.6823028
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
@@ -44159,6 +44159,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3857400767475587471, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164724, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
       propertyPath: m_Name
       value: Player2

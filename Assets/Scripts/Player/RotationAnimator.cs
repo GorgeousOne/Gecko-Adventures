@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -26,18 +27,20 @@ public class RotationAnimator : MonoBehaviour {
 		_rigid = GetComponent<Rigidbody2D>();
 	}
 
-	void Update() {
-		float xMirroredAngle = MathUtil.WrapToPi(tongue.GetExtendAngle() + 90);
+	void Update()
+	{
+		float tongueAngle = tongue.GetExtendAngle();
 		
-		_UpdateBodySprite(xMirroredAngle);
+		_UpdateBodySprite(tongueAngle);
 		if (tongue.IsExtending() || tongue.IsAttached()) {
-			_UpdateHeadSprite(xMirroredAngle);
+			_UpdateHeadSprite(tongueAngle);
 		} else {
 			_ResetHeadSprite();
 		}
 	}
 	
-	private void _UpdateHeadSprite(float xMirroredAngle) {
+	private void _UpdateHeadSprite(float tongueAngle) {
+		float xMirroredAngle = MathUtil.WrapToPi(tongueAngle + 90);
 		int newSpriteIndex = _GetHeadSpriteIndex(xMirroredAngle);
 		bool isTongueFacingRight = xMirroredAngle > 0;
 
@@ -58,25 +61,26 @@ public class RotationAnimator : MonoBehaviour {
 		}
 	}
 
-	private void _UpdateBodySprite(float xMirroredAngle) {
-		_ToggleSwingAnimation(xMirroredAngle);
-
+	private void _UpdateBodySprite(float tongueAngle) {
+		bool hasTurnedAround = Mathf.Sign(_rigid.velocity.x) != (_isBodyFacingRight ? 1 : -1);
+		bool isOverSwinging = tongue.IsAttached() && tongueAngle < 0;
+		
+		if (!MathUtil.IsZero(_rigid.velocity.x) && hasTurnedAround && !isOverSwinging) {
+			_FlipBody();
+		}
+		_ToggleSwingAnimation();
+		
 		if (_isSwinging) {
-			int newSpriteIndex = _GetBodySpriteIndex(xMirroredAngle);
+			int newSpriteIndex = _GetBodySpriteIndex(tongueAngle);
 		
 			if (newSpriteIndex != _lastBodySpriteIndex) {
 				_lastBodySpriteIndex = newSpriteIndex;
 				bodyRenderer.sprite = bodyRotations[_lastBodySpriteIndex];
 			}
 		}
-		bool hasTurnedAround = Mathf.Sign(_rigid.velocity.x) != (_isBodyFacingRight ? 1 : -1);
-
-		if (!MathUtil.IsZero(_rigid.velocity.x) && hasTurnedAround) {
-			_FlipBody();
-		}
 	}
 
-	private void _ToggleSwingAnimation(float xMirroredAngle) {
+	private void _ToggleSwingAnimation() {
 		if (bodyAnimator.enabled) {
 			if (tongue.IsAttached() && !player.CheckGrounding()) {
 				bodyAnimator.enabled = false;
@@ -92,8 +96,14 @@ public class RotationAnimator : MonoBehaviour {
 		return (int) Mathf.Round((headRotations.Count - 1) * Mathf.Abs(xMirroredAngle) / 180);
 	}
 
-	private int _GetBodySpriteIndex(float xMirroredAngle) {
-		return (int) Mathf.Round((bodyRotations.Count - 1) * Mathf.Abs(xMirroredAngle) / 180);
+	private int _GetBodySpriteIndex(float tongueAngle) {
+		if (tongueAngle < 0) {
+			return bodyRotations.Count - 1;
+		}
+		if (!_isBodyFacingRight) {
+			tongueAngle = 180 - tongueAngle;
+		}
+		return (int) Mathf.Round((bodyRotations.Count - 1) * Mathf.Abs(tongueAngle) / 180);
 	}
 	
 	private void _FlipHead() {

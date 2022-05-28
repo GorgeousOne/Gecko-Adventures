@@ -112,7 +112,7 @@ public class TongueMovement2 : MonoBehaviour {
 		if (!IsAttached() && !IsExtending()) {
 			return 0f;
 		}
-		return pivot.rotation.eulerAngles.z;
+		return MathUtil.WrapToPi(pivot.rotation.eulerAngles.z);
 	}
 	
 	public bool IsAttached() {

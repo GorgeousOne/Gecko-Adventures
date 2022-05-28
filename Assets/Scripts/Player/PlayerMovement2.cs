@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMovement2 : MonoBehaviour {
 	
 	[Header("General")]
-	[SerializeField] private Transform playerTransform;
+	// [SerializeField] private Transform playerTransform;
 	[SerializeField] private LayerMask solidsLayerMask;
 	[SerializeField] private TongueMovement2 tongue;
-	// [SerializeField] private Animator spriteAnimator;
+	[SerializeField] private Animator bodyAnimator;
 
 	[Header("Walk")]
 	[SerializeField] private float maxWalkSpeed = 10;
@@ -88,9 +88,12 @@ public class PlayerMovement2 : MonoBehaviour {
 		_lastMovementInput = 0;
 		_jumpInputPerformed = false;
 		
+		bodyAnimator.SetFloat("VelY", _rigid.velocity.y);
+		bodyAnimator.SetBool("Crouching", _isCrouching);
+		bodyAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(_rigid.velocity.x) : 0f);
 	}
 
-	private bool CheckGrounding() {
+	public bool CheckGrounding() {
 		_groundedRemember -= Time.deltaTime;
 		_jumpPressedRemember -= Time.deltaTime;
 		bool isGrounded = IsGrounded();
@@ -149,25 +152,17 @@ public class PlayerMovement2 : MonoBehaviour {
 		_rigid.velocity = isHanging ?
 				CalcSwingVelocity(_rigid.velocity, horizontalInput):
 				CalcWalkVelocity(_rigid.velocity, horizontalInput);
-
-		bool hasTurnedAround = Mathf.Sign(_rigid.velocity.x) != (_isFacingRight ? -1 : 1);
-
-		if (!isZero(_rigid.velocity.x) && hasTurnedAround) {
-			Flip();
-		}
-		//TODO uncomment
-		// spriteAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(_rigid.velocity.x) : 0f);
 	}
 
 	private Vector2 CalcWalkVelocity(Vector2 velocity, float horizontalInput) {
 		Vector2 newVelocity = new Vector2(0, velocity.y);
 		
-		if (isZero(horizontalInput)) {
+		if (MathUtil.IsZero(horizontalInput)) {
 			newVelocity.x = GetDecelerated(velocity.x);
 		} else {
 			bool isTuningAround = Mathf.Sign(horizontalInput) != Mathf.Sign(velocity.x);
 			
-			if (!isZero(velocity.x) && isTuningAround) {
+			if (!MathUtil.IsZero(velocity.x) && isTuningAround) {
 				newVelocity.x = 0;
 			}else {
 				newVelocity.x = GetAccelerated(velocity.x, Mathf.Sign(horizontalInput));
@@ -177,7 +172,7 @@ public class PlayerMovement2 : MonoBehaviour {
 	}
 	
 	private Vector2 CalcSwingVelocity(Vector2 velocity, float horizontalInput) {
-		if (isZero(horizontalInput) || transform.position.y > tongue.GetAttachPoint().y) {
+		if (MathUtil.IsZero(horizontalInput) || transform.position.y > tongue.GetAttachPoint().y) {
 			return velocity;
 		}
 		Vector2 impulse = GetSwingRightVector2() * (Mathf.Sign(horizontalInput) * swingForce * Time.fixedDeltaTime);
@@ -191,10 +186,6 @@ public class PlayerMovement2 : MonoBehaviour {
 			return new Vector2(attachDirection.y, -attachDirection.x).normalized;
 		}
 		return Vector2.zero;
-	}
-	
-	private bool isZero(float f, float margin = 0.01f) {
-		return Mathf.Abs(f) < margin;
 	}
 	
 	//approximates velocity needed to reach given jump height
@@ -244,8 +235,6 @@ public class PlayerMovement2 : MonoBehaviour {
 	}
 	private void Crouch() {
 		_isCrouching = true;
-		//TODO uncomment
-		// spriteAnimator.SetBool("IsCrouching", _isCrouching);
 		tongue.SetAttachable(false);
 		
 		_capsule.size = new Vector2(_capsule.size.x, crouchHeight);
@@ -268,22 +257,11 @@ public class PlayerMovement2 : MonoBehaviour {
 	
 	private void StandUp() {
 		_isCrouching = false;
-		//TODO uncomment
-		// spriteAnimator.SetBool("IsCrouching", _isCrouching);
 		tongue.SetAttachable(true);
 		_capsule.size = new Vector2(_capsule.size.x, _defaultHeight);
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY);
 	}
 	
-	private void Flip() {
-		_isFacingRight = !_isFacingRight;
-
-		// Multiplies the player's x local scale by -1.
-		Vector3 scale = playerTransform.localScale;
-		scale.x *= -1;
-		playerTransform.localScale = scale;
-	}
-
 	/**
 	 * Installs joint onto player body that insures swinging distance for the tongue
 	 */

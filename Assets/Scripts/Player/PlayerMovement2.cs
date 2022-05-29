@@ -5,18 +5,27 @@ using UnityEngine;
 public class PlayerMovement2 : MonoBehaviour {
 	
 	[Header("General")]
-	// [SerializeField] private Transform playerTransform;
 	[SerializeField] private LayerMask solidsLayerMask;
 	[SerializeField] private TongueMovement2 tongue;
 	[SerializeField] private Animator bodyAnimator;
 
 	[Header("Walk")]
 	[SerializeField] private float maxWalkSpeed = 10;
+	/// <summary>
+	/// time to get from 0 to maxWalkSpeed 
+	/// </summary>
 	[SerializeField] private float accelerateTime = 0.2f;
 	
 	[Header("Jump")]
+	// amount of units the player can jump high
 	[SerializeField] private float jumpHeight = 3.25f;
+	/// <summary>
+	/// time buffer in which player still jumps after not touching ground anymore
+	/// </summary>
 	[SerializeField] private float jumpPressedRememberDuration = 0.2f;
+	/// <summary>
+	/// time buffer in which player still jump before even touching ground
+	/// </summary>
 	[SerializeField] private float groundedRememberDuration = 0.2f;
 	
 	[Header("Other")]
@@ -71,6 +80,9 @@ public class PlayerMovement2 : MonoBehaviour {
 		_defaultCapsuleOffY = _capsule.offset.y;
 	}
 	
+	/// <summary>
+	/// Reads control inputs
+	/// </summary>
 	private void Update() {
 		_lastMovementInput = _controls.Player.Move.ReadValue<float>();
 		
@@ -84,7 +96,7 @@ public class PlayerMovement2 : MonoBehaviour {
 		CheckCrouching();
 		CheckJumping();
 		CheckTongueLengthChange();
-		CheckHorizontalMovement(isGrounded, tongue.IsAttached() && !isGrounded);
+		CheckHorizontalMovement(tongue.IsAttached() && !isGrounded);
 		_lastMovementInput = 0;
 		_jumpInputPerformed = false;
 		
@@ -120,7 +132,7 @@ public class PlayerMovement2 : MonoBehaviour {
 	
 	private void CheckJumping() {
 		if (_jumpInputPerformed) {
-			//detaches tongue when jumping
+			//only detaches tongue when jumping
 			if (tongue.IsAttached()) {
 				tongue.Detach();
 				return;
@@ -133,6 +145,9 @@ public class PlayerMovement2 : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Extends swinging tongue on right click and extends it on left click
+	/// </summary>
 	private void CheckTongueLengthChange() {
 		if (tongue.IsAttached()) {
 			float newTongueLength = _tongueConnection.distance;
@@ -146,23 +161,31 @@ public class PlayerMovement2 : MonoBehaviour {
 		}
 	}
 	
-	private void CheckHorizontalMovement(bool isGrounded, bool isHanging) {
+	private void CheckHorizontalMovement(bool isHanging) {
 		float horizontalInput = _lastMovementInput;
 
 		_rigid.velocity = isHanging ?
-				CalcSwingVelocity(_rigid.velocity, horizontalInput):
+				CalcSwingVelocity(_rigid.velocity, horizontalInput) :
 				CalcWalkVelocity(_rigid.velocity, horizontalInput);
 	}
 
+	/// <summary>
+	/// Accelerates and decelerates player based on if horizontal movement input was performed
+	/// </summary>
+	/// <param name="velocity">current velocity of player</param>
+	/// <param name="horizontalInput">-1 or 1 if A or D pressed</param>
+	/// <returns></returns>
 	private Vector2 CalcWalkVelocity(Vector2 velocity, float horizontalInput) {
 		Vector2 newVelocity = new Vector2(0, velocity.y);
 		
+		//slows player down if no movement input
 		if (MathUtil.IsZero(horizontalInput)) {
 			newVelocity.x = GetDecelerated(velocity.x);
 		} else {
-			bool isTuningAround = Mathf.Sign(horizontalInput) != Mathf.Sign(velocity.x);
+			bool isTurningAround = Mathf.Sign(horizontalInput) != Mathf.Sign(velocity.x);
 			
-			if (!MathUtil.IsZero(velocity.x) && isTuningAround) {
+			//slows down player if not standing still already
+			if (!MathUtil.IsZero(velocity.x) && isTurningAround) {
 				newVelocity.x = 0;
 			}else {
 				newVelocity.x = GetAccelerated(velocity.x, Mathf.Sign(horizontalInput));
@@ -171,15 +194,26 @@ public class PlayerMovement2 : MonoBehaviour {
 		return newVelocity;
 	}
 	
+	/// <summary>
+	/// Calculates the accelerated velocity of player when swinging 
+	/// </summary>
+	/// <param name="velocity"></param>
+	/// <param name="horizontalInput"></param>
+	/// <returns></returns>
 	private Vector2 CalcSwingVelocity(Vector2 velocity, float horizontalInput) {
+		//does not accelerate if no input or if highest swing point reached
 		if (MathUtil.IsZero(horizontalInput) || transform.position.y > tongue.GetAttachPoint().y) {
 			return velocity;
 		}
+		//adds an impulse to velocity based on the swinging angle and input direction
 		Vector2 impulse = GetSwingRightVector2() * (Mathf.Sign(horizontalInput) * swingForce * Time.fixedDeltaTime);
-		return _rigid.velocity + impulse;
+		return velocity + impulse;
 	}
 	
-	//returns like... the tangent direction for the swinging circle
+	/// <summary>
+	/// returns like... the tangent direction of the current point on the swinging circle
+	/// </summary>
+	/// <returns></returns>
 	public Vector2 GetSwingRightVector2() {
 		if (tongue.IsAttached()) {
 			Vector2 attachDirection = tongue.GetAttachPoint() - transform.position;
@@ -204,24 +238,33 @@ public class PlayerMovement2 : MonoBehaviour {
 		_rigid.velocity = new Vector2(_rigid.velocity.x, velocity);
 	}
 	
+	/// <summary>
+	/// Accelerates the current speed linearly
+	/// </summary>
+	/// <param name="currentSpeed"></param>
+	/// <param name="direction">+1 or -1 for left or right</param>
+	/// <returns></returns>
 	private float GetAccelerated(float currentSpeed, float direction) {
-		float movementSpeed = _isCrouching ? maxCrouchSpeed : maxWalkSpeed;
-		float acceleration = Time.fixedDeltaTime / accelerateTime * movementSpeed;
+		float maxMovementSpeed = _isCrouching ? maxCrouchSpeed : maxWalkSpeed;
+		float acceleration = Time.fixedDeltaTime / accelerateTime * maxMovementSpeed;
 		float newSpeed = currentSpeed + direction * acceleration;
-		return Math.Clamp(newSpeed, -movementSpeed, movementSpeed);
+		return Math.Clamp(newSpeed, -maxMovementSpeed, maxMovementSpeed);
 	}
 
 	private float GetDecelerated(float currentSpeed) {
-		float movementSpeed = _isCrouching ? maxCrouchSpeed : maxWalkSpeed;
-		float deceleration = (Time.fixedDeltaTime / accelerateTime * movementSpeed);
+		float maxMovementSpeed = _isCrouching ? maxCrouchSpeed : maxWalkSpeed;
+		float deceleration = Time.fixedDeltaTime / accelerateTime * maxMovementSpeed;
 
 		if (Mathf.Abs(currentSpeed) < deceleration) {
 			return 0;
 		}
 		float newSpeed = currentSpeed - Mathf.Sign(currentSpeed) * deceleration;
-		return Math.Clamp(newSpeed, -movementSpeed, movementSpeed);
+		return Math.Clamp(newSpeed, -maxMovementSpeed, maxMovementSpeed);
 	}
 
+	/// <summary>
+	/// Makes player crouch on key press. Makes player stand up on key release if not trapped below something
+	/// </summary>
 	private void CheckCrouching() {
 		if (_wantsCrouch) {
 			if (!_isCrouching) {
@@ -233,6 +276,10 @@ public class PlayerMovement2 : MonoBehaviour {
 			}
 		}
 	}
+	
+	/// <summary>
+	/// Resizes capsule to fit crouching height and slows player down
+	/// </summary>
 	private void Crouch() {
 		_isCrouching = true;
 		tongue.SetAttachable(false);
@@ -244,6 +291,10 @@ public class PlayerMovement2 : MonoBehaviour {
 			_rigid.velocity.y);
 	}
 
+	/// <summary>
+	/// Checks intersection of player capsule with solid objects 0.5 units above player
+	/// </summary>
+	/// <returns>true if nothing is blocking the player from standing up, otherwise false</returns>
 	private bool CanStandUp() {
 		Vector2 capsuleOffset = _capsule.offset;
 		Vector2 capsuleSize = _capsule.size;
@@ -255,6 +306,9 @@ public class PlayerMovement2 : MonoBehaviour {
 		return !Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);
 	}
 	
+	/// <summary>
+	/// Resized capsule back to default size.
+	/// </summary>
 	private void StandUp() {
 		_isCrouching = false;
 		tongue.SetAttachable(true);
@@ -262,19 +316,23 @@ public class PlayerMovement2 : MonoBehaviour {
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY);
 	}
 	
-	/**
-	 * Installs joint onto player body that insures swinging distance for the tongue
-	 */
+	/// <summary>
+	/// Installs a joint onto player body that insures that maximum tongue length is not exceeded
+	/// </summary>
+	/// <param name="other"></param>
 	public void OnTongueAttach(Collider2D other) {
-		Rigidbody2D anchor = other.attachedRigidbody;
+		Rigidbody2D attachedObject = other.attachedRigidbody;
 		_tongueConnection = this.AddComponent<DistanceJoint2D>();
 		_tongueConnection.enableCollision = true;
-		_tongueConnection.connectedBody = anchor;
+		_tongueConnection.connectedBody = attachedObject;
 		_tongueConnection.autoConfigureDistance = false;
 		_tongueConnection.distance = tongue.GetMaxLength();
 		_tongueConnection.maxDistanceOnly = true;
 	}
-
+	
+	/// <summary>
+	/// Removes tongue joint on tongue detach
+	/// </summary>
 	public void OnTongueDetach() {
 		Destroy(_tongueConnection);
 	}

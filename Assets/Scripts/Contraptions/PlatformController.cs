@@ -4,48 +4,65 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour {
 
-	[SerializeField] private Vector2 offset = new(0, 5);
-	[SerializeField] private float moveTime = 2;
-	[SerializeField] private float delayTime = 2;
+	[SerializeField] private Vector2 offset;
+    [SerializeField] private float moveTime = 2;
+    [SerializeField] private float delayTime = 2;
 
-	private Vector2 _startPos;
-	private bool _isReturning = true;
+    private Vector2 _startPos;
+    private bool _isOnBottom = true;
+    private float _moveStart;
 
-	void Start() {
-		_startPos = transform.position;
-		StartCoroutine(nameof(ToggleReturn));
-	}
+    void Start() {
+        _startPos = transform.position;
+        StartCoroutine("SwitchDirectionOnTargetReach");
+    }
 
-	void Toggle() {
-		if (_isReturning) {
-			transform.position = _startPos;
-		} else {
-			transform.position = _startPos + offset;
-		}
-	}
+    void Update() {
+        Move();
+    }
 
-	IEnumerator ToggleReturn() {
-		yield return new WaitForSeconds(moveTime + delayTime);
-		_isReturning = !_isReturning;
-		StartCoroutine("ToggleReturn");
-	}
+    /**
+     * Interpolates platform position over time making it move between start and target
+     */
+    void Move() {
+        Vector2 startPos = _startPos;
+		Vector2 targetPos = _startPos;
 
-	private void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.CompareTag("Player")) {
-			collider.transform.parent = transform;
-			Toggle();
-		}
-	}
+        if (_isOnBottom) {
+            targetPos += offset;
+        }
+        else {
+            startPos += offset;
+        }
 
-	private void OnTriggerExit2D(Collider2D collider) {
-		if (collider.gameObject.CompareTag("Player")) {
-			collider.transform.parent = null;
-			Toggle();
-		}
-	}
+        float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
+        transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
+    }
 
-	private void OnDrawGizmos() {
+    /**
+     * Switches start and destination of platform when arrived at target position
+     */
+    IEnumerator SwitchDirectionOnTargetReach() {
+        yield return new WaitForSeconds(moveTime + delayTime);
+        _isOnBottom = !_isOnBottom;
+        _moveStart = Time.time;
+        StartCoroutine("SwitchDirectionOnTargetReach");
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collider.transform.parent = transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collider.transform.parent = null;
+        }
+    }
+
+    private void OnDrawGizmos() {
 		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
-		Gizmos.DrawLine(position, position + offset);
+        Gizmos.DrawLine(position, position + offset);
 	}
 }

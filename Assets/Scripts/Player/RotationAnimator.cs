@@ -1,5 +1,4 @@
 
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -27,17 +26,17 @@ public class RotationAnimator : MonoBehaviour {
 		_rigid = GetComponent<Rigidbody2D>();
 	}
 
-	void Update()
-	{
+	void Update() {
 		float tongueAngle = tongue.GetExtendAngle();
-		
 		_UpdateBodySprite(tongueAngle);
+		
 		if (tongue.IsExtending() || tongue.IsAttached()) {
 			_UpdateHeadSprite(tongueAngle);
 		} else {
 			_ResetHeadSprite();
 		}
 	}
+	
 	
 	private void _UpdateHeadSprite(float tongueAngle) {
 		float xMirroredAngle = MathUtil.WrapToPi(tongueAngle + 90);
@@ -52,7 +51,10 @@ public class RotationAnimator : MonoBehaviour {
 			headRenderer.sprite = headRotations[_lastHeadSpriteIndex];
 		}
 	}
-
+	
+	/// <summary>
+	/// Resets the head sprite to closed mouth
+	/// </summary>
 	private void _ResetHeadSprite() {
 		headRenderer.sprite = headRotations[headRotations.Count / 2];
 
@@ -61,6 +63,10 @@ public class RotationAnimator : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Selects correct rotation sprite for body when swinging. Otherwise enables sprite animator.
+	/// </summary>
+	/// <param name="tongueAngle"></param>
 	private void _UpdateBodySprite(float tongueAngle) {
 		bool hasTurnedAround = Mathf.Sign(_rigid.velocity.x) != (_isBodyFacingRight ? 1 : -1);
 		bool isOverSwinging = tongue.IsAttached() && tongueAngle < 0;
@@ -79,7 +85,10 @@ public class RotationAnimator : MonoBehaviour {
 			}
 		}
 	}
-
+	
+	/// <summary>
+	/// Disables body sprite animator when swinging
+	/// </summary>
 	private void _ToggleSwingAnimation() {
 		if (bodyAnimator.enabled) {
 			if (tongue.IsAttached() && !player.CheckGrounding()) {
@@ -92,18 +101,29 @@ public class RotationAnimator : MonoBehaviour {
 		}
 	}
 	
+	/// <summary>
+	/// Determines rotated head sprite based on the tongue angle.
+	/// </summary>
+	/// <param name="xMirroredAngle">tongue angle between -180 and 180 (0 is facing down, +-180 is facing up, 90 is facing right)</param>
+	/// <returns></returns>
 	private int _GetHeadSpriteIndex(float xMirroredAngle) {
-		return (int) Mathf.Round((headRotations.Count - 1) * Mathf.Abs(xMirroredAngle) / 180);
+		return (int) Mathf.Round((headRotations.Count - 1) * Mathf.Abs(xMirroredAngle) / 180f);
 	}
-
+	
+	/// <summary>
+	/// Determines rotated body sprite based on swinging angle
+	/// </summary>
+	/// <param name="tongueAngle"> angle of tongue (0 facing right, +-180 facing left, 90 facing up)</param>
+	/// <returns></returns>
 	private int _GetBodySpriteIndex(float tongueAngle) {
+		//returns maximum rotated sprite index if player is above y coordinate of attached object
 		if (tongueAngle < 0) {
 			return bodyRotations.Count - 1;
 		}
 		if (!_isBodyFacingRight) {
 			tongueAngle = 180 - tongueAngle;
 		}
-		return (int) Mathf.Round((bodyRotations.Count - 1) * Mathf.Abs(tongueAngle) / 180);
+		return (int) Mathf.Round((bodyRotations.Count - 1) * Mathf.Abs(tongueAngle) / 180f);
 	}
 	
 	private void _FlipHead() {

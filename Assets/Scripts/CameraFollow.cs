@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // [ExecuteAlways]
@@ -8,12 +9,24 @@ public class CameraFollow : MonoBehaviour {
 	[SerializeField][Range(0, 1)] private float smoothSpeed = 1f;
 	[SerializeField] private int ppu = 16;
 	
-	
 	[SerializeField] private bool followX = true;
 	[SerializeField] private bool followY;
-
-	private CameraGuide _guide;
+	[SerializeField] private GameObject cameraGuides;
 	
+	// private List<CameraGuide> _guides;
+	
+	void Awake() {
+		// _guides = new List<CameraGuide>();
+		
+		foreach(Transform guideTransform in cameraGuides.transform) {
+			CameraGuide guide = guideTransform.gameObject.GetComponent<CameraGuide>();
+
+			if (null != guide) {
+				guide.enterEvent.AddListener(OnCameraGuideEnter);
+				// _guides.Add(guide);
+			}
+		}
+	}
 	private void LateUpdate() {
 		Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
 		Vector3 newPos = transform.position;
@@ -29,7 +42,10 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	public void OnCameraGuideEnter(CameraGuide guide) {
-		_guide = guide;
+		followX = guide.followX;
+		followY = guide.followY;
+		Vector2 guideTarget = guide.GetTargetPoint();
+		transform.position = new Vector3(guideTarget.x, guideTarget.y, transform.position.z);
 	}
 
 	private Vector3 GetPixelPoint(Vector3 point, int ppu) {

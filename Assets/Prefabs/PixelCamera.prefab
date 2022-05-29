@@ -161,3 +161,4 @@ MonoBehaviour:
   ppu: 16
   followX: 1
   followY: 0
+  cameraGuides: {fileID: 0}

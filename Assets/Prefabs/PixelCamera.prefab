@@ -55,10 +55,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.2290786
-    y: 0.2757764
-    width: 0.54099745
-    height: 0.44720495
+    x: -0.09150633
+    y: 0.24630542
+    width: 0.7508212
+    height: 0.8866995
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetOffset: {x: 0, y: 6}
-  smoothSpeed: 1
+  snapTime: 0.5
   ppu: 16
   followX: 1
   followY: 0

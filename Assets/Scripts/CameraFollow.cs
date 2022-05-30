@@ -1,51 +1,67 @@
-using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 // [ExecuteAlways]
 public class CameraFollow : MonoBehaviour {
 
 	[SerializeField] private Transform target;
 	[SerializeField] private Vector2 targetOffset;
-	[SerializeField][Range(0, 1)] private float smoothSpeed = 1f;
+	// [SerializeField][Range(0, 1)] private float smoothSpeed = 1f;
+	[SerializeField] [Min(0)] private float snapTime = 0.5f;
 	[SerializeField] private int ppu = 16;
 	
 	[SerializeField] private bool followX = true;
 	[SerializeField] private bool followY;
 	[SerializeField] private GameObject cameraGuides;
-	
-	// private List<CameraGuide> _guides;
-	
+
+	private CameraGuide _guide;
+	private float _snapStartTime;
+	private Vector3 _snapStartPos;
+
 	void Awake() {
-		// _guides = new List<CameraGuide>();
-		
 		foreach(Transform guideTransform in cameraGuides.transform) {
 			CameraGuide guide = guideTransform.gameObject.GetComponent<CameraGuide>();
 
 			if (null != guide) {
 				guide.enterEvent.AddListener(OnCameraGuideEnter);
-				// _guides.Add(guide);
 			}
 		}
 	}
-	private void LateUpdate() {
-		Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
-		Vector3 newPos = transform.position;
 
-		if (followX) {
-			newPos.x = lerpPos.x;
-		}
-		if (followY) {
-			newPos.y = lerpPos.y;
-		}
+	private void LateUpdate() {
+		// Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
+		Vector3 targetPos = target.position;
+		Vector3 currentPos = transform.position;
+		Vector3 newGoalPos = new Vector3(0, 0, currentPos.z);
 		
-		transform.position = GetPixelPoint(newPos, ppu);
+		if (_IsSnapping()) {
+			Vector3 snapTarget = _guide.GetTargetPoint();
+			newGoalPos.x = followX ? targetPos.x : snapTarget.x;
+			newGoalPos.y = followY ? targetPos.y : snapTarget.y;
+			
+			float snapProgress = (Time.time - _snapStartTime) / snapTime;
+			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
+			transform.position = GetPixelPoint(finalPos, ppu);
+
+		} else {
+			newGoalPos.x = followX ? targetPos.x : currentPos.x;
+			newGoalPos.y = followY ? targetPos.y : currentPos.y;
+			transform.position = GetPixelPoint(newGoalPos, ppu);
+		}
 	}
 
+	private bool _IsSnapping() {
+		return Time.time - _snapStartTime < snapTime;
+	}
+	
 	public void OnCameraGuideEnter(CameraGuide guide) {
 		followX = guide.followX;
 		followY = guide.followY;
-		Vector2 guideTarget = guide.GetTargetPoint();
-		transform.position = new Vector3(guideTarget.x, guideTarget.y, transform.position.z);
+		_guide = guide;
+		_snapStartPos = transform.position;
+		_snapStartTime = Time.time;
 	}
 
 	private Vector3 GetPixelPoint(Vector3 point, int ppu) {

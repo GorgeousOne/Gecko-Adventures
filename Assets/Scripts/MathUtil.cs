@@ -15,11 +15,9 @@ public class MathUtil {
 	public static bool IsZero(float f, float margin = 0.01f) {
 		return Mathf.Abs(f) < margin;
 	}
-	// public static void Main(String[] args) {
-	// 	Assert.AreEqual(45, WrapToPi(45));
-	// 	Assert.AreEqual(-90, WrapToPi(270));
-	// 	Assert.AreEqual(90, WrapToPi(-270));
-	// 	Assert.AreEqual(-180, WrapToPi(-180));
-	// 	Assert.AreEqual(-180, WrapToPi(180));
-	// }
+
+	public static float SquareIn(float percent) {
+		float oneMinus = 1 - Mathf.Clamp01(percent);
+		return 1f - oneMinus * oneMinus;
+	}
 }

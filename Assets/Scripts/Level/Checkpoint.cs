@@ -10,7 +10,7 @@ public class Checkpoint : MonoBehaviour {
 	}
 
 	public Vector2 GetSpawnPoint() {
-		return transform.Find("SpawnPoint").position;
+		return transform.position;
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other) {
@@ -20,11 +20,10 @@ public class Checkpoint : MonoBehaviour {
 	
 	private void OnDrawGizmos() {
 		BoxCollider2D collider = GetComponent<BoxCollider2D>();
-		Transform spawn = transform.Find("SpawnPoint");
 		
 		Gizmos.color = _gizmoColor;
 		Gizmos.DrawCube(collider.transform.position + (Vector3) collider.offset, collider.size);
-		Gizmos.DrawIcon(spawn.position, "sv_icon_dot9_pix16_gizmo.png", true);
+		Gizmos.DrawIcon(GetSpawnPoint(), "sv_icon_dot9_pix16_gizmo.png", true);
 	}
 }
 

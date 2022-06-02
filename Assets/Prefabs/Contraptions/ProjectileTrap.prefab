@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4821495959444335466}
   - component: {fileID: 4651613264494167208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arrow-trap-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453518249879648204}
   - component: {fileID: 6425031468379461035}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arrow-trap-bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5601187269093678125}
   - component: {fileID: 9081165225826846128}
   - component: {fileID: 3567254593456412904}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProjectileTrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,3 +266,6 @@ MonoBehaviour:
   projectileCount: 1
   projectileType: {fileID: 6012143650436431507, guid: 9fccae01c6731f444bce31700acb990f, type: 3}
   projectileSpeed: 30
+  timedShootingEnabled: 0
+  shootOffset: 0
+  reloadTime: 2

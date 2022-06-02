@@ -39,6 +39,6 @@ public class SpikeController : MonoBehaviour {
 	}
 
 	private bool CalcTimedExtendedState() {
-		return MathUtil.FloorMod(Time.timeSinceLevelLoad - extendOffset, extendTime + retractTime) < extendTime;
+		return MathUtil.FloorMod(Time.time - extendOffset, extendTime + retractTime) < extendTime;
 	}
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
@@ -20,7 +21,7 @@ public class CameraFollow : MonoBehaviour {
 	private float _snapStartTime;
 	private Vector3 _snapStartPos;
 
-	void Awake() {
+	void OnEnable() {
 		foreach(Transform guideTransform in cameraGuides.transform) {
 			CameraGuide guide = guideTransform.gameObject.GetComponent<CameraGuide>();
 

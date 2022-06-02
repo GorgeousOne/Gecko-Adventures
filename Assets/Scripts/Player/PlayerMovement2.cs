@@ -328,6 +328,7 @@ public class PlayerMovement2 : MonoBehaviour {
 		_tongueConnection.autoConfigureDistance = false;
 		_tongueConnection.distance = tongue.GetMaxLength();
 		_tongueConnection.maxDistanceOnly = true;
+		_tongueConnection.anchor = tongue.gameObject.transform.parent.localPosition;
 	}
 	
 	/// <summary>

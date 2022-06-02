@@ -20,6 +20,8 @@ public class RotationAnimator : MonoBehaviour {
 	private bool _isBodyFacingRight = true;
 	private bool _isSwinging;
 	
+	private bool _isUsingTongue;
+	
 	private Rigidbody2D _rigid;
 
 	private void Start() {
@@ -37,11 +39,12 @@ public class RotationAnimator : MonoBehaviour {
 		}
 	}
 	
-	
 	private void _UpdateHeadSprite(float tongueAngle) {
-		float xMirroredAngle = MathUtil.WrapToPi(tongueAngle + 90);
-		int newSpriteIndex = _GetHeadSpriteIndex(xMirroredAngle);
-		bool isTongueFacingRight = xMirroredAngle > 0;
+		headRenderer.enabled = true;
+		
+		float xMirroredTongueAngle = MathUtil.WrapToPi(tongueAngle + 90);
+		int newSpriteIndex = _GetHeadSpriteIndex(xMirroredTongueAngle);
+		bool isTongueFacingRight = xMirroredTongueAngle > 0;
 
 		if (_isHeadFacingRight != isTongueFacingRight) {
 			_FlipHead();
@@ -56,11 +59,12 @@ public class RotationAnimator : MonoBehaviour {
 	/// Resets the head sprite to closed mouth
 	/// </summary>
 	private void _ResetHeadSprite() {
-		headRenderer.sprite = headRotations[headRotations.Count / 2];
-
-		if (_isHeadFacingRight != _isBodyFacingRight) {
-			_FlipHead();
-		}
+		headRenderer.enabled = false;
+		// headRenderer.sprite = headRotations[headRotations.Count / 2];
+		//
+		// if (_isHeadFacingRight != _isBodyFacingRight) {
+		// 	_FlipHead();
+		// }
 	}
 
 	/// <summary>

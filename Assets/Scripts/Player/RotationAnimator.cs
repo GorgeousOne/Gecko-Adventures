@@ -10,6 +10,7 @@ public class RotationAnimator : MonoBehaviour {
 	
 	[SerializeField] private SpriteRenderer headRenderer;
 	[SerializeField] private SpriteRenderer bodyRenderer;
+	[SerializeField] private SpriteMask headHideMask;
 	[SerializeField] private Animator bodyAnimator;
 	[SerializeField] private List<Sprite> headRotations;
 	[SerializeField] private List<Sprite> bodyRotations;
@@ -41,7 +42,11 @@ public class RotationAnimator : MonoBehaviour {
 	
 	private void _UpdateHeadSprite(float tongueAngle) {
 		headRenderer.enabled = true;
-		
+
+		if (!tongue.IsAttached()) {
+			headHideMask.enabled = true;
+		}
+
 		float xMirroredTongueAngle = MathUtil.WrapToPi(tongueAngle + 90);
 		int newSpriteIndex = _GetHeadSpriteIndex(xMirroredTongueAngle);
 		bool isTongueFacingRight = xMirroredTongueAngle > 0;
@@ -60,11 +65,7 @@ public class RotationAnimator : MonoBehaviour {
 	/// </summary>
 	private void _ResetHeadSprite() {
 		headRenderer.enabled = false;
-		// headRenderer.sprite = headRotations[headRotations.Count / 2];
-		//
-		// if (_isHeadFacingRight != _isBodyFacingRight) {
-		// 	_FlipHead();
-		// }
+		headHideMask.enabled = false;
 	}
 
 	/// <summary>

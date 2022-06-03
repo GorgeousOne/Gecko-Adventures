@@ -3,10 +3,12 @@ using UnityEngine;
 public class TripwireController : Trigger {
 
 	private LineRenderer _line;
+	private bool _savedIsIntact;
 	
 	private void Start() {
 		_line = GetComponent<LineRenderer>();
 		_CreateCollider();
+		SaveState();
 	}
 
 	private void _CreateCollider() {
@@ -28,7 +30,17 @@ public class TripwireController : Trigger {
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		Activate();
-		Destroy(gameObject);
+		if (other.CompareTag("Player")) {
+			Activate();
+			gameObject.SetActive(false);
+		}
+	}
+
+	public override void SaveState() {
+		_savedIsIntact = gameObject.activeSelf;
+	}
+
+	public override void ResetState() {
+		gameObject.SetActive(_savedIsIntact);
 	}
 }

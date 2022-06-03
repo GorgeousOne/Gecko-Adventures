@@ -6,7 +6,8 @@ public abstract class InteractableSwitch : Interactable {
 	[SerializeField] private List<Triggerable> connected;
 
 	protected bool IsEnabled;
-	 
+	protected bool _savedWasEnabled;
+	
 	protected override void OnInteract() {
 		Toggle();
 	}
@@ -21,8 +22,17 @@ public abstract class InteractableSwitch : Interactable {
 	
 	protected void OnDrawGizmos() {
 		Gizmos.color = IsEnabled ? new Color(.75f, 0, 0) : new Color(.25f, 0, 0);
+
 		foreach (Triggerable toggleable in connected) {
 			Gizmos.DrawLine(transform.position, toggleable.gameObject.transform.position);
 		}
+	}
+
+	public override void SaveState() {
+		_savedWasEnabled = IsEnabled;
+	}
+
+	public override void ResetState() {
+		IsEnabled = _savedWasEnabled;
 	}
 }

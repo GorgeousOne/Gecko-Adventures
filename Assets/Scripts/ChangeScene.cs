@@ -12,4 +12,10 @@ public class ChangeScene : Interactable {
         PlayerPrefs.SetFloat("Player_Z_" + currentSceneName, transform.position.z);
         LevelLoader.Instance.LoadLevel(sceneName);
     }
+
+    public override void SaveState() {
+    }
+
+    public override void ResetState() {
+    }
 }

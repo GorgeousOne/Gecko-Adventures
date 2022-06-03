@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Numerics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -22,6 +20,13 @@ public class CameraFollow : MonoBehaviour {
 	private Vector3 _snapStartPos;
 
 	void OnEnable() {
+		if (target == null) {
+			Debug.LogWarning("No target player is set for the CameraFollow script.");
+		}
+		if (_guide == null) {
+			Debug.LogWarning("No camera guides are set for the CameraFollow script.");
+			return;
+		}
 		foreach(Transform guideTransform in cameraGuides.transform) {
 			CameraGuide guide = guideTransform.gameObject.GetComponent<CameraGuide>();
 
@@ -33,6 +38,9 @@ public class CameraFollow : MonoBehaviour {
 
 	private void LateUpdate() {
 		// Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
+		if (target == null) {
+			return;
+		}
 		Vector3 targetPos = target.position;
 		Vector3 currentPos = transform.position;
 		Vector3 newGoalPos = new Vector3(0, 0, currentPos.z);
@@ -54,7 +62,7 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	private bool _IsSnapping() {
-		return Time.time - _snapStartTime < snapTime;
+		return _guide != null && Time.time - _snapStartTime < snapTime;
 	}
 	
 	public void OnCameraGuideEnter(CameraGuide guide) {

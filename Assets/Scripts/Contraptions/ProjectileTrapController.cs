@@ -15,9 +15,12 @@ public class ProjectileTrapController : Triggerable {
 	[SerializeField] [Min(.5f)] private float reloadTime = 2;
 
 	private float _lastTimedShot;
-
+	private int _savedProjectileCount;
+	private float _savedLastTimeShot;
+	
 	private void Start() {
 		_lastTimedShot = shootOffset - reloadTime;
+		SaveState();
 	}
 
 	private void Update() {
@@ -47,6 +50,16 @@ public class ProjectileTrapController : Triggerable {
 	}
 	
 	private bool ReloadTimePassed() {
-		return Time.time - _lastTimedShot >= reloadTime;
+		return LevelTime.time - _lastTimedShot >= reloadTime;
+	}
+	
+	public override void SaveState() {
+		_savedProjectileCount = projectileCount;
+		_savedLastTimeShot = _lastTimedShot;
+	}
+
+	public override void ResetState() {
+		projectileCount = _savedProjectileCount;
+		_lastTimedShot = _savedLastTimeShot;
 	}
 }

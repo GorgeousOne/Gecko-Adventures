@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour {
+public abstract class Interactable : Resettable {
 
 	[SerializeField] private Sprite keyHintSprite;
 	[SerializeField] private Vector2 keyHintOffset = new (0, 1);

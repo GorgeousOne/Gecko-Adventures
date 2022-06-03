@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowController : MonoBehaviour {
+public class ArrowController : Resettable {
 
 	[SerializeField] [Min(0f)] private float despawnRate = 5;
 	
@@ -30,5 +30,11 @@ public class ArrowController : MonoBehaviour {
 		Destroy(GetComponent<Collider2D>());
 		Destroy(gameObject, despawnRate);
 		// transform.parent = other.transform;
+	}
+
+	public override void SaveState() {}
+
+	public override void ResetState() {
+		Destroy(gameObject);
 	}
 }

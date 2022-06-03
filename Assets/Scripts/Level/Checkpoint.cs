@@ -14,8 +14,10 @@ public class Checkpoint : MonoBehaviour {
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other) {
-		_level.OnCheckpointReach(this);
-		_gizmoColor = CheckpointColor.reached();
+		if (other.CompareTag("Player")) {
+			_level.OnCheckpointReach(this);
+			_gizmoColor = CheckpointColor.reached();
+		}
 	}
 	
 	private void OnDrawGizmos() {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour {
+public class PlatformController : Resettable {
 
 	[SerializeField] private Vector2 targetOffset;
 	[SerializeField] private float moveOffset;
@@ -11,10 +11,13 @@ public class PlatformController : MonoBehaviour {
 	private bool _isMovingForward = true;
 	private float _moveStart;
 
+	private bool _savedWasMovingForward;
+	private float _savedMoveStart;
+	
 	private void Start() {
 		_startPos = transform.position;
 		_moveStart = moveOffset;
-		// StartCoroutine("SwitchDirectionOnTargetReach");
+		SaveState();
 	}
 
 	/**
@@ -37,12 +40,12 @@ public class PlatformController : MonoBehaviour {
 		} else {
 			startPos += targetOffset;
 		}
-		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
+		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
 		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
 	}
 
 	private bool PassedMovementTime() {
-		return Time.time - _moveStart > moveTime + waitTime;
+		return LevelTime.time - _moveStart > moveTime + waitTime;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collider) {
@@ -60,5 +63,15 @@ public class PlatformController : MonoBehaviour {
 	private void OnDrawGizmos() {
 		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
 		Gizmos.DrawLine(position, position + targetOffset);
+	}
+	
+	public override void SaveState() {
+		_savedWasMovingForward = _isMovingForward;
+		_savedMoveStart = _moveStart;
+	}
+
+	public override void ResetState() {
+		_isMovingForward = _savedWasMovingForward;
+		_moveStart = _savedMoveStart;
 	}
 }

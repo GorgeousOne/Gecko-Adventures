@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class TongueMovement2 : MonoBehaviour {
@@ -192,5 +193,5 @@ public class TongueMovement2 : MonoBehaviour {
 	}
 }
 
-// [Serializable]
-// public class TriggerEvent : UnityEvent<Collider2D> {}
+[Serializable]
+public class TriggerEvent : UnityEvent<Collider2D> {}

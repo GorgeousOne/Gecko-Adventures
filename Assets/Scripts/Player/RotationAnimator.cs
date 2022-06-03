@@ -21,8 +21,6 @@ public class RotationAnimator : MonoBehaviour {
 	private bool _isBodyFacingRight = true;
 	private bool _isSwinging;
 	
-	private bool _isUsingTongue;
-	
 	private Rigidbody2D _rigid;
 
 	private void Start() {

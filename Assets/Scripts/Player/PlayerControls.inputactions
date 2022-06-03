@@ -51,24 +51,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "TongueExtend",
-                    "type": "Button",
-                    "id": "bb0e00d4-7f46-489d-9eb6-f0d98c41f3ef",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TongueRetract",
-                    "type": "Button",
-                    "id": "cbaf06da-725e-4bcc-9047-2de16703f2bd",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "e2847d61-4502-4716-b557-35db99e81c40",
@@ -186,28 +168,6 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "MousePos",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9c23cf5e-955b-452d-bc53-8f1c08393ce7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "TongueExtend",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6ca3de70-aefe-432e-997c-03279bc2a74b",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "TongueRetract",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

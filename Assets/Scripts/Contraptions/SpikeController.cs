@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class SpikeController : MonoBehaviour {
+public class SpikeController : Resettable {
+	
 	[Header("Sprites")]
 	[SerializeField] private Sprite retracted;
 	[SerializeField] private Sprite extended;
@@ -16,6 +17,8 @@ public class SpikeController : MonoBehaviour {
 	private bool _isExtended = true;
 	private SpriteRenderer _renderer;
 	private Collider2D _collider;
+
+	private bool _savedWasExtended;
 	
 	private void OnEnable() {
 		_renderer = GetComponent<SpriteRenderer>();
@@ -39,6 +42,12 @@ public class SpikeController : MonoBehaviour {
 	}
 
 	private bool CalcTimedExtendedState() {
-		return MathUtil.FloorMod(Time.time - extendOffset, extendTime + retractTime) < extendTime;
+		return MathUtil.FloorMod(LevelTime.time - extendOffset, extendTime + retractTime) < extendTime;
+	}
+
+	public override void SaveState() {
+	}
+
+	public override void ResetState() {
 	}
 }

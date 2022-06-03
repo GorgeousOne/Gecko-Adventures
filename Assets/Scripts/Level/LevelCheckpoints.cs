@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelCheckpoints : MonoBehaviour {
 
 	private List<Checkpoint> _checkpoints;
 	private Checkpoint _currentCheckpoint;
+	private float _currentCheckpointTime;
 	
 	void Awake() {
 		_checkpoints = new List<Checkpoint>();
@@ -18,15 +20,31 @@ public class LevelCheckpoints : MonoBehaviour {
 				_currentCheckpoint = checkpoint;
 			}
 		}
+		if (!_checkpoints.Any()) {
+			Debug.LogWarning("No children of type Checkpoint found. Please add at least 1 Checkpoint prefab as a child as the level start position.");			
+		}
 	}
 
 	public Vector2 GetCurrentSpawnPoint() {
-		return _currentCheckpoint.GetSpawnPoint();
+		return _currentCheckpoint ? _currentCheckpoint.GetSpawnPoint() : Vector2.zero;
+	}
+
+	public void ResetToLastCheckpoint() {
+		LevelTime.SetTime(_currentCheckpointTime);
+		
+		foreach (Resettable resettable in FindObjectsOfType<Resettable>(true)){
+			resettable.ResetState();
+		}
 	}
 	
 	public void OnCheckpointReach(Checkpoint checkpoint) {
 		if (_checkpoints.IndexOf(checkpoint) > _checkpoints.IndexOf(_currentCheckpoint)) {
 			_currentCheckpoint = checkpoint;
+			_currentCheckpointTime = LevelTime.time;
+			
+			foreach (Resettable resettable in FindObjectsOfType<Resettable>(true)){
+				resettable.SaveState();
+			}
 		}
 	}
 }

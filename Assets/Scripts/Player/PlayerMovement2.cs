@@ -92,6 +92,9 @@ public class PlayerMovement2 : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
+		if (_rigid.bodyType != RigidbodyType2D.Dynamic) {
+			return;
+		}
 		bool isGrounded = CheckGrounding();
 		CheckCrouching();
 		CheckJumping();
@@ -106,8 +109,8 @@ public class PlayerMovement2 : MonoBehaviour {
 	}
 
 	public bool CheckGrounding() {
-		_groundedRemember -= Time.deltaTime;
-		_jumpPressedRemember -= Time.deltaTime;
+		_groundedRemember -= Time.fixedDeltaTime;
+		_jumpPressedRemember -= Time.fixedDeltaTime;
 		bool isGrounded = IsGrounded();
 		
 		if (isGrounded) {

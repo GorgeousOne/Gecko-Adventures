@@ -7,11 +7,14 @@ public class DoorController : Triggerable {
 
 	private Vector2 _startPos;
 	private bool _isOpen;
-
 	private float _moveStart;
+
+	private bool _savedWasOpen;
+	private float _savedMoveStart;
 	
 	private void Start() {
 		_startPos = transform.position;
+		SaveState();
 	}
 
 	// Update is called once per frame
@@ -25,19 +28,29 @@ public class DoorController : Triggerable {
 		else {
 			startPos += openOffset;
 		}
-		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
+		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
 		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
 	}
 
 	public override void OnSwitchToggle(bool isEnabled) {
 		_isOpen = isEnabled;
-		float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
-		_moveStart = Time.time - (1 - elapsedTime);
+		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
+		_moveStart = LevelTime.time - (1 - elapsedTime);
 	}
 
 	private void OnDrawGizmos() {
 		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
 		Gizmos.DrawIcon(position, "sv_icon_dot13_pix16_gizmo.png", true);
 		Gizmos.DrawIcon(position + openOffset, "sv_icon_dot15_pix16_gizmo.png", true);
+	}
+
+	public override void SaveState() {
+		_savedWasOpen = _isOpen;
+		_savedMoveStart = _moveStart;
+	}
+
+	public override void ResetState() {
+		_isOpen = _savedWasOpen;
+		_moveStart = _savedMoveStart;
 	}
 }

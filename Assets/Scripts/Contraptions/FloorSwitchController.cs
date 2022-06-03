@@ -13,20 +13,6 @@ public class FloorSwitchController : Switch {
 		_defaultPos = rendering.transform.position;
 	}
 
-	// public void Update() {
-		// Vector2 startPos = _startPos;
-		// Vector2 targetPos = _startPos;
-		// if (_isEnabled) {
-			// targetPos += pressedOffset;
-		// }
-		// else {
-			// startPos += pressedOffset;
-		// }
-		// float elapsedTime = Mathf.Clamp(Time.time - _moveStart, 0, moveTime);
-		// transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
-		// toggleAction.Invoke(_isEnabled);
-	// }
-
 	protected new void Toggle() {
 		base.Toggle();
 		

@@ -18,8 +18,9 @@ public class TongueMovement2 : MonoBehaviour {
 	
 	private Collider2D _attachment;
 	private GameObject _pickup;
-	private bool _canAttach = true;
+	// private bool _canAttach = true;
 
+	private bool _canExtend = true;
 	private float _extendStart;
 	private float _extendDistance;
 	private float _length;
@@ -68,7 +69,7 @@ public class TongueMovement2 : MonoBehaviour {
 
 	private void FixedUpdate() {
 		//animates tongue extend on left click
-		if (_tongueShootPressed && !IsExtending()) {
+		if (_tongueShootPressed && _canExtend && !IsExtending()) {
 			Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
 			Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
 			pivot.right = GetAimDir(mousePos);
@@ -77,19 +78,23 @@ public class TongueMovement2 : MonoBehaviour {
 		_tongueShootPressed = false;
 	}
 
+	public void SetExtendingEnabled(bool state) {
+		_canExtend = state;
+	}
+	
 	private Vector2 GetAimDir(Vector2 aim) {
 		return new Vector2(
 			aim.x - pivot.position.x,
 			aim.y - pivot.position.y);
 	}
 	
-	public void SetAttachable(bool canAttach) {
-		_canAttach = canAttach;
-
-		if (!_canAttach && IsAttached()) {
-			Detach();
-		}
-	}
+	// public void SetAttachable(bool canAttach) {
+	// 	_canAttach = canAttach;
+	//
+	// 	if (!_canAttach && IsAttached()) {
+	// 		Detach();
+	// 	}
+	// }
 
 	//returns the width of the unscaled tongue sprite I think
 	public float GetMaxLength() {
@@ -129,7 +134,7 @@ public class TongueMovement2 : MonoBehaviour {
 	}
 
 	public void AttachTo(Collider2D other) {
-		if (!_canAttach || IsAttached()) {
+		if (IsAttached()) {
 			return;
 		}
 		_extendStart = Time.time - extendTime;

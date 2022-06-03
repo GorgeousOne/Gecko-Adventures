@@ -282,7 +282,7 @@ public class PlayerMovement2 : MonoBehaviour {
 	/// </summary>
 	private void Crouch() {
 		_isCrouching = true;
-		tongue.SetAttachable(false);
+		tongue.SetExtendingEnabled(false);
 		
 		_capsule.size = new Vector2(_capsule.size.x, crouchHeight);
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
@@ -311,7 +311,7 @@ public class PlayerMovement2 : MonoBehaviour {
 	/// </summary>
 	private void StandUp() {
 		_isCrouching = false;
-		tongue.SetAttachable(true);
+		tongue.SetExtendingEnabled(true);
 		_capsule.size = new Vector2(_capsule.size.x, _defaultHeight);
 		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY);
 	}

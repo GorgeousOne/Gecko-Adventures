@@ -42,10 +42,7 @@ public class RotationAnimator : MonoBehaviour {
 	
 	private void _UpdateHeadSprite(float tongueAngle) {
 		headRenderer.enabled = true;
-
-		if (!tongue.IsAttached()) {
-			headHideMask.enabled = true;
-		}
+		headHideMask.enabled = !tongue.IsAttached();
 
 		float xMirroredTongueAngle = MathUtil.WrapToPi(tongueAngle + 90);
 		int newSpriteIndex = _GetHeadSpriteIndex(xMirroredTongueAngle);

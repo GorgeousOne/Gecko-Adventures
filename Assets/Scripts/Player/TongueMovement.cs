@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.Rendering.Universal;
 
 public class TongueMovement : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class TongueMovement : MonoBehaviour {
 	[SerializeField] private LayerMask collectLayerMask;
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
+	// added for lighting the gecko after eating a firefly
+	[SerializeField] private GameObject player;
+	[SerializeField] private float lightTimer = 2.0f;
+	// ***************************************************
 
 	private PlayerControls _controls;
 	private CapsuleCollider2D _collider;
@@ -31,7 +36,13 @@ public class TongueMovement : MonoBehaviour {
 
 	private bool _tongueShootPressed;
 	private bool _isControllerUsed;
-	
+
+	// added for lighting the gecko after eating a firefly
+	private int fireflyCounter = 0;
+	private float waitTime = 0;
+	private float lightOffSet = 0;
+	// ***************************************************
+
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
@@ -64,7 +75,31 @@ public class TongueMovement : MonoBehaviour {
 		} else if (IsExtending()) {
 			UpdateExtendLength();
 		} else if (_pickup) {
+
+			// added for lighting the gecko after eating a firefly
+			fireflyCounter += 1;
 			Destroy(_pickup);
+
+			if (player.GetComponent<Light2D>() == null) {
+				player.AddComponent<Light2D>();
+				player.GetComponent<Light2D>().intensity = 2;
+				player.GetComponent<Light2D>().pointLightOuterRadius = 2.0f;
+			}
+
+			// waitTime += Time.deltaTime;
+
+			// if (fireflyCounter == 1) {
+			// 	Destroy(player.GetComponent<Light2D>(), lightTimer);
+			// }
+
+			// if (fireflyCounter > 1 && waitTime < lightTimer) {
+			// 	float timeLeft = lightTimer - waitTime;
+			// 	Destroy(player.GetComponent<Light2D>(), timeLeft + lightTimer);
+			// }
+
+			Destroy(player.GetComponent<Light2D>(), lightTimer);
+			// *********************************************************************
+			
 		}
 		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;

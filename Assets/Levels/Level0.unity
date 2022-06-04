@@ -44380,6 +44380,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6872663922335979624, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
+      propertyPath: connected.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872663922335979624, guid: aace747b43f6f3841ad4ed9d97e85268, type: 3}
       propertyPath: toggleables.Array.size
       value: 1
       objectReference: {fileID: 0}

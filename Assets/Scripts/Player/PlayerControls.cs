@@ -93,7 +93,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Horizontal"",
+                    ""name"": ""Horizontal (WASD Keys)"",
                     ""id"": ""e0088bb8-1884-40f4-a2ea-343ff2247ac4"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -126,7 +126,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Horizontal"",
+                    ""name"": ""Horizontal (Arrow Keys)"",
                     ""id"": ""00029959-908c-4068-ae0e-9c1ac1c0a4d0"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -159,7 +159,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Horizontal"",
+                    ""name"": ""Horizontal (Gamepad)"",
                     ""id"": ""b24aa40a-d6f2-4bc6-a270-bd1a8ccebc68"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",

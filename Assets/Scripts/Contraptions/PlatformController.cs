@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class PlatformController : Resettable {
+public class PlatformController : Triggerable {
 
 	[SerializeField] private Vector2 targetOffset;
 	[SerializeField] private float moveOffset;
 	[SerializeField] private float moveTime = 2;
 	[SerializeField] private float waitTime = 2;
+	[SerializeField] private bool isEnabled = true;
 
 	private Vector2 _startPos;
 	private bool _isMovingForward = true;
@@ -13,6 +14,7 @@ public class PlatformController : Resettable {
 
 	private bool _savedWasMovingForward;
 	private float _savedMoveStart;
+	private bool _saveWasEnabled;
 	
 	private void Start() {
 		_startPos = transform.position;
@@ -24,11 +26,13 @@ public class PlatformController : Resettable {
 	 * Interpolates platform position over time making it move between start and target
 	 */
 	private void Update() {
-		if (PassedMovementTime()) {
-			_isMovingForward = !_isMovingForward;
-			_moveStart += moveTime + waitTime;
+		if (isEnabled) {
+			if (PassedMovementTime()) {
+				_isMovingForward = !_isMovingForward;
+				_moveStart += moveTime + waitTime;
+			}
+			_UpdatePosition();
 		}
-		_UpdatePosition();
 	}
 	
 	private void _UpdatePosition() {
@@ -42,6 +46,31 @@ public class PlatformController : Resettable {
 		}
 		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
 		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
+	}
+
+	private float _GetMoveProgress() {
+		Vector2 startPos = _startPos;
+		Vector2 targetPos = _startPos;
+
+		if (_isMovingForward) {
+			targetPos += targetOffset;
+		} else {
+			startPos += targetOffset;
+		}
+		float moveDistance = ((Vector2)(transform.position) - startPos).magnitude;
+		float totalDistance = (targetPos - startPos).magnitude;
+		return moveDistance / totalDistance;
+	}
+
+	public override void OnSwitchToggle(bool isEnabled) {
+		this.isEnabled = isEnabled;
+
+		if (isEnabled) {
+			float moveProgress = _GetMoveProgress();
+
+			_moveStart = LevelTime.time - moveProgress * moveTime;
+
+		}
 	}
 
 	private bool PassedMovementTime() {
@@ -68,10 +97,12 @@ public class PlatformController : Resettable {
 	public override void SaveState() {
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
+		_saveWasEnabled = isEnabled;
 	}
 
 	public override void ResetState() {
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;
+		isEnabled = _saveWasEnabled;
 	}
 }

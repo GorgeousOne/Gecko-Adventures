@@ -12,7 +12,7 @@ public class PlayerSpawning : Resettable {
 		if (FindObjectOfType<LevelTime>() == null) {
 			Debug.LogError("No LevelTime script found. Please add exactly 1 LevelTime prefab to the scene.");
 			Application.Quit();
-			UnityEditor.EditorApplication.isPlaying = false;
+			// UnityEditor.EditorApplication.isPlaying = false;
 		}
 		if (levelCheckpoints == null) {
 			Debug.LogWarning("No respawn points set for PlayerSpawning script. Please add a reference a LevelCheckpoints object.");
@@ -35,12 +35,6 @@ public class PlayerSpawning : Resettable {
 			savedPosition.z = PlayerPrefs.GetFloat("Player_Z_" + sceneName);
 		}
 		transform.position = savedPosition;
-	}
-
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.CompareTag("Deadly")) {
-			Die();
-		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
@@ -71,11 +65,6 @@ public class PlayerSpawning : Resettable {
 		Revive();
 	}
 	
-	// private IEnumerator RestartLevel(float delay) {
-		// yield return new WaitForSeconds(delay);
-		// SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	// }
-
 	public override void SaveState() {
 	}
 

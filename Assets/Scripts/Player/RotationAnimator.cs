@@ -5,8 +5,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class RotationAnimator : MonoBehaviour {
 	
-	[SerializeField] private TongueMovement2 tongue;
-	[SerializeField] private PlayerMovement2 player;
+	[SerializeField] private TongueMovement tongue;
+	[SerializeField] private PlayerMovement player;
 	
 	[SerializeField] private SpriteRenderer headRenderer;
 	[SerializeField] private SpriteRenderer bodyRenderer;
@@ -20,8 +20,6 @@ public class RotationAnimator : MonoBehaviour {
 	private bool _isHeadFacingRight = true;
 	private bool _isBodyFacingRight = true;
 	private bool _isSwinging;
-	
-	private bool _isUsingTongue;
 	
 	private Rigidbody2D _rigid;
 

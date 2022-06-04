@@ -2,11 +2,11 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement2 : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 	
 	[Header("General")]
 	[SerializeField] private LayerMask solidsLayerMask;
-	[SerializeField] private TongueMovement2 tongue;
+	[SerializeField] private TongueMovement tongue;
 	[SerializeField] private Animator bodyAnimator;
 
 	[Header("Walk")]
@@ -30,7 +30,7 @@ public class PlayerMovement2 : MonoBehaviour {
 	
 	[Header("Other")]
 	[SerializeField] private float swingForce = 17;
-	[SerializeField] private float ropingSpeed = 10;
+	// [SerializeField] private float ropingSpeed = 10;
 	[SerializeField] private float crouchHeight = .9f;
 	[SerializeField] private float maxCrouchSpeed = 4f;
 	

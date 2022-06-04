@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
-public class TongueMovement2 : MonoBehaviour {
+public class TongueMovement : MonoBehaviour {
 
-	[SerializeField] private float extendTime = 0.4f;
+	[SerializeField] private float extendTime = 0.2f;
+	[SerializeField] private float stayExtendedTime = 0.2f;
 	[SerializeField] private Transform pivot;
 	[SerializeField] private LayerMask attachLayerMask;
 	[SerializeField] private LayerMask collectLayerMask;
@@ -12,6 +15,7 @@ public class TongueMovement2 : MonoBehaviour {
 	[SerializeField] private UnityEvent detachAction;
 
 	private PlayerControls _controls;
+	private CapsuleCollider2D _collider;
 	private Camera _cam;
 	
 	private SpriteRenderer _renderer;
@@ -19,7 +23,6 @@ public class TongueMovement2 : MonoBehaviour {
 	
 	private Collider2D _attachment;
 	private GameObject _pickup;
-	// private bool _canAttach = true;
 
 	private bool _canExtend = true;
 	private float _extendStart;
@@ -27,10 +30,18 @@ public class TongueMovement2 : MonoBehaviour {
 	private float _length;
 
 	private bool _tongueShootPressed;
+	private bool _isControllerUsed;
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
+		_collider = GetComponent<CapsuleCollider2D>();
+		// InputUser.onChange +=
+		// 	(user, change, device) =>
+		// 	{
+		// 		if (change == InputUserChange.ControlSchemeChanged)
+		// 			Debug.Log($"User {user} switched control scheme");
+		// 	};
 	}
 
 	private void OnDisable() {
@@ -44,36 +55,53 @@ public class TongueMovement2 : MonoBehaviour {
 		_extendStart = -extendTime;
 		
 		_cam = Camera.main;
+		_extendStart = -100;
 	}
 
 	private void Update() {
 		if (IsAttached()) {
-			Vector2 attachPoint = GetAttachPoint();
-			pivot.right = GetAimDir(attachPoint);
-			float distance = (attachPoint - (Vector2) pivot.position).magnitude;
-			SetExtendDistance(distance);
+			AlignTongueToPoint(GetAttachPoint());
 		} else if (IsExtending()) {
-			float extendProgress = GetExtendProgress();
-
-			if (extendProgress < .5f) {
-				SetExtendDistance(Mathf.SmoothStep(0, _length, 2 * extendProgress));
-			} else {
-				SetExtendDistance(Mathf.SmoothStep(_length, 0, 2 * (extendProgress - .5f)));
-			}
+			UpdateExtendLength();
 		} else if (_pickup) {
 			Destroy(_pickup);
 		}
-		if (_controls.Player.TongueShoot.WasPerformedThisFrame()) {
+		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;
 		}
 	}
 
+	private void UpdateExtendLength() {
+		float newLength = Mathf.SmoothStep(0, _length, GetExtendProgress());
+		SetExtendDistance(newLength);
+		_collider.size = new Vector2(newLength, _collider.size.y);
+		_collider.offset = new Vector2(-0.5f * newLength, 0);
+	}
+	
+	private void AlignTongueToPoint(Vector2 attachPoint) {
+		pivot.right = GetAimDir(attachPoint);
+		float distance = (attachPoint - (Vector2) pivot.position).magnitude;
+		SetExtendDistance(distance);
+	}
+	
+	private bool WasTongueShootPerformed() {
+		return _controls.Player.TongueShoot.WasPerformedThisFrame() || 
+		       _controls.Player.TongueShootGamepad.WasPerformedThisFrame() &&
+		       !MathUtil.IsZero(_controls.Player.TongueShootGamepad.ReadValue<Vector2>().magnitude);
+	}
+	
 	private void FixedUpdate() {
 		//animates tongue extend on left click
 		if (_tongueShootPressed && _canExtend && !IsExtending()) {
-			Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
-			Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
-			pivot.right = GetAimDir(mousePos);
+			Vector2 gamepadAim = _controls.Player.TongueShootGamepad.ReadValue<Vector2>();
+
+			if (!MathUtil.IsZero(gamepadAim.x) || !MathUtil.IsZero(gamepadAim.y)) {
+				pivot.right = gamepadAim.normalized;
+			} else {
+				Vector2 mouseScreenPos = _controls.Player.TongueAim.ReadValue<Vector2>();
+				Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
+				pivot.right = GetAimDir(mousePos);
+			}
 			PlayExtend();
 		}
 		_tongueShootPressed = false;
@@ -89,14 +117,6 @@ public class TongueMovement2 : MonoBehaviour {
 			aim.y - pivot.position.y);
 	}
 	
-	// public void SetAttachable(bool canAttach) {
-	// 	_canAttach = canAttach;
-	//
-	// 	if (!_canAttach && IsAttached()) {
-	// 		Detach();
-	// 	}
-	// }
-
 	//returns the width of the unscaled tongue sprite I think
 	public float GetMaxLength() {
 		return _length;
@@ -107,7 +127,7 @@ public class TongueMovement2 : MonoBehaviour {
 	}
 	
 	public bool IsExtending() {
-		return Time.time - _extendStart < extendTime;
+		return Time.time - _extendStart < 2 * extendTime + stayExtendedTime;
 	}
 
 	public Vector3 GetAttachPoint() {
@@ -150,7 +170,19 @@ public class TongueMovement2 : MonoBehaviour {
 	}
 
 	public float GetExtendProgress() {
-		return (Time.time - _extendStart) / extendTime;
+		float dt = (Time.time - _extendStart);
+		float progress = dt / extendTime;
+
+		if (dt < extendTime) {
+			return dt / extendTime;
+		} else if (dt > extendTime + stayExtendedTime) {
+			return (2 * extendTime + stayExtendedTime - dt) / extendTime;
+		}
+		return 1;
+		// float halfTime = extendTime + 0.5f * stayExtendedTime;
+		// float dt = (Time.time - _extendStart);
+		// float shiftedDt = Math.Abs((dt - (extendTime + 0.25f * stayExtendedTime)) / extendTime - halfTime) - stayExtendedTime / (4 * extendTime);
+		// return 1 - Mathf.Clamp01(shiftedDt);
 	}
 
 	public void SetExtendProgress(float percent) {
@@ -171,7 +203,8 @@ public class TongueMovement2 : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter2D(Collider2D other) {
-		if (!IsExtending() || IsBehindTongue(other.transform.position)) {
+		// if (!IsExtending() || IsBehindTongue(other.transform.position)) {
+		if (!IsExtending()) {
 			return;
 		}
 		GameObject otherObject = other.gameObject;
@@ -179,17 +212,13 @@ public class TongueMovement2 : MonoBehaviour {
 		if (MaskContains(attachLayerMask, otherObject)) {
 			AttachTo(other);
 		} else if (MaskContains(collectLayerMask, otherObject)) {
-			transform.right = GetAimDir(otherObject.transform.position);
+			AlignTongueToPoint(otherObject.transform.position);
 			PickUp(otherObject);
 		}
 	}
 	
 	private bool MaskContains(LayerMask mask, GameObject other) {
 		return (mask & 1 << other.layer) != 0;
-	}
-	
-	private bool IsBehindTongue(Vector3 point) {
-		return Vector2.Dot(transform.right, point - transform.position) < 0;
 	}
 }
 

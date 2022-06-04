@@ -33,6 +33,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "e2847d61-4502-4716-b557-35db99e81c40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TongueAim",
+                    "type": "Value",
+                    "id": "aaefe1d8-21e5-4aee-8ef7-bf156cb52a28",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "TongueShoot",
                     "type": "Button",
                     "id": "f817135c-95e9-45ba-898a-d6e3f1a29e82",
@@ -42,22 +60,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MousePos",
+                    "name": "TongueShootGamepad",
                     "type": "Value",
-                    "id": "cae1f68b-3d4d-4c88-b830-cf1809619779",
-                    "expectedControlType": "Vector2",
+                    "id": "71ec0013-73b5-4b3e-9fe6-a95e9c6889b7",
+                    "expectedControlType": "Stick",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "e2847d61-4502-4716-b557-35db99e81c40",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,12 +137,56 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Horizontal",
+                    "id": "b24aa40a-d6f2-4bc6-a270-bd1a8ccebc68",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "609d19ff-1fb4-4ca4-acf4-e56ce5a9d93d",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "926a5da1-3710-4b0e-9e0e-65a00b13855f",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "5459a65c-953b-4933-aaf3-8e3bc84e1d68",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e859e5d-bab4-4077-93df-61abe26df2a6",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -151,6 +204,17 @@
                 },
                 {
                     "name": "",
+                    "id": "affde894-6251-496a-9836-5243843c925e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2476d0d9-af0c-4be9-8701-478a90888593",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -162,12 +226,23 @@
                 },
                 {
                     "name": "",
+                    "id": "7d910a58-da67-4666-83f8-1ec9ab233b56",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TongueShootGamepad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "43c1b392-1261-4150-872d-9022f557ff78",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "MousePos",
+                    "action": "TongueAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -189,6 +264,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cd02344-3452-46cf-bd57-a913034aafd7",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false

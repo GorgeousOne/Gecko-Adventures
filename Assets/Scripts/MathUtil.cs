@@ -12,7 +12,7 @@ public class MathUtil {
 		return FloorMod(angle + 180, 360) - 180;
 	}
 
-	public static bool IsZero(float f, float margin = 0.01f) {
+	public static bool IsZero(float f, float margin = 0.1f) {
 		return Mathf.Abs(f) < margin;
 	}
 

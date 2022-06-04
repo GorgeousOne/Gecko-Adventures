@@ -372,8 +372,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.5, y: 0}
-  m_Size: {x: 5, y: 0.1875}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.0001, y: 0.1875}
   m_Direction: 1
 --- !u!114 &865660118
 MonoBehaviour:
@@ -387,7 +387,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90d12b9093543b3aae57bf6bffffd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extendTime: 0.4
+  extendTime: 0.2
+  stayExtendedTime: 0.2
   pivot: {fileID: 3857400769159288903}
   attachLayerMask:
     serializedVersion: 2
@@ -485,7 +486,7 @@ GameObject:
   - component: {fileID: 8144296564121727022}
   - component: {fileID: 3206490271212908979}
   m_Layer: 6
-  m_Name: Player2
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,7 +523,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.125, y: 0.885}
+  m_Offset: {x: 0, y: 0.885}
   m_Size: {x: 0.875, y: 1.75}
   m_Direction: 0
 --- !u!50 &3857400769282164713
@@ -569,7 +570,6 @@ MonoBehaviour:
   jumpPressedRememberDuration: 0.2
   groundedRememberDuration: 0.2
   swingForce: 17
-  ropingSpeed: 10
   crouchHeight: 0.9
   maxCrouchSpeed: 4
 --- !u!114 &8144296564121727022

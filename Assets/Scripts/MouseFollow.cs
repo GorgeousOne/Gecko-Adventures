@@ -19,7 +19,7 @@ public class MouseFollow : MonoBehaviour {
 	}
 
 	private void LateUpdate() {
-		Vector2 mouseScreenPos = _controls.Player.MousePos.ReadValue<Vector2>();
+		Vector2 mouseScreenPos = _controls.Player.TongueAim.ReadValue<Vector2>();
 		Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
 		transform.position = mousePos;
 	}

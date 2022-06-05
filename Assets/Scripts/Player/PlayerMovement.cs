@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	[Header("Other")]
 	[SerializeField] private float swingForce = 17;
-	// [SerializeField] private float ropingSpeed = 10;
+	[SerializeField] private float ropingSpeed = 10;
 	[SerializeField] private float crouchHeight = .9f;
 	[SerializeField] private float maxCrouchSpeed = 4f;
 	
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
 	private PlayerControls _controls;
 	private DistanceJoint2D _tongueConnection;
 
-	// private bool _isExtendingTongue;
+	private bool _isExtendingTongue;
 	private bool _isRetractingTongue;
 
 	private float _lastMovementInput;
@@ -61,8 +61,8 @@ public class PlayerMovement : MonoBehaviour {
 		_controls = new PlayerControls();
 		// _controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
 		// _controls.Player.TongueExtend.canceled += _ => _isExtendingTongue = false;
-		// _controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
-		// _controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
+		_controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
+		_controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
 		_controls.Player.Crouch.performed += _ => _wantsCrouch = true;
 		_controls.Player.Crouch.canceled += _ => _wantsCrouch = false;
 		
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour {
 		bool isGrounded = CheckGrounding();
 		CheckCrouching();
 		CheckJumping();
-		// CheckTongueLengthChange();
+		CheckTongueLengthChange();
 		CheckHorizontalMovement(tongue.IsAttached() && !isGrounded);
 		_lastMovementInput = 0;
 		_jumpInputPerformed = false;
@@ -151,18 +151,18 @@ public class PlayerMovement : MonoBehaviour {
 	/// <summary>
 	/// Extends swinging tongue on right click and extends it on left click
 	/// </summary>
-	// private void CheckTongueLengthChange() {
-	// 	if (tongue.IsAttached()) {
-	// 		float newTongueLength = _tongueConnection.distance;
-	// 		
-	// 		if (_isExtendingTongue) {
-	// 			newTongueLength += ropingSpeed * Time.fixedDeltaTime;
-	// 		} else if (_isRetractingTongue) {
-	// 			newTongueLength -= ropingSpeed * Time.fixedDeltaTime;
-	// 		}
-	// 		_tongueConnection.distance = Mathf.Clamp(newTongueLength, 1, tongue.GetMaxLength());
-	// 	}
-	// }
+	private void CheckTongueLengthChange() {
+		if (tongue.IsAttached()) {
+			float newTongueLength = _tongueConnection.distance;
+			
+			if (_isExtendingTongue) {
+				newTongueLength += ropingSpeed * Time.fixedDeltaTime;
+			} else if (_isRetractingTongue) {
+				newTongueLength -= ropingSpeed * Time.fixedDeltaTime;
+			}
+			_tongueConnection.distance = Mathf.Clamp(newTongueLength, 1, tongue.GetMaxLength());
+		}
+	}
 	
 	private void CheckHorizontalMovement(bool isHanging) {
 		float horizontalInput = _lastMovementInput;

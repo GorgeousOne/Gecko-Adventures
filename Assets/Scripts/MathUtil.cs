@@ -20,4 +20,9 @@ public class MathUtil {
 		float oneMinus = 1 - Mathf.Clamp01(percent);
 		return 1f - oneMinus * oneMinus;
 	}
+
+	public static float SquareOut(float percent) {
+		float oneMinus = Mathf.Clamp01(percent) - 1;
+		return (oneMinus*oneMinus);
+	}
 }

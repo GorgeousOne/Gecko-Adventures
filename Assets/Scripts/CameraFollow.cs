@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour {
 		if (target == null) {
 			Debug.LogWarning("No target player is set for the CameraFollow script.");
 		}
-		if (_guide == null) {
+		if (cameraGuides == null) {
 			Debug.LogWarning("No camera guides are set for the CameraFollow script.");
 			return;
 		}

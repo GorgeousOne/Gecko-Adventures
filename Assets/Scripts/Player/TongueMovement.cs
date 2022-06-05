@@ -16,7 +16,8 @@ public class TongueMovement : MonoBehaviour {
 	[SerializeField] private UnityEvent detachAction;
 	// added for lighting the gecko after eating a firefly
 	[SerializeField] private GameObject player;
-	[SerializeField] private float lightTimer = 2.0f;
+	[SerializeField] private float additionalLightTime = 15.0f;
+	[SerializeField] private float remainingLightTime = 0.0f;
 	// ***************************************************
 
 	private PlayerControls _controls;
@@ -38,9 +39,9 @@ public class TongueMovement : MonoBehaviour {
 	private bool _isControllerUsed;
 
 	// added for lighting the gecko after eating a firefly
-	private int fireflyCounter = 0;
-	private float waitTime = 0;
-	private float lightOffSet = 0;
+	private Light2D playerLight;
+	private float maxPlayerLightIntensity;
+	private float maximumLightTime = 30.0f;
 	// ***************************************************
 
 	private void OnEnable() {
@@ -53,6 +54,8 @@ public class TongueMovement : MonoBehaviour {
 		// 		if (change == InputUserChange.ControlSchemeChanged)
 		// 			Debug.Log($"User {user} switched control scheme");
 		// 	};
+		playerLight = player.GetComponent<Light2D>();
+		maxPlayerLightIntensity = playerLight.intensity;
 	}
 
 	private void OnDisable() {
@@ -70,6 +73,15 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	private void Update() {
+
+		if (remainingLightTime > 0) {
+			remainingLightTime = Mathf.Max(0, remainingLightTime - Time.deltaTime);
+			playerLight.intensity = MathUtil.SquareIn(remainingLightTime / (maximumLightTime * 0.3f)) * maxPlayerLightIntensity;
+			if (remainingLightTime == 0) {
+				playerLight.enabled = false;
+			}
+		}
+
 		if (IsAttached()) {
 			AlignTongueToPoint(GetAttachPoint());
 		} else if (IsExtending()) {
@@ -77,28 +89,14 @@ public class TongueMovement : MonoBehaviour {
 		} else if (_pickup) {
 
 			// added for lighting the gecko after eating a firefly
-			fireflyCounter += 1;
 			Destroy(_pickup);
 
-			if (player.GetComponent<Light2D>() == null) {
-				player.AddComponent<Light2D>();
-				player.GetComponent<Light2D>().intensity = 2;
-				player.GetComponent<Light2D>().pointLightOuterRadius = 2.0f;
+			if (!playerLight.enabled) {
+				playerLight.enabled = true;
 			}
 
-			// waitTime += Time.deltaTime;
-
-			// if (fireflyCounter == 1) {
-			// 	Destroy(player.GetComponent<Light2D>(), lightTimer);
-			// }
-
-			// if (fireflyCounter > 1 && waitTime < lightTimer) {
-			// 	float timeLeft = lightTimer - waitTime;
-			// 	Destroy(player.GetComponent<Light2D>(), timeLeft + lightTimer);
-			// }
-
-			Destroy(player.GetComponent<Light2D>(), lightTimer);
-			// *********************************************************************
+			remainingLightTime = Mathf.Min(remainingLightTime + additionalLightTime, maximumLightTime);
+			// *****************************************************************************************
 			
 		}
 		if(WasTongueShootPerformed()) {

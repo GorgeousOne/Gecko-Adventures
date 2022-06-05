@@ -1559,6 +1559,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 865660118, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1417971056}
+    - target: {fileID: 865660118, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
+      propertyPath: lightTimer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164724, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -1616,6 +1624,11 @@ PrefabInstance:
 --- !u!4 &1417971055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3857400769282164727, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
+  m_PrefabInstance: {fileID: 1417971054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1417971056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3857400769282164724, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
   m_PrefabInstance: {fileID: 1417971054}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1661296605

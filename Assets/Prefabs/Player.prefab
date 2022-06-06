@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 3857400767592311170}
   - component: {fileID: 8442058769367328568}
   - component: {fileID: 865660118}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: TongueSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

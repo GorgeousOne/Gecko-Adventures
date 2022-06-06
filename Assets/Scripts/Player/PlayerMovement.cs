@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
 			return;
 		}
 		bool isGrounded = CheckGrounding();
+		Debug.Log(isGrounded);
 		CheckCrouching();
 		CheckJumping();
 		CheckTongueLengthChange();
@@ -140,7 +141,7 @@ public class PlayerMovement : MonoBehaviour {
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
 		
-		Vector2 capsuleOrigin = (Vector2) transform.position + capsuleOffset + new Vector2(0, -0.01f);
+		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsuleOffset + new Vector2(0, -0.01f);
 		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
 	}
 	

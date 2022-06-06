@@ -67,9 +67,7 @@ public class PlatformController : Triggerable {
 
 		if (isEnabled) {
 			float moveProgress = _GetMoveProgress();
-
 			_moveStart = LevelTime.time - moveProgress * moveTime;
-
 		}
 	}
 
@@ -78,14 +76,14 @@ public class PlatformController : Triggerable {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
-			collider.transform.parent = transform;
+		if (collider.CompareTag("Player")) {
+			collider.transform.parent.parent = transform;
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D collider) {
-		if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
-			collider.transform.parent = null;
+		if (collider.CompareTag("Player")) {
+			collider.transform.parent.parent = null;
 		}
 	}
 

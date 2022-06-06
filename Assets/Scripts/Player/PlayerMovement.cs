@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	[Header("General")]
 	[SerializeField] private LayerMask solidsLayerMask;
+	[SerializeField] private CapsuleCollider2D capsule;
 	[SerializeField] private TongueMovement tongue;
 	[SerializeField] private Animator bodyAnimator;
-
+	
 	[Header("Walk")]
 	[SerializeField] private float maxWalkSpeed = 10;
 	/// <summary>
@@ -28,12 +29,17 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	[SerializeField] private float groundedRememberDuration = 0.2f;
 	
-	[Header("Other")]
+	[Header("Crouch")]
+	[SerializeField] private float maxCrouchSpeed = 4f;
+	[SerializeField] private float crouchHeight = .9f;
+	[SerializeField] private Transform ceilingCheck;
+	[SerializeField] private Transform crushCheck;
+	
+	[Header("Swing")]
 	[SerializeField] private float swingForce = 17;
 	[SerializeField] private float ropingSpeed = 10;
-	[SerializeField] private float crouchHeight = .9f;
-	[SerializeField] private float maxCrouchSpeed = 4f;
-	
+
+	private PlayerSpawning _playerSpawning;
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
 	private float _startRunTime;
@@ -43,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 	private bool _isFacingRight;
 
 	private Rigidbody2D _rigid;
-	private CapsuleCollider2D _capsule;
+	// private CapsuleCollider2D capsule;
 	private PlayerControls _controls;
 	private DistanceJoint2D _tongueConnection;
 
@@ -61,12 +67,13 @@ public class PlayerMovement : MonoBehaviour {
 		_controls = new PlayerControls();
 		// _controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
 		// _controls.Player.TongueExtend.canceled += _ => _isExtendingTongue = false;
-		_controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
-		_controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
+		// _controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
+		// _controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
 		_controls.Player.Crouch.performed += _ => _wantsCrouch = true;
 		_controls.Player.Crouch.canceled += _ => _wantsCrouch = false;
-		
 		_controls.Enable();
+
+		_playerSpawning = GetComponent<PlayerSpawning>();
 	}
 
 	private void OnDisable() {
@@ -75,9 +82,9 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private void Start() {
 		_rigid = GetComponent<Rigidbody2D>();
-		_capsule = GetComponent<CapsuleCollider2D>();
-		_defaultHeight = _capsule.size.y;
-		_defaultCapsuleOffY = _capsule.offset.y;
+		// capsule = GetComponent<CapsuleCollider2D>();
+		_defaultHeight = capsule.size.y;
+		_defaultCapsuleOffY = capsule.offset.y;
 	}
 	
 	/// <summary>
@@ -93,6 +100,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (_rigid.bodyType != RigidbodyType2D.Dynamic) {
+			return;
+		}
+		if (IsBeingCrushed()) {
+			_playerSpawning.Die();
 			return;
 		}
 		bool isGrounded = CheckGrounding();
@@ -123,14 +134,14 @@ public class PlayerMovement : MonoBehaviour {
 	 * Creates a capsule close below the players capsule and checks if it intersects with any ground
 	 */
 	private bool IsGrounded() {
-		Vector2 capsuleOffset = _capsule.offset;
-		Vector2 capsuleSize = _capsule.size;
+		Vector2 capsuleOffset = capsule.offset;
+		Vector2 capsuleSize = capsule.size;
 		
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
 		
 		Vector2 capsuleOrigin = (Vector2) transform.position + capsuleOffset + new Vector2(0, -0.01f);
-		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);
+		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
 	}
 	
 	private void CheckJumping() {
@@ -269,14 +280,13 @@ public class PlayerMovement : MonoBehaviour {
 	/// Makes player crouch on key press. Makes player stand up on key release if not trapped below something
 	/// </summary>
 	private void CheckCrouching() {
-		if (_wantsCrouch) {
-			if (!_isCrouching) {
-				Crouch();
-			}
-		} else if (_isCrouching) {
-			if (CanStandUp()) {
-				StandUp();
-			}
+		bool canStandUp = CanStandUp();
+		
+		if (!_isCrouching && (!canStandUp || _wantsCrouch)) {
+			Crouch();
+		}
+		if (!_wantsCrouch && _isCrouching && canStandUp) {
+			StandUp();
 		}
 	}
 	
@@ -287,8 +297,9 @@ public class PlayerMovement : MonoBehaviour {
 		_isCrouching = true;
 		tongue.SetExtendingEnabled(false);
 		
-		_capsule.size = new Vector2(_capsule.size.x, crouchHeight);
-		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
+		capsule.size = new Vector2(capsule.size.x, crouchHeight);
+		capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
+		
 		_rigid.velocity = new Vector2(
 			Mathf.Clamp(_rigid.velocity.x, -maxCrouchSpeed, maxCrouchSpeed),
 			_rigid.velocity.y);
@@ -299,14 +310,11 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	/// <returns>true if nothing is blocking the player from standing up, otherwise false</returns>
 	private bool CanStandUp() {
-		Vector2 capsuleOffset = _capsule.offset;
-		Vector2 capsuleSize = _capsule.size;
-		
-		//shrinks capsule width to avoid wall intersections
-		capsuleSize.x -= 0.1f;
-		
-		Vector2 capsuleOrigin = (Vector2) transform.position + capsuleOffset + new Vector2(0, 0.5f);
-		return !Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, _capsule.direction, 0, solidsLayerMask);
+		return !Physics2D.OverlapPoint(ceilingCheck.position, solidsLayerMask);
+	}
+
+	private bool IsBeingCrushed() {
+		return Physics2D.OverlapPoint(crushCheck.position, solidsLayerMask);
 	}
 	
 	/// <summary>
@@ -315,8 +323,8 @@ public class PlayerMovement : MonoBehaviour {
 	private void StandUp() {
 		_isCrouching = false;
 		tongue.SetExtendingEnabled(true);
-		_capsule.size = new Vector2(_capsule.size.x, _defaultHeight);
-		_capsule.offset = new Vector2(_capsule.offset.x, _defaultCapsuleOffY);
+		capsule.size = new Vector2(capsule.size.x, _defaultHeight);
+		capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY);
 	}
 	
 	/// <summary>

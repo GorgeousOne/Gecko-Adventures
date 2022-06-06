@@ -6,8 +6,18 @@ using UnityEngine;
 public class LevelTime : MonoBehaviour {
 
 	private static float _time;
+	private static bool _isPaused;
+	
 	public static float time => _time;
 
+	public static void Pause() {
+		_isPaused = true;
+	}
+	
+	public static void UnPause() {
+		_isPaused = false;
+	}
+	
 	/// <summary>
 	/// Sets time to a new value (will probably effect animations, movement cycles etc)
 	/// </summary>
@@ -21,6 +31,8 @@ public class LevelTime : MonoBehaviour {
 	}
 
 	private void Update() {
-		_time += Time.deltaTime;
+		if (!_isPaused) {
+			_time += Time.deltaTime;
+		}
 	}
 }

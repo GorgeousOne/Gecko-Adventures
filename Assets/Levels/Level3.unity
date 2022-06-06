@@ -1436,7 +1436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -3088,7 +3088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -3238,7 +3238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -3501,7 +3501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -3586,7 +3586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -3905,7 +3905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -9740,7 +9740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -10119,7 +10119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -10512,19 +10512,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: -0.5596027
+      value: -0.14257027
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: -0.5588235
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 2.1192052
+      value: 1.2851405
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 2.1176472
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
@@ -10561,7 +10561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -10651,7 +10651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder
@@ -11676,7 +11676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712712324592319088, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: trampleTriggerExtendTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
       propertyPath: m_RootOrder

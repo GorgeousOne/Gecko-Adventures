@@ -43,8 +43,9 @@ public class PlayerSpawning : Resettable {
 		}
 	}
 
-	private void Die() {
+	public void Die() {
 		if (!IsDead()) {
+			LevelTime.Pause();
 			_rigid.bodyType = RigidbodyType2D.Static;
 			StartCoroutine(RestartFromCheckpoint(1));
 		}
@@ -57,6 +58,7 @@ public class PlayerSpawning : Resettable {
 	private void Revive() {
 		_rigid.bodyType = RigidbodyType2D.Dynamic;
 		_rigid.velocity = Vector2.zero;
+		LevelTime.UnPause();
 	}
 
 	private IEnumerator RestartFromCheckpoint(float delay) {

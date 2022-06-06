@@ -24,7 +24,7 @@ public class FloorSwitchController : Switch {
 	}
 	
 	private void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+		if (collider.gameObject.CompareTag("Player")) {
 			if (!IsEnabled) {
 				Toggle();
 			}
@@ -32,7 +32,7 @@ public class FloorSwitchController : Switch {
 	}
 
 	private void OnTriggerExit2D(Collider2D collider) {
-		if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+		if (collider.gameObject.CompareTag("Player")) {
 			if (IsEnabled) {
 				Toggle();
 			}

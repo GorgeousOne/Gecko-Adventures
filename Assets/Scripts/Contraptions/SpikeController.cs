@@ -17,7 +17,7 @@ public class SpikeController : Resettable {
 	[Header("Trample Triggering")]
 	[SerializeField] private bool trampleActivationEnabled;
 	[SerializeField] private float trampleTriggerOffset = 1f;
-	[SerializeField] [Min(.5f)] private float trampleTriggerExtendTime = 4;
+	[SerializeField] [Min(.1f)] private float trampleTriggerExtendTime = 3;
 
 	private bool _isExtended = true;
 	private SpriteRenderer _renderer;

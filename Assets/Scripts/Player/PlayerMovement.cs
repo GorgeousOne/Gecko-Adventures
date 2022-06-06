@@ -65,10 +65,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
-		// _controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
-		// _controls.Player.TongueExtend.canceled += _ => _isExtendingTongue = false;
-		// _controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
-		// _controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
+		_controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
+		_controls.Player.TongueExtend.canceled += _ => _isExtendingTongue = false;
+		_controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
+		_controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
 		_controls.Player.Crouch.performed += _ => _wantsCrouch = true;
 		_controls.Player.Crouch.canceled += _ => _wantsCrouch = false;
 		_controls.Enable();

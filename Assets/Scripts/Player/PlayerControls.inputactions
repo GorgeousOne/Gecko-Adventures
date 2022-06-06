@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TongueExtend",
+                    "type": "Button",
+                    "id": "0f6aa197-337e-4d36-88e5-00329ce4a97a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -307,6 +316,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "TongueRetract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b316bbd-f181-4133-b8c5-7fb35f7dab66",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "TongueExtend",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "784e7cc8-45e1-46b8-b867-5aa3e06414e1",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TongueExtend",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

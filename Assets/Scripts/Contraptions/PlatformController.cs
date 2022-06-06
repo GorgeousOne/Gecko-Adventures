@@ -12,6 +12,7 @@ public class PlatformController : Triggerable {
 	private bool _isMovingForward = true;
 	private float _moveStart;
 
+	private Vector2 _savedPos;
 	private bool _savedWasMovingForward;
 	private float _savedMoveStart;
 	private bool _saveWasEnabled;
@@ -93,12 +94,14 @@ public class PlatformController : Triggerable {
 	}
 	
 	public override void SaveState() {
+		_savedPos = transform.position;
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
 		_saveWasEnabled = isEnabled;
 	}
 
 	public override void ResetState() {
+		transform.position = _savedPos;
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;
 		isEnabled = _saveWasEnabled;

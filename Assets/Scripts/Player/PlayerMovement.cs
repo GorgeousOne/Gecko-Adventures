@@ -107,7 +107,6 @@ public class PlayerMovement : MonoBehaviour {
 			return;
 		}
 		bool isGrounded = CheckGrounding();
-		Debug.Log(isGrounded);
 		CheckCrouching();
 		CheckJumping();
 		CheckTongueLengthChange();

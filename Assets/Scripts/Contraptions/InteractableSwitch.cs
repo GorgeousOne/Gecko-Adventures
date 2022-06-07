@@ -24,7 +24,9 @@ public abstract class InteractableSwitch : Interactable {
 		Gizmos.color = IsEnabled ? new Color(.75f, 0, 0) : new Color(.25f, 0, 0);
 
 		foreach (Triggerable toggleable in connected) {
-			Gizmos.DrawLine(transform.position, toggleable.gameObject.transform.position);
+			if (toggleable) {
+				Gizmos.DrawLine(transform.position, toggleable.gameObject.transform.position);
+			}
 		}
 	}
 

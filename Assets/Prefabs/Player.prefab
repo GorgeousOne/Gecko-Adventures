@@ -655,6 +655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCheckpoints: {fileID: 0}
+  renderer: {fileID: 4784587876209191445}
 --- !u!114 &3206490271212908979
 MonoBehaviour:
   m_ObjectHideFlags: 0

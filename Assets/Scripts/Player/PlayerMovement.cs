@@ -91,6 +91,9 @@ public class PlayerMovement : MonoBehaviour {
 	/// Reads control inputs
 	/// </summary>
 	private void Update() {
+		if (_playerSpawning.IsDead()) {
+			return;
+		}
 		_lastMovementInput = _controls.Player.Move.ReadValue<float>();
 		
 		if (_controls.Player.Jump.WasPerformedThisFrame()) {
@@ -99,17 +102,17 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (_rigid.bodyType != RigidbodyType2D.Dynamic) {
-			return;
-		}
+		
 		if (IsBeingCrushed()) {
 			_playerSpawning.Die();
-			return;
 		}
 		bool isGrounded = CheckGrounding();
-		CheckCrouching();
-		CheckJumping();
-		CheckTongueLengthChange();
+
+		if (!_playerSpawning.IsDead()) {
+			CheckCrouching();
+			CheckJumping();
+			CheckTongueLengthChange();
+		}
 		CheckHorizontalMovement(tongue.IsAttached() && !isGrounded);
 		_lastMovementInput = 0;
 		_jumpInputPerformed = false;

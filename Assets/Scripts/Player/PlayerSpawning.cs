@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerSpawning : Resettable {
 
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
+	[SerializeField] private SpriteRenderer renderer;
+	[SerializeField] private CameraFollow camera = null;
 	
 	private Rigidbody2D _rigid;
+	private bool _isDead;
 	
 	void Start() {
 		if (FindObjectOfType<LevelTime>() == null) {
@@ -37,6 +42,12 @@ public class PlayerSpawning : Resettable {
 		transform.position = savedPosition;
 	}
 
+	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.gameObject.CompareTag("Void")) {
+			Die();
+		}
+	}
+
 	private void OnCollisionEnter2D(Collision2D other) {
 		if (other.gameObject.CompareTag("Deadly")) {
 			Die();
@@ -45,18 +56,28 @@ public class PlayerSpawning : Resettable {
 
 	public void Die() {
 		if (!IsDead()) {
+			_isDead = true;
+			if (camera) {
+				camera.PauseFollow();
+			}
 			LevelTime.Pause();
-			_rigid.bodyType = RigidbodyType2D.Static;
+			// _rigid.bodyType = RigidbodyType2D.Static;
+			renderer.color = Color.red;
 			StartCoroutine(RestartFromCheckpoint(1));
 		}
 	}
 
 	public bool IsDead() {
-		return _rigid.bodyType != RigidbodyType2D.Dynamic;
+		return _isDead;
 	}
 
 	private void Revive() {
-		_rigid.bodyType = RigidbodyType2D.Dynamic;
+		_isDead = false;
+		if (camera) {
+			camera.UnpauseFollow();
+		}
+		renderer.color = Color.white;
+		// _rigid.bodyType = RigidbodyType2D.Dynamic;
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();
 	}

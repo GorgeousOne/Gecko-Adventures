@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour {
 	[SerializeField] private Transform target;
 	[SerializeField] private Vector2 targetOffset;
 	// [SerializeField][Range(0, 1)] private float smoothSpeed = 1f;
-	[SerializeField] [Min(0)] private float snapTime = 0.5f;
+	[SerializeField] [Min(0)] private float snapTime = 1f;
 	[SerializeField] private int ppu = 16;
 	
 	[SerializeField] private bool followX = true;
@@ -18,6 +18,7 @@ public class CameraFollow : MonoBehaviour {
 	private CameraGuide _guide;
 	private float _snapStartTime;
 	private Vector3 _snapStartPos;
+	private bool _isFollowingPaused;
 
 	void OnEnable() {
 		if (target == null) {
@@ -38,7 +39,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private void LateUpdate() {
 		// Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
-		if (target == null) {
+		if (target == null || _isFollowingPaused) {
 			return;
 		}
 		Vector3 targetPos = target.position;
@@ -52,6 +53,7 @@ public class CameraFollow : MonoBehaviour {
 			
 			float snapProgress = (Time.time - _snapStartTime) / snapTime;
 			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
+			// Vector3 finalPos = Vector3.Slerp(_snapStartPos, newGoalPos, snapProgress);
 			transform.position = GetPixelPoint(finalPos, ppu);
 
 		} else {
@@ -59,6 +61,14 @@ public class CameraFollow : MonoBehaviour {
 			newGoalPos.y = followY ? targetPos.y : currentPos.y;
 			transform.position = GetPixelPoint(newGoalPos, ppu);
 		}
+	}
+
+	public void PauseFollow() {
+		_isFollowingPaused = true;
+	}
+
+	public void UnpauseFollow() {
+		_isFollowingPaused = false;
 	}
 
 	private bool _IsSnapping() {

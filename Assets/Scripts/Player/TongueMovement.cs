@@ -1,26 +1,27 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
-using UnityEngine.Rendering.Universal;
+// using UnityEngine.Rendering.Universal;
 
 public class TongueMovement : MonoBehaviour {
 
 	[SerializeField] private float extendTime = 0.2f;
 	[SerializeField] private float stayExtendedTime = 0.2f;
-	[SerializeField] private Transform pivot;
+	// [SerializeField] private Transform _pivot;
 	[SerializeField] private LayerMask attachLayerMask;
 	[SerializeField] private LayerMask collectLayerMask;
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
 	// added for lighting the gecko after eating a firefly
-	[SerializeField] private GameObject player;
-	[SerializeField] private float additionalLightTime = 15.0f;
-	[SerializeField] private float remainingLightTime = 0.0f;
+	// [SerializeField] private GameObject player;
+	// [SerializeField] private float additionalLightTime = 15.0f;
+	// [SerializeField] private float remainingLightTime = 0.0f;
 	// ***************************************************
 
 	private PlayerControls _controls;
+	private Transform _pivot;
+
+	private PickupHandler _pickupHandler;
 	private CapsuleCollider2D _collider;
 	private Camera _cam;
 	
@@ -38,30 +39,18 @@ public class TongueMovement : MonoBehaviour {
 	private bool _tongueShootPressed;
 	private bool _isControllerUsed;
 
-	// added for lighting the gecko after eating a firefly
-	private Light2D playerLight;
-	private float maxPlayerLightIntensity;
-	private float maximumLightTime = 30.0f;
-	// ***************************************************
-
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
 		_collider = GetComponent<CapsuleCollider2D>();
-		// InputUser.onChange +=
-		// 	(user, change, device) =>
-		// 	{
-		// 		if (change == InputUserChange.ControlSchemeChanged)
-		// 			Debug.Log($"User {user} switched control scheme");
-		// 	};
-		playerLight = player.GetComponent<Light2D>();
-		maxPlayerLightIntensity = playerLight.intensity;
+		_pickupHandler = GetComponentInParent<PickupHandler>();
+		_pivot = transform.parent;
 	}
 
 	private void OnDisable() {
 		_controls.Disable();
 	}
-	
+
 	private void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
 		_defaultPos = transform.localPosition;
@@ -74,30 +63,13 @@ public class TongueMovement : MonoBehaviour {
 
 	private void Update() {
 
-		if (remainingLightTime > 0) {
-			remainingLightTime = Mathf.Max(0, remainingLightTime - Time.deltaTime);
-			playerLight.intensity = MathUtil.SquareIn(remainingLightTime / (maximumLightTime * 0.3f)) * maxPlayerLightIntensity;
-			if (remainingLightTime == 0) {
-				playerLight.enabled = false;
-			}
-		}
-
 		if (IsAttached()) {
 			AlignTongueToPoint(GetAttachPoint());
 		} else if (IsExtending()) {
 			UpdateExtendLength();
 		} else if (_pickup) {
-
-			// added for lighting the gecko after eating a firefly
+			_pickupHandler.ProcessPickup(_pickup);
 			Destroy(_pickup);
-
-			if (!playerLight.enabled) {
-				playerLight.enabled = true;
-			}
-
-			remainingLightTime = Mathf.Min(remainingLightTime + additionalLightTime, maximumLightTime);
-			// *****************************************************************************************
-			
 		}
 		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;
@@ -112,8 +84,8 @@ public class TongueMovement : MonoBehaviour {
 	}
 	
 	private void AlignTongueToPoint(Vector2 attachPoint) {
-		pivot.right = GetAimDir(attachPoint);
-		float distance = (attachPoint - (Vector2) pivot.position).magnitude;
+		_pivot.right = GetAimDir(attachPoint);
+		float distance = (attachPoint - (Vector2) _pivot.position).magnitude;
 		SetExtendDistance(distance);
 	}
 	
@@ -129,11 +101,11 @@ public class TongueMovement : MonoBehaviour {
 			Vector2 gamepadAim = _controls.Player.TongueShootGamepad.ReadValue<Vector2>();
 
 			if (!MathUtil.IsZero(gamepadAim.x) || !MathUtil.IsZero(gamepadAim.y)) {
-				pivot.right = gamepadAim.normalized;
+				_pivot.right = gamepadAim.normalized;
 			} else {
 				Vector2 mouseScreenPos = _controls.Player.TongueAim.ReadValue<Vector2>();
 				Vector2 mousePos = _cam.ScreenToWorldPoint(mouseScreenPos);
-				pivot.right = GetAimDir(mousePos);
+				_pivot.right = GetAimDir(mousePos);
 			}
 			PlayExtend();
 		}
@@ -146,8 +118,8 @@ public class TongueMovement : MonoBehaviour {
 	
 	private Vector2 GetAimDir(Vector2 aim) {
 		return new Vector2(
-			aim.x - pivot.position.x,
-			aim.y - pivot.position.y);
+			aim.x - _pivot.position.x,
+			aim.y - _pivot.position.y);
 	}
 	
 	//returns the width of the unscaled tongue sprite I think
@@ -171,7 +143,7 @@ public class TongueMovement : MonoBehaviour {
 		if (!IsAttached() && !IsExtending()) {
 			return 0f;
 		}
-		return MathUtil.WrapToPi(pivot.rotation.eulerAngles.z);
+		return MathUtil.WrapToPi(_pivot.rotation.eulerAngles.z);
 	}
 	
 	public bool IsAttached() {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4017017205815250521}
   m_Layer: 10
   m_Name: Firefly
-  m_TagString: Untagged
+  m_TagString: Light Source
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4017017206395064602}
   m_Layer: 10
   m_Name: FireflySprite
-  m_TagString: Untagged
+  m_TagString: Light Source
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

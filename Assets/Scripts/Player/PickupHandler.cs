@@ -1,14 +1,26 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class PickupHandler : MonoBehaviour {
 
-	[SerializeField] private float maxLightIntensity = 2f;
+	[Header("Timing")]
 	[SerializeField] private float maxLightTime = 30f;
 	[SerializeField] private float spawnLightTime = 15f;
 	[SerializeField] private float lightSourceTime = 15f;
+
+	[Header("Light Properties")] 
+	[SerializeField] private float fullLightIntensity = 2f;
+	[SerializeField] private float fullLightRadius = 10f;
 	
+	[SerializeField] private float halfLightIntensity = 1.5f;
+	[SerializeField] private float halfLightRadius = 5f;
+	[SerializeField] private float halfLightIntensityLerpTime = 1f;
+	
+	[SerializeField] private float minLightRadius = 3f;
+	[SerializeField] private float lightDropTime = 5f;
+
 	private bool _isDarkLevel;
 	private PlayerSpawning _playerSpawning;
 	private Light2D _playerLight;
@@ -41,9 +53,33 @@ public class PickupHandler : MonoBehaviour {
 			return;
 		}
 		_remainingLightTime = Mathf.Max(0, _remainingLightTime - Time.deltaTime);
-		_playerLight.intensity = MathUtil.SquareIn(_remainingLightTime / (maxLightTime * 0.3f)) * maxLightIntensity;
+		// _playerLight.intensity = MathUtil.SquareIn(_remainingLightTime / (maxLightTime * 0.3f)) * maxLightIntensity;
+		UpdateLightSettings();
 	}
 
+	private void UpdateLightSettings() {
+		float halfTime = .5f * maxLightTime;
+		
+		if (_remainingLightTime > halfTime) {
+			_playerLight.pointLightOuterRadius = fullLightRadius;
+			_playerLight.intensity = fullLightIntensity;
+			
+			// _playerLight.color = fullLightColor;
+		} else {
+			if (_remainingLightTime > lightDropTime) {
+				// float intensity = MathUtil.Map(_remainingLightTime, halfTime - halfLightIntensityLerpTime, halfTime, halfLightIntensity, fullLightIntensity);
+				float lerpPercent = Mathf.InverseLerp(halfTime - halfLightIntensityLerpTime, halfTime, _remainingLightTime);
+				_playerLight.pointLightOuterRadius = MathUtil.Map(_remainingLightTime, lightDropTime, halfTime, halfLightRadius, fullLightRadius);
+				_playerLight.intensity = Mathf.SmoothStep(halfLightIntensity, fullLightIntensity, lerpPercent);
+				
+			} else {
+				float lightDropPercent = _remainingLightTime / lightDropTime;
+				_playerLight.pointLightOuterRadius = Mathf.Lerp(minLightRadius, halfLightRadius, lightDropPercent);
+				_playerLight.intensity = lightDropPercent * halfLightIntensity;
+			}
+		}
+	}
+	
 	public void ProcessPickup(GameObject pickup) {
 		if (_isDarkLevel && pickup.CompareTag("Light Source")) {
 			_remainingLightTime = Mathf.Min(_remainingLightTime + lightSourceTime, maxLightTime);

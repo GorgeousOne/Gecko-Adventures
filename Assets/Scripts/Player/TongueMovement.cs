@@ -69,7 +69,9 @@ public class TongueMovement : MonoBehaviour {
 			UpdateExtendLength();
 		} else if (_pickup) {
 			_pickupHandler.ProcessPickup(_pickup);
-			Destroy(_pickup);
+			_pickup.SetActive(false);
+			_pickup.transform.parent = null;
+			_pickup = null;
 		}
 		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;

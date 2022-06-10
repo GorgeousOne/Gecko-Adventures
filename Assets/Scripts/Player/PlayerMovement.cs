@@ -74,15 +74,16 @@ public class PlayerMovement : MonoBehaviour {
 		_controls.Enable();
 
 		_playerSpawning = GetComponent<PlayerSpawning>();
+		_playerSpawning.playerDeathEvent.AddListener(tongue.Detach);
 	}
 
 	private void OnDisable() {
 		_controls.Disable();
+		_playerSpawning.playerDeathEvent.RemoveListener(tongue.Detach);
 	}
 	
 	private void Start() {
 		_rigid = GetComponent<Rigidbody2D>();
-		// capsule = GetComponent<CapsuleCollider2D>();
 		_defaultHeight = capsule.size.y;
 		_defaultCapsuleOffY = capsule.offset.y;
 	}

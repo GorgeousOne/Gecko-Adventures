@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 public class MathUtil {
+
+	public static float Map(float value, float low1, float high1, float low2, float high2) {
+		float normal = Mathf.InverseLerp(low1, high1, value);
+		return Mathf.Lerp(low2, high2, normal);
+	}
 	
 	public static float FloorMod(float a, float b){
 		return a - Mathf.Floor(a / b) * b;

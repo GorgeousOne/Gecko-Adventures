@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerSpawning : Resettable {
@@ -9,6 +8,8 @@ public class PlayerSpawning : Resettable {
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
 	[SerializeField] private SpriteRenderer renderer;
 	[SerializeField] private CameraFollow camera = null;
+	public UnityEvent playerSpawnEvent;
+	public UnityEvent playerDeathEvent;
 	
 	private Rigidbody2D _rigid;
 	private bool _isDead;
@@ -61,9 +62,9 @@ public class PlayerSpawning : Resettable {
 				camera.PauseFollow();
 			}
 			LevelTime.Pause();
-			// _rigid.bodyType = RigidbodyType2D.Static;
 			renderer.color = Color.red;
 			StartCoroutine(RestartFromCheckpoint(1));
+			playerDeathEvent.Invoke();
 		}
 	}
 
@@ -80,6 +81,7 @@ public class PlayerSpawning : Resettable {
 		// _rigid.bodyType = RigidbodyType2D.Dynamic;
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();
+		playerSpawnEvent.Invoke();
 	}
 
 	private IEnumerator RestartFromCheckpoint(float delay) {

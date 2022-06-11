@@ -103,8 +103,8 @@ BoxCollider2D:
   m_Offset: {x: 0.46875, y: 0.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.25}
-    oldSize: {x: 1, y: 0.5}
+    pivot: {x: 0, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,8 +129,8 @@ BoxCollider2D:
   m_Offset: {x: 0.46875, y: 0.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.25}
-    oldSize: {x: 1, y: 0.5}
+    pivot: {x: 0, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,4 +160,4 @@ MonoBehaviour:
   retractTime: 2
   trampleActivationEnabled: 0
   trampleTriggerOffset: 1
-  trampleTriggerExtendTime: 4
+  trampleTriggerExtendTime: 3

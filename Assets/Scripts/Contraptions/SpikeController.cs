@@ -25,6 +25,9 @@ public class SpikeController : Resettable {
 	private bool _savedWasExtended;
 	
 	private void OnEnable() {
+		if (!timedActivationEnabled && !trampleActivationEnabled) {
+			Destroy(this);
+		}
 		_renderer = GetComponent<SpriteRenderer>();
 		SetExtended(_isExtended && !trampleActivationEnabled);
 	}

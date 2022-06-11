@@ -174,6 +174,8 @@ public class TongueMovement : MonoBehaviour {
 		_attachment = null;
 		SetExtendDistance(0);
 		detachAction.Invoke();
+		_extendStart = -100;
+		UpdateExtendLength();
 	}
 
 	public float GetExtendProgress() {

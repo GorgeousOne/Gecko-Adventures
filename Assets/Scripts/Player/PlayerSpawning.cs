@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class PlayerSpawning : Resettable {
+public class PlayerSpawning : MonoBehaviour {
 
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
 	[SerializeField] private SpriteRenderer renderer;
@@ -24,14 +24,14 @@ public class PlayerSpawning : Resettable {
 			Debug.LogWarning("No respawn points set for PlayerSpawning script. Please add a reference a LevelCheckpoints object.");
 		}
 		_rigid = GetComponent<Rigidbody2D>();
-		_loadLastPlayerPos();
+		LoadLastPlayerPos();
 	}
 
 	private void OnApplicationQuit() {
 		PlayerPrefs.DeleteAll();
 	}
 
-	private void _loadLastPlayerPos() {
+	private void LoadLastPlayerPos() {
 		Vector3 savedPosition = levelCheckpoints.GetCurrentSpawnPoint();
 		string sceneName = SceneManager.GetActiveScene().name;
 
@@ -77,8 +77,9 @@ public class PlayerSpawning : Resettable {
 		if (camera) {
 			camera.UnpauseFollow();
 		}
+		transform.parent = null;
+		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
 		renderer.color = Color.white;
-		// _rigid.bodyType = RigidbodyType2D.Dynamic;
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();
 		playerSpawnEvent.Invoke();
@@ -88,12 +89,5 @@ public class PlayerSpawning : Resettable {
 		yield return new WaitForSeconds(delay);
 		levelCheckpoints.ResetToLastCheckpoint();
 		Revive();
-	}
-	
-	public override void SaveState() {
-	}
-
-	public override void ResetState() {
-		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
 	}
 }

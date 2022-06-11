@@ -89,7 +89,11 @@ public class PlatformController : Triggerable {
 	}
 
 	private void OnDrawGizmos() {
-		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
+		Collider2D box = GetComponent<Collider2D>();
+		Vector3 offset = box.bounds.center - transform.position;
+		
+		Gizmos.color = Color.yellow;
+		Vector2 position = offset + (_startPos != Vector2.zero ? _startPos : transform.position);
 		Gizmos.DrawLine(position, position + targetOffset);
 	}
 	

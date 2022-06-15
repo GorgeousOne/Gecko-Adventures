@@ -144,8 +144,11 @@ public class PlayerMovement : MonoBehaviour {
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
 		
-		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsuleOffset + new Vector2(0, -0.01f);
-		return Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
+		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsuleOffset + new Vector2(0, -0.1f);
+		Physics2D.queriesHitTriggers = false;
+		bool isGrounded = Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
+		Physics2D.queriesHitTriggers = false;
+		return isGrounded;
 	}
 	
 	private void CheckJumping() {
@@ -314,11 +317,18 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	/// <returns>true if nothing is blocking the player from standing up, otherwise false</returns>
 	private bool CanStandUp() {
-		return !Physics2D.OverlapPoint(ceilingCheck.position, solidsLayerMask);
+		Physics2D.queriesHitTriggers = false;
+		bool canStandUp = !Physics2D.OverlapPoint(ceilingCheck.position, solidsLayerMask);
+		Physics2D.queriesHitTriggers = true;
+		return canStandUp;
 	}
 
 	private bool IsBeingCrushed() {
-		return Physics2D.OverlapPoint(crushCheck.position, solidsLayerMask);
+		//disable physics2d intersection checks with triggers
+		Physics2D.queriesHitTriggers = false;
+		bool isBeingCrushed = Physics2D.OverlapPoint(crushCheck.position, solidsLayerMask);
+		Physics2D.queriesHitTriggers = true;
+		return isBeingCrushed;
 	}
 	
 	/// <summary>

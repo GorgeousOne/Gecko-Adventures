@@ -7,6 +7,7 @@ public class PlatformController : Triggerable {
 	[SerializeField] private float moveTime = 2;
 	[SerializeField] private float waitTime = 2;
 	[SerializeField] private bool isEnabled = true;
+	[SerializeField] private float enableDelay = 0;
 
 	private Vector2 _startPos;
 	private bool _isMovingForward = true;
@@ -68,7 +69,7 @@ public class PlatformController : Triggerable {
 
 		if (isEnabled) {
 			float moveProgress = _GetMoveProgress();
-			_moveStart = LevelTime.time - moveProgress * moveTime;
+			_moveStart = LevelTime.time - moveProgress * moveTime + enableDelay;
 		}
 	}
 
@@ -89,7 +90,11 @@ public class PlatformController : Triggerable {
 	}
 
 	private void OnDrawGizmos() {
-		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
+		Collider2D box = GetComponent<Collider2D>();
+		Vector3 offset = box.bounds.center - transform.position;
+		
+		Gizmos.color = Color.yellow;
+		Vector2 position = offset + (_startPos != Vector2.zero ? _startPos : transform.position);
 		Gizmos.DrawLine(position, position + targetOffset);
 	}
 	

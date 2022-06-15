@@ -107,6 +107,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""26b1b899-9331-44f9-b332-fead2f50c579"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""558a7666-e9be-40e1-8ae7-b8f566187521"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -362,6 +380,50 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""TongueExtend"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c2d5931-efa4-40bb-a9f2-191407769707"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bae0975-1926-4bb1-9063-2fc1f33cd3fa"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3355a1a-dd6e-4498-9deb-82947668ff62"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fae242c5-c6c6-4952-b9ab-a94baacedda0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -407,6 +469,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_TongueShootGamepad = m_Player.FindAction("TongueShootGamepad", throwIfNotFound: true);
         m_Player_TongueRetract = m_Player.FindAction("TongueRetract", throwIfNotFound: true);
         m_Player_TongueExtend = m_Player.FindAction("TongueExtend", throwIfNotFound: true);
+        m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+        m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -475,6 +539,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TongueShootGamepad;
     private readonly InputAction m_Player_TongueRetract;
     private readonly InputAction m_Player_TongueExtend;
+    private readonly InputAction m_Player_Menu;
+    private readonly InputAction m_Player_Back;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -488,6 +554,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @TongueShootGamepad => m_Wrapper.m_Player_TongueShootGamepad;
         public InputAction @TongueRetract => m_Wrapper.m_Player_TongueRetract;
         public InputAction @TongueExtend => m_Wrapper.m_Player_TongueExtend;
+        public InputAction @Menu => m_Wrapper.m_Player_Menu;
+        public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,6 +592,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueExtend.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
                 @TongueExtend.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
                 @TongueExtend.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
+                @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                @Back.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBack;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -555,6 +629,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueExtend.started += instance.OnTongueExtend;
                 @TongueExtend.performed += instance.OnTongueExtend;
                 @TongueExtend.canceled += instance.OnTongueExtend;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
             }
         }
     }
@@ -588,5 +668,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTongueShootGamepad(InputAction.CallbackContext context);
         void OnTongueRetract(InputAction.CallbackContext context);
         void OnTongueExtend(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
     }
 }

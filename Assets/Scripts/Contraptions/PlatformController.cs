@@ -7,6 +7,7 @@ public class PlatformController : Triggerable {
 	[SerializeField] private float moveTime = 2;
 	[SerializeField] private float waitTime = 2;
 	[SerializeField] private bool isEnabled = true;
+	[SerializeField] private float enableDelay = 0;
 
 	private Vector2 _startPos;
 	private bool _isMovingForward = true;
@@ -68,7 +69,7 @@ public class PlatformController : Triggerable {
 
 		if (isEnabled) {
 			float moveProgress = _GetMoveProgress();
-			_moveStart = LevelTime.time - moveProgress * moveTime;
+			_moveStart = LevelTime.time - moveProgress * moveTime + enableDelay;
 		}
 	}
 

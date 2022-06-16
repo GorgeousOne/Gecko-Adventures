@@ -8,6 +8,7 @@ public class PlayerSpawning : MonoBehaviour {
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
 	[SerializeField] private SpriteRenderer renderer;
 	[SerializeField] private CameraFollow camera = null;
+	[SerializeField] private Animator bodyAnimator;
 	public UnityEvent playerSpawnEvent;
 	public UnityEvent playerDeathEvent;
 	
@@ -62,7 +63,8 @@ public class PlayerSpawning : MonoBehaviour {
 				camera.PauseFollow();
 			}
 			LevelTime.Pause();
-			renderer.color = Color.red;
+			// renderer.color = Color.red;
+			bodyAnimator.SetBool("IsDead", _isDead);
 			StartCoroutine(RestartFromCheckpoint(1));
 			playerDeathEvent.Invoke();
 		}
@@ -79,7 +81,8 @@ public class PlayerSpawning : MonoBehaviour {
 		}
 		transform.parent = null;
 		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
-		renderer.color = Color.white;
+		// renderer.color = Color.white;
+		bodyAnimator.SetBool("IsDead", _isDead);
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();
 		playerSpawnEvent.Invoke();

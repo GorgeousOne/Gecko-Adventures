@@ -732,6 +732,7 @@ MonoBehaviour:
   levelCheckpoints: {fileID: 0}
   renderer: {fileID: 4784587876209191445}
   camera: {fileID: 0}
+  bodyAnimator: {fileID: 285922387}
   playerSpawnEvent:
     m_PersistentCalls:
       m_Calls: []

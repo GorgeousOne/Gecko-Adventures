@@ -54,12 +54,13 @@ public class CameraFollow : MonoBehaviour {
 			float snapProgress = (Time.time - _snapStartTime) / snapTime;
 			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
 			// Vector3 finalPos = Vector3.Slerp(_snapStartPos, newGoalPos, snapProgress);
-			transform.position = GetPixelPoint(finalPos, ppu);
+			// transform.position = GetPixelPoint(finalPos, ppu);
+			transform.position = finalPos;
 
 		} else {
 			newGoalPos.x = followX ? targetPos.x : currentPos.x;
 			newGoalPos.y = followY ? targetPos.y : currentPos.y;
-			transform.position = GetPixelPoint(newGoalPos, ppu);
+			transform.position = newGoalPos;
 		}
 	}
 
@@ -83,8 +84,8 @@ public class CameraFollow : MonoBehaviour {
 		_snapStartTime = Time.time;
 	}
 
-	private Vector3 GetPixelPoint(Vector3 point, int ppu) {
-		Vector3 pixelPoint = Vector3Int.RoundToInt(ppu * point);
-		return 1f / ppu * pixelPoint;
-	}
+	// private Vector3 GetPixelPoint(Vector3 point, int ppu) {
+		// Vector3 pixelPoint = Vector3Int.RoundToInt(ppu * point);
+		// return 1f / ppu * pixelPoint;
+	// }
 }

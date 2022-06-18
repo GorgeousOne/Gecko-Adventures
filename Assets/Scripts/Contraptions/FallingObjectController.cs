@@ -5,16 +5,29 @@ using UnityEngine;
 public class FallingObjectController : Triggerable {
 
     [SerializeField] public GameObject fallingObject;
+    [SerializeField] private bool isEnabled = true;
+    [SerializeField] private float reloadTime = 5;
 
-    private bool _isEnabled;
+    // private bool _isEnabled;
     private Transform _startTransform;
     private GameObject _newFallingObject;
+    float _lastTimedObject;
 
     private void Start() {
+
         _startTransform = fallingObject.transform;
     }
 
-    public override void OnSwitchToggle(bool isEnabled) {
+    private void Update() {
+        if (isEnabled) {
+            if (PassedMovementTime()) {
+                InstantiateObject(isEnabled);
+                _lastTimedObject += reloadTime;
+            }
+        }
+    }
+
+    private void InstantiateObject(bool isEnabled) {
         if (_newFallingObject != null) {
             Destroy(_newFallingObject);
         }
@@ -22,6 +35,14 @@ public class FallingObjectController : Triggerable {
         if (isEnabled) {
             _newFallingObject = Instantiate(fallingObject, transform.position, Quaternion.identity);
         }
+    }
+
+    public override void OnSwitchToggle(bool isEnabled) {
+        InstantiateObject(isEnabled);
+	}
+
+    private bool PassedMovementTime() {
+		return LevelTime.time - _lastTimedObject > reloadTime;
 	}
 
     private void OnDrawGizmos() {

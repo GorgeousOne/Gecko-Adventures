@@ -39,12 +39,15 @@ public class TongueMovement : MonoBehaviour {
 	private bool _tongueShootPressed;
 	private bool _isControllerUsed;
 
+	private AudioSource _tongueAudio;
+
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
 		_collider = GetComponent<CapsuleCollider2D>();
 		_pickupHandler = GetComponentInParent<PickupHandler>();
 		_pivot = transform.parent;
+		_tongueAudio = GetComponent<AudioSource>();
 	}
 
 	private void OnDisable() {
@@ -64,6 +67,7 @@ public class TongueMovement : MonoBehaviour {
 	private void Update() {
 
 		if (IsAttached()) {
+			_tongueAudio.enabled = true;
 			AlignTongueToPoint(GetAttachPoint());
 		} else if (IsExtending()) {
 			UpdateExtendLength();
@@ -75,6 +79,7 @@ public class TongueMovement : MonoBehaviour {
 		}
 		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;
+			_tongueAudio.enabled = false;
 		}
 	}
 

@@ -7,6 +7,7 @@ TagManager:
   - Deadly
   - Void
   - Light Source
+  - Mask
   layers:
   - Default
   - TransparentFX

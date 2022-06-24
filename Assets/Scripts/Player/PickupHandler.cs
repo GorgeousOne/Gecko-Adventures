@@ -81,6 +81,9 @@ public class PickupHandler : MonoBehaviour {
 	}
 	
 	public void ProcessPickup(GameObject pickup) {
+		if (pickup.CompareTag("Mask")) {
+			Debug.Log("*insert image*");
+		}
 		if (_isDarkLevel && pickup.CompareTag("Light Source")) {
 			_remainingLightTime = Mathf.Min(_remainingLightTime + lightSourceTime, maxLightTime);
 		}

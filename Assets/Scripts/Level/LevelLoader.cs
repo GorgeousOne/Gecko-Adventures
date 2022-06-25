@@ -18,7 +18,7 @@ public class LevelLoader : MonoBehaviour {
 	}
 	
 	private IEnumerator _LoadLevel(string levelName) {
-		transition.SetTrigger("Start");
+		transition.SetTrigger("FadeOut");
 		yield return new WaitForSeconds(transitionTime);
 		SceneManager.LoadScene(levelName);
 	}

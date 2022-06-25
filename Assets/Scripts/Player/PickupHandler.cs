@@ -1,6 +1,7 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 public class PickupHandler : MonoBehaviour {
@@ -21,6 +22,8 @@ public class PickupHandler : MonoBehaviour {
 	[SerializeField] private float minLightRadius = 3f;
 	[SerializeField] private float lightDropTime = 5f;
 
+	public UnityEvent maskCollectEvent;
+	
 	private bool _isDarkLevel;
 	private PlayerSpawning _playerSpawning;
 	private Light2D _playerLight;
@@ -82,9 +85,8 @@ public class PickupHandler : MonoBehaviour {
 	
 	public void ProcessPickup(GameObject pickup) {
 		if (pickup.CompareTag("Mask")) {
-			Debug.Log("*insert image*");
-		}
-		if (_isDarkLevel && pickup.CompareTag("Light Source")) {
+			maskCollectEvent.Invoke();
+		} else if (_isDarkLevel && pickup.CompareTag("Light Source")) {
 			_remainingLightTime = Mathf.Min(_remainingLightTime + lightSourceTime, maxLightTime);
 		}
 	}

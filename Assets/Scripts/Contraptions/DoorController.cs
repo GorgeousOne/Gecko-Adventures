@@ -1,56 +1,66 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DoorController : Triggerable {
 
 	[SerializeField] private Vector2 openOffset;
-	[SerializeField] private float moveTime;
+	[FormerlySerializedAs("moveTime")] [SerializeField] private float openingTime = 1;
+	[SerializeField] private float closingTime = 1;
 
 	private Vector2 _startPos;
-	private bool _isOpen;
-	private float _moveStart;
+	private bool _isOpening;
+	private float _moveStartTime;
 
 	private bool _savedWasOpen;
 	private float _savedMoveStart;
 	
 	private void Start() {
 		_startPos = transform.position;
+		//set door to end of moving animation
+		_moveStartTime = Time.deltaTime - (_isOpening ? openingTime : closingTime);
 		SaveState();
 	}
 
 	// Update is called once per frame
 	void Update() {
-		Vector2 startPos = _startPos;
-		Vector2 targetPos = _startPos;
+		float moveDuration = LevelTime.time - _moveStartTime;
+		float openingProgress;
 
-		if (_isOpen) {
-			targetPos += openOffset;
+		if (_isOpening) {
+			openingProgress = Mathf.Clamp01(moveDuration / openingTime);
+		} else {
+			openingProgress = 1 - Mathf.Clamp01(moveDuration / closingTime);
 		}
-		else {
-			startPos += openOffset;
-		}
-		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
-		transform.position = Vector2.Lerp(startPos, targetPos, elapsedTime / moveTime);
+		transform.position = Vector2.Lerp(_startPos, _startPos + openOffset, openingProgress);
 	}
 
 	public override void OnSwitchToggle(bool isEnabled) {
-		_isOpen = isEnabled;
-		float elapsedTime = Mathf.Clamp(LevelTime.time - _moveStart, 0, moveTime);
-		_moveStart = LevelTime.time - (1 - elapsedTime);
+		if (isEnabled == _isOpening) {
+			return;
+		}
+		float openingProgress = Mathf.Clamp01(((Vector2) transform.position - _startPos).magnitude / openOffset.magnitude);
+		
+		if (_isOpening) {
+			_moveStartTime = LevelTime.time - closingTime * (1 - openingProgress);
+		} else {
+			_moveStartTime = LevelTime.time - openingTime * openingProgress;
+		}
+		_isOpening = isEnabled;
 	}
 
 	private void OnDrawGizmos() {
 		Vector2 position = _startPos != Vector2.zero ? _startPos : transform.position;
-		Gizmos.DrawIcon(position, "sv_icon_dot13_pix16_gizmo.png", true);
-		Gizmos.DrawIcon(position + openOffset, "sv_icon_dot15_pix16_gizmo.png", true);
+		Gizmos.color = Color.magenta;
+		Gizmos.DrawLine(position, position + openOffset);
 	}
 
 	public override void SaveState() {
-		_savedWasOpen = _isOpen;
-		_savedMoveStart = _moveStart;
+		_savedWasOpen = _isOpening;
+		_savedMoveStart = _moveStartTime;
 	}
 
 	public override void ResetState() {
-		_isOpen = _savedWasOpen;
-		_moveStart = _savedMoveStart;
+		_isOpening = _savedWasOpen;
+		_moveStartTime = _savedMoveStart;
 	}
 }

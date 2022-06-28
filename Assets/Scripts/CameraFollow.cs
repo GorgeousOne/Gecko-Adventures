@@ -6,10 +6,7 @@ using Vector3 = UnityEngine.Vector3;
 public class CameraFollow : MonoBehaviour {
 
 	[SerializeField] private Transform target;
-	[SerializeField] private Vector2 targetOffset;
-	// [SerializeField][Range(0, 1)] private float smoothSpeed = 1f;
 	[SerializeField] [Min(0)] private float snapTime = 1f;
-	[SerializeField] private int ppu = 16;
 	
 	[SerializeField] private bool followX = true;
 	[SerializeField] private bool followY;

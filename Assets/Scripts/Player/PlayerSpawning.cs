@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class PlayerSpawning : MonoBehaviour {
 
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
-	[SerializeField] private SpriteRenderer renderer;
-	[SerializeField] private CameraFollow camera = null;
+	[SerializeField] private CameraFollow mainCamera = null;
 	[SerializeField] private Animator bodyAnimator;
 	public UnityEvent playerSpawnEvent;
 	public UnityEvent playerDeathEvent;
@@ -59,11 +59,11 @@ public class PlayerSpawning : MonoBehaviour {
 	public void Die() {
 		if (!IsDead()) {
 			_isDead = true;
-			if (camera) {
-				camera.PauseFollow();
+			if (mainCamera) {
+				mainCamera.PauseFollow();
 			}
 			LevelTime.Pause();
-			// renderer.color = Color.red;
+			// bodyRenderer.color = Color.red;
 			bodyAnimator.SetBool("IsDead", _isDead);
 			StartCoroutine(RestartFromCheckpoint(1));
 			playerDeathEvent.Invoke();
@@ -76,12 +76,12 @@ public class PlayerSpawning : MonoBehaviour {
 
 	private void Revive() {
 		_isDead = false;
-		if (camera) {
-			camera.UnpauseFollow();
+		if (mainCamera) {
+			mainCamera.UnpauseFollow();
 		}
 		transform.parent = null;
 		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
-		// renderer.color = Color.white;
+		// bodyRenderer.color = Color.white;
 		bodyAnimator.SetBool("IsDead", _isDead);
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();

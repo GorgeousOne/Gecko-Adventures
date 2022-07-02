@@ -23,8 +23,12 @@ public class SpikeController : Resettable {
 	private SpriteRenderer _renderer;
 
 	private bool _savedWasExtended;
+
+	private AudioSource _spikeExtendAudio;
 	
 	private void OnEnable() {
+		_spikeExtendAudio = GetComponent<AudioSource>();
+
 		if (!timedActivationEnabled && !trampleActivationEnabled) {
 			Destroy(this);
 		}
@@ -33,6 +37,8 @@ public class SpikeController : Resettable {
 	}
 	
 	private void Update() {
+		// _spikeExtendAudio = GetComponent<AudioSource>();
+
 		if (timedActivationEnabled && !trampleActivationEnabled) {
 			if (_isExtended != CalcTimedExtendedState()) {
 				SetExtended(!_isExtended);
@@ -44,6 +50,8 @@ public class SpikeController : Resettable {
 		_isExtended = state;
 		_renderer.sprite = _isExtended ? extended : retracted;
 		damageCollider.enabled = _isExtended;
+		// _spikeExtendAudio = GetComponent<AudioSource>();
+		_spikeExtendAudio.enabled = _isExtended;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
@@ -55,9 +63,10 @@ public class SpikeController : Resettable {
 	private IEnumerator TrampleExtend() {
 		yield return new WaitForSeconds(trampleTriggerOffset);
 		SetExtended(true);
+		_spikeExtendAudio.enabled = true;
 		yield return new WaitForSeconds(trampleTriggerExtendTime);
 		SetExtended(false);
-		
+		_spikeExtendAudio.enabled = false;
 	}
 
 	private bool CalcTimedExtendedState() {

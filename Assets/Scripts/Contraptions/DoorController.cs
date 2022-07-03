@@ -13,12 +13,17 @@ public class DoorController : Triggerable {
 
 	private bool _savedWasOpen;
 	private float _savedMoveStart;
+
+	private AudioSource[] _listOfDoorAudios;
 	
 	private void Start() {
 		_startPos = transform.position;
 		//set door to end of moving animation
 		_moveStartTime = Time.deltaTime - (_isOpening ? openingTime : closingTime);
 		SaveState();
+		_listOfDoorAudios = GetComponents<AudioSource>();
+		_listOfDoorAudios[0].enabled = false;
+		_listOfDoorAudios[1].enabled = false;
 	}
 
 	// Update is called once per frame
@@ -28,8 +33,12 @@ public class DoorController : Triggerable {
 
 		if (_isOpening) {
 			openingProgress = Mathf.Clamp01(moveDuration / openingTime);
+			_listOfDoorAudios[0].enabled = true;
+			_listOfDoorAudios[1].enabled = false;
 		} else {
 			openingProgress = 1 - Mathf.Clamp01(moveDuration / closingTime);
+			_listOfDoorAudios[0].enabled = false;
+			_listOfDoorAudios[1].enabled = true;
 		}
 		transform.position = Vector2.Lerp(_startPos, _startPos + openOffset, openingProgress);
 	}

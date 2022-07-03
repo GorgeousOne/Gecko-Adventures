@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float _defaultHeight;
 	private float _defaultCapsuleOffY;
 
-	private AudioSource _walkingAudio;
+	private AudioSource[] _listOfWalkingAudios;
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
@@ -78,8 +78,9 @@ public class PlayerMovement : MonoBehaviour {
 		_playerSpawning = GetComponent<PlayerSpawning>();
 		_playerSpawning.playerDeathEvent.AddListener(tongue.Detach);
 
-		_walkingAudio = GetComponent<AudioSource>();
-		_walkingAudio.enabled = false;
+		_listOfWalkingAudios = GetComponents<AudioSource>();
+		_listOfWalkingAudios[0].enabled = false;
+		_listOfWalkingAudios[1].enabled = false;
 	}
 
 	private void OnDisable() {
@@ -107,11 +108,18 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		// enable sound for walking & disable sound otherwise
-		if (_lastMovementInput != 0 && !tongue.IsAttached()) {
-			_walkingAudio.enabled = true;
+		if (_lastMovementInput != 0 && !tongue.IsAttached() && !_isCrouching) {
+			_listOfWalkingAudios[0].enabled = true;
 		}
 		else {
-			_walkingAudio.enabled = false;
+			_listOfWalkingAudios[0].enabled = false;
+		}
+
+		if (_lastMovementInput != 0 && !tongue.IsAttached() && _isCrouching) {
+			_listOfWalkingAudios[1].enabled = true;
+		}
+		else {
+			_listOfWalkingAudios[1].enabled = false;
 		}
 	}
 

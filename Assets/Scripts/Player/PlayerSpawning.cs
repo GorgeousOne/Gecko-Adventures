@@ -14,6 +14,9 @@ public class PlayerSpawning : MonoBehaviour {
 	
 	private Rigidbody2D _rigid;
 	private bool _isDead;
+
+	private AudioSource[] _listOfPlayerAudios;
+	private AudioSource _deathAudio;
 	
 	void Start() {
 		if (FindObjectOfType<LevelTime>() == null) {
@@ -26,6 +29,10 @@ public class PlayerSpawning : MonoBehaviour {
 		}
 		_rigid = GetComponent<Rigidbody2D>();
 		LoadLastPlayerPos();
+
+		_listOfPlayerAudios = GetComponents<AudioSource>();
+		_deathAudio = _listOfPlayerAudios[3];
+		_deathAudio.enabled = false;
 	}
 
 	private void OnApplicationQuit() {
@@ -71,6 +78,8 @@ public class PlayerSpawning : MonoBehaviour {
 	}
 
 	public bool IsDead() {
+		// enable/disable death sound
+		_deathAudio.enabled = _isDead;
 		return _isDead;
 	}
 

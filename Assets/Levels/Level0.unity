@@ -45826,6 +45826,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1999175031, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
+      propertyPath: m_Volume
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3857400769282164724, guid: d7a102aea563fd544ba801eb41e8eef5, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -56693,7 +56697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &2098688164
 AudioSource:
   m_ObjectHideFlags: 0

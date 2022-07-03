@@ -7,12 +7,16 @@ public class MaskCloseup : MonoBehaviour {
 
 	private PlayerControls _controls;
 	private bool _isVisible;
+
+	private AudioSource _notificationAudio;
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Enable();
 
 		pickupHandler.maskCollectEvent.AddListener(OnMaskCollect);
+		_notificationAudio = GetComponent<AudioSource>();
+		_notificationAudio.enabled = false;
 	}
 
 	private void OnDisable() {
@@ -22,6 +26,7 @@ public class MaskCloseup : MonoBehaviour {
 	public void OnMaskCollect() {
 		transition.SetTrigger("FadeIn");
 		_isVisible = true;
+		_notificationAudio.enabled = true;
 	}
 
 	private void Update() {

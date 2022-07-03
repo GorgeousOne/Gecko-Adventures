@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 		_listOfWalkingAudios = GetComponents<AudioSource>();
 		_listOfWalkingAudios[0].enabled = false;
 		_listOfWalkingAudios[1].enabled = false;
+		_listOfWalkingAudios[2].enabled = false;
 	}
 
 	private void OnDisable() {
@@ -107,6 +108,11 @@ public class PlayerMovement : MonoBehaviour {
 			_jumpInputPerformed = true;
 		}
 
+		if (tongue.IsAttached()) {
+			// disable jumping sound
+			_listOfWalkingAudios[2].enabled = false;
+		}
+
 		// enable sound for walking & disable sound otherwise
 		if (_lastMovementInput != 0 && !tongue.IsAttached() && !_isCrouching) {
 			_listOfWalkingAudios[0].enabled = true;
@@ -115,6 +121,7 @@ public class PlayerMovement : MonoBehaviour {
 			_listOfWalkingAudios[0].enabled = false;
 		}
 
+		// enable sound for crouching & disable sound otherwise
 		if (_lastMovementInput != 0 && !tongue.IsAttached() && _isCrouching) {
 			_listOfWalkingAudios[1].enabled = true;
 		}
@@ -151,6 +158,8 @@ public class PlayerMovement : MonoBehaviour {
 		
 		if (isGrounded) {
 			_groundedRemember = groundedRememberDuration;
+			// disable jumping sound
+			_listOfWalkingAudios[2].enabled = false;
 		}
 		return isGrounded;
 	}
@@ -177,6 +186,8 @@ public class PlayerMovement : MonoBehaviour {
 			//only detaches tongue when jumping
 			if (tongue.IsAttached()) {
 				tongue.Detach();
+				// enable jumping sound after detaching
+				_listOfWalkingAudios[2].enabled = true;
 				return;
 			}
 			_jumpPressedRemember = jumpPressedRememberDuration;
@@ -184,7 +195,9 @@ public class PlayerMovement : MonoBehaviour {
 		//performes jump (with small threshold before landing and after starting to fall)
 		if(_jumpPressedRemember > 0 && _groundedRemember > 0) {
 			ApplyJumpVelocity();
-		}
+			// enable jumping sound
+			_listOfWalkingAudios[2].enabled = true;
+		}		
 	}
 
 	/// <summary>

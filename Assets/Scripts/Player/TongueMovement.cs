@@ -48,6 +48,7 @@ public class TongueMovement : MonoBehaviour {
 		_pickupHandler = GetComponentInParent<PickupHandler>();
 		_pivot = transform.parent;
 		_tongueAudio = GetComponent<AudioSource>();
+		_tongueAudio.enabled = false;
 	}
 
 	private void OnDisable() {
@@ -79,6 +80,9 @@ public class TongueMovement : MonoBehaviour {
 		}
 		if(WasTongueShootPerformed()) {
 			_tongueShootPressed = true;
+		}
+
+		if (!IsAttached()) {
 			_tongueAudio.enabled = false;
 		}
 	}

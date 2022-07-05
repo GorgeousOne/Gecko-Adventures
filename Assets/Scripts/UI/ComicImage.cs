@@ -13,17 +13,23 @@ public class ComicImage : ComicElement {
 	private bool _isActive;
 	private float _coolDown;
 
-	private void OnEnable() {
+	private new void OnEnable() {
+		base.OnEnable();
 		_image = GetComponent<Image>();
 	}
 
 	public override void Activate() {
+		Debug.Log("activate " + gameObject.name);
 		gameObject.SetActive(true);
 		_image.color = fadeInTime > 0 ? new Color(1, 1, 1, 0) : Color.white;
 		_isActive = true;
 		_coolDown = clickCooldownTime;
 	}
 	
+	public override void Deactivate() {
+		gameObject.SetActive(false);
+	}
+
 	private void Update() {
 		Color color = _image.color;
 

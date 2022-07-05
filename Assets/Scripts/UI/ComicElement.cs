@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ public abstract class ComicElement : MonoBehaviour {
 	protected List<ComicElement> ChildComics;
 	protected int ActiveChildIndex;
 	
-	protected void Awake() {
+	protected void OnEnable() {
 		ChildComics = new List<ComicElement>();
-		
+
 		foreach(Transform child in transform) {
 			ComicElement childComic = child.gameObject.GetComponent<ComicElement>();
 
@@ -57,6 +58,11 @@ public abstract class ComicElement : MonoBehaviour {
 	}
 
 	public abstract void Activate();
+	public abstract void Deactivate();
 	protected abstract void Interact();
 	protected abstract bool IsSelfActive();
+
+	// public IEnumerator GetEnumerator() {
+		
+	// }
 }

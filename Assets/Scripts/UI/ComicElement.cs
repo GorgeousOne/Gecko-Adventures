@@ -49,6 +49,9 @@ public abstract class ComicElement : MonoBehaviour {
 
 	private void ActivateNextChild() {
 		if (++ActiveChildIndex < ChildComics.Count) {
+			if (ActiveChildIndex > 0) {
+				ChildComics[ActiveChildIndex - 1].Deactivate();	
+			}
 			ChildComics[ActiveChildIndex].Activate();
 		}		
 	}

@@ -45,7 +45,6 @@ public class ComicImage : ComicElement {
 	protected override void Interact() {
 		if (_isActive && _coolDown <= 0) {
 			_isActive = false;
-			gameObject.SetActive(false);
 		}
 	}
 

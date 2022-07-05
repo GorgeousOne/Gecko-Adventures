@@ -1,5 +1,5 @@
 ﻿
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ using UnityEngine;
 /// Class that represents a comic element that can be clicked through with interact button.
 /// Can have comic elements as children that have to be clicked through before this element disappears.
 /// </summary>
-public abstract class ComicElement : MonoBehaviour {
+public class ComicElement : MonoBehaviour {
 
 	protected List<ComicElement> ChildComics;
 	protected int ActiveChildIndex;
@@ -42,30 +42,38 @@ public abstract class ComicElement : MonoBehaviour {
 			ChildComics[ActiveChildIndex].OnInteract();
 
 			if (!ChildComics[ActiveChildIndex].IsActive()) {
-				ActivateNextChild();
+				DeactivateActiveChild();
 			}
 		}
 	}
 
+	private void DeactivateActiveChild() {
+		ChildComics[ActiveChildIndex].Deactivate(ActivateNextChild);
+	}
+	
 	private void ActivateNextChild() {
 		if (++ActiveChildIndex < ChildComics.Count) {
-			if (ActiveChildIndex > 0) {
-				ChildComics[ActiveChildIndex - 1].Deactivate();	
-			}
 			ChildComics[ActiveChildIndex].Activate();
-		}		
+		}
 	}
 
 	public bool IsActive() {
 		return IsSelfActive() || ActiveChildIndex < ChildComics.Count;
 	}
 
-	public abstract void Activate();
-	public abstract void Deactivate();
-	protected abstract void Interact();
-	protected abstract bool IsSelfActive();
+	public virtual void Activate() {
+		gameObject.SetActive(true);
+	}
 
-	// public IEnumerator GetEnumerator() {
-		
-	// }
+	public virtual void Deactivate(Action callback) {
+		Debug.Log("end comic");
+		gameObject.SetActive(false);
+		callback?.Invoke();
+	}
+
+	protected virtual void Interact() {}
+
+	protected virtual bool IsSelfActive() {
+		return false;
+	}
 }

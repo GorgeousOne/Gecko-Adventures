@@ -19,7 +19,7 @@ public class ComicImage : ComicElement {
 
 	public override void Activate() {
 		gameObject.SetActive(true);
-		_image.color = fadeInTime > 0 ? new Color(0, 0, 0, 0) : Color.white;
+		_image.color = fadeInTime > 0 ? new Color(1, 1, 1, 0) : Color.white;
 		_isActive = true;
 		_coolDown = clickCooldownTime;
 	}
@@ -29,6 +29,7 @@ public class ComicImage : ComicElement {
 
 		if (color.a < 1) {
 			color.a = MathF.Min(1, color.a + (1 / fadeInTime) * Time.deltaTime);
+			_image.color = color;
 		}
 		if (_isActive && _coolDown > 0) {
 			_coolDown -= Time.deltaTime;

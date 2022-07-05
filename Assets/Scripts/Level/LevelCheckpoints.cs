@@ -8,7 +8,7 @@ public class LevelCheckpoints : MonoBehaviour {
 	private Checkpoint _currentCheckpoint;
 	private float _currentCheckpointTime;
 	
-	void Awake() {
+	private void OnEnable() {
 		_checkpoints = new List<Checkpoint>();
 		
 		foreach(Transform checkpointTransform in transform) {

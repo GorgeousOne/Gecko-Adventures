@@ -20,23 +20,20 @@ public class ComicText : ComicElement {
 	private bool _isActive;
 	private float _coolDown;
 
-	private new void OnEnable() {
+	protected new void OnEnable() {
 		base.OnEnable();
 		uiText = GetComponent<TMP_Text>();
 		textToWrite = uiText.text;
+		uiText.text = null;
 	}
 
 	public override void Activate() {
-		gameObject.SetActive(true);
+		base.Activate();
 		charIndex = 0;
 		_isActive = true;
 		_coolDown = clickCooldownTime;
 	}
 	
-	public override void Deactivate() {
-		gameObject.SetActive(false);
-	}
-
 	private void Update() { 
 		if (_coolDown > 0) {
 			_coolDown -= Time.deltaTime;

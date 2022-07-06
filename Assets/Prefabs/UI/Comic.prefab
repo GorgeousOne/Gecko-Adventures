@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 16
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da971bd9b6142bcba68d8b1945bc4fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comicEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2463133102165911264
 GameObject:
   m_ObjectHideFlags: 0

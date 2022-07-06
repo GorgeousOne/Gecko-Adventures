@@ -1145,11 +1145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111376, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Name
-      value: CosntrolsButton
+      value: SettingsButton
       objectReference: {fileID: 0}
     - target: {fileID: 1907569052451575277, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_text
-      value: CONTROLS
+      value: SETTINGS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}

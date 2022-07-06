@@ -24,6 +24,7 @@ public class ComicText : ComicElement {
 		base.OnEnable();
 		uiText = GetComponent<TMP_Text>();
 		textToWrite = uiText.text;
+		uiText.text = null;
 	}
 
 	public override void Activate() {

@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
 
 	[SerializeField] private GameObject mainMenu;
-	[SerializeField] private GameObject optionsMenu;
+	// [SerializeField] private GameObject optionsMenu;
 	
 	private PlayerControls _controls;
-
+	private GameObject _activeSubMenu;
+	
 	private void OnEnable() {
 		_controls = new PlayerControls();
-		_controls.Player.Back.performed += _ => GoBackInMenu();
+		_controls.Player.Back.performed += _ => CloseSubMenu();
 		_controls.Enable();
 	}
 	
@@ -26,27 +27,26 @@ public class MainMenu : MonoBehaviour {
 
 	public void QuitGame() {
 		Application.Quit();
-		Debug.Log("Quit Game"); 
+		Debug.Log("Quit Game");
 	}
 
-	public void OpenOptions() {
+	public void OpenSubMenu(GameObject subMenu) {
+		CloseSubMenu();
 		mainMenu.SetActive(false);
-		DisplayMenu(optionsMenu);
-	}
-
-	public void CloseOptions() {
-		optionsMenu.SetActive(false);
-		DisplayMenu(mainMenu);
+		_activeSubMenu = subMenu;
+		DisplayMenu(_activeSubMenu);
 	}
 	
-	private void GoBackInMenu() {
-		if (optionsMenu.activeSelf) {
-			CloseOptions();
+	public void CloseSubMenu() {
+		if (_activeSubMenu != null) {
+			_activeSubMenu.SetActive(false);
+			DisplayMenu(mainMenu);
 		}
 	}
 
-	private static void DisplayMenu(GameObject menu) {
+	private void DisplayMenu(GameObject menu) {
 		menu.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(menu.GetComponentInChildren<Button>().gameObject);
+		
 	}
 }

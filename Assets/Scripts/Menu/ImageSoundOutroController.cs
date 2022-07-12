@@ -16,7 +16,6 @@ public class ImageSoundOutroController : MonoBehaviour {
     private GameObject _blackBackground;
 
     private GameObject _blackImage;
-    private GameObject _blackImageAudio;
     private AudioSource[] _listOfOutroAudios;
 
     private GameObject _otherBlackImage;
@@ -28,8 +27,6 @@ public class ImageSoundOutroController : MonoBehaviour {
         _listOfOutroAudios[0].enabled = true;
         // background audio 2 (jungle)
         _listOfOutroAudios[1].enabled = true;
-        // background audio 3 (museum)
-        // _listOfOutroAudios[2].enabled = false;
 
         _jungleBackground = canvas.transform.GetChild(0).gameObject;
         _museumBackground = canvas.transform.GetChild(1).gameObject;
@@ -39,14 +36,7 @@ public class ImageSoundOutroController : MonoBehaviour {
         _continueBlack = _outro.transform.GetChild(1).gameObject;
         _continueWhite = _outro.transform.GetChild(2).gameObject;
         _comicTextMuseum = _outro.transform.GetChild(8).gameObject;
-
-
-
-        // _blackImage = _outro.transform.GetChild(6).gameObject;
-        // _blackImageAudio = _blackImage.transform.GetChild(0).gameObject;
-
-
-        // _otherBlackImage = canvas.transform.GetChild(2).gameObject;
+        _blackImage = _outro.transform.GetChild(13).gameObject;
     }
 
     // Update is called once per frame
@@ -54,7 +44,6 @@ public class ImageSoundOutroController : MonoBehaviour {
         if (_comicTextMuseum.activeSelf) {
             _listOfOutroAudios[0].enabled = false;
             _listOfOutroAudios[1].enabled = false;
-            // _listOfOutroAudios[2].enabled = true;
             _jungleBackground.SetActive(false);
             _museumBackground.SetActive(true);
             _continueBlack.SetActive(false);
@@ -64,6 +53,7 @@ public class ImageSoundOutroController : MonoBehaviour {
         if (_credits.activeSelf) {
             _museumBackground.SetActive(false);
             _blackBackground.SetActive(true);
+            _continueWhite.SetActive(false);
         }
 
     }

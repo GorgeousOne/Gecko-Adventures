@@ -423,7 +423,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 95e9a3a176bc2874d950f3135d494092, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -752,8 +752,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1199.4921}
-  m_SizeDelta: {x: 400, y: 1510.585}
+  m_AnchoredPosition: {x: 0, y: -2525}
+  m_SizeDelta: {x: 405, y: 3919.088}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &495659204
 MonoBehaviour:
@@ -775,20 +775,38 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Music\r\n\r\nLevel 0\r\n\r\nForest Birds Ambience \r\nby Mixkit under
-    the Mixkit Sound Effects Free License\r\n\r\nTribal Instrumental Music - Kumasi
-    Groove\r\nby Kevin MacLeod (incompetech.com)\r\nLicensed under Creative Commons:
-    By Attribution 3.0\r\nhttps://creativecommons.org/licenses/by/3.0/ \r\nThis Music
-    was edited for the purposes of the Video Game.\r\n\r\nLevel 1\r\n\r\nRuins -
-    Wandering\r\nby Simone Cagliano - Valkrom's Nest\r\nOriginal Video - https://youtu.be/0wgIuUCy4l4\r\nThis
-    Music was edited for the purposes of the Video Game.\r\n\r\nLevel 2\r\n\r\nRuins
-    - Lost Memories\r\nby Simone Cagliano - Valkrom's Nest\r\nOriginal Video - https://youtu.be/9QJbsdRFDdA
-    \r\nThis Music was edited for the purposes of the Video Game.\r\n\r\nLevel 2
-    Mask\r\n\r\nAztec Music - Pyramid of the Sun\r\nby Phantawalker - Composer\r\nOriginal
-    Video - https://www.youtube.com/watch?v=4HWUOx_BXiU \r\nThis Music was edited
-    for the purposes of the Video Game.\r\n\r\nLevel 3\r\n\r\njungle-hunter-15260\r\nby
+  m_text: "Music\r\n\r\nForest Birds Ambience \r\nby Mixkit under the Mixkit Sound
+    Effects Free License\r\n\r\nTribal Instrumental Music - Kumasi Groove\r\nby Kevin
+    MacLeod (incompetech.com)\r\nLicensed under Creative Commons: By Attribution
+    3.0\r\nhttps://creativecommons.org/licenses/by/3.0/ \r\nThis Music was edited
+    for the purposes of the Video Game.\r\n\r\nRuins - Wandering\r\nby Simone Cagliano
+    - Valkrom's Nest\r\nOriginal Video - https://youtu.be/0wgIuUCy4l4\r\nThis Music
+    was edited for the purposes of the Video Game.\r\n\r\nRuins - Lost Memories\r\nby
+    Simone Cagliano - Valkrom's Nest\r\nOriginal Video - https://youtu.be/9QJbsdRFDdA
+    \r\nThis Music was edited for the purposes of the Video Game.\r\n\r\nAztec Music
+    - Pyramid of the Sun\r\nby Phantawalker - Composer\r\nOriginal Video - https://www.youtube.com/watch?v=4HWUOx_BXiU
+    \r\nThis Music was edited for the purposes of the Video Game.\r\n\r\nJungle Hunter\nby
     Muzaproduction from Pixabay\r\nThis Music was edited for the purposes of the
-    Video Game.\r\n\r\nMenu\r\n\r\nprop-plane-14513\r\nby Pixabay"
+    Video Game.\r\n\r\nProp Plane\nby Pixabay\r\n\r\nRiver Water Flowing\r\nby Mixkit
+    under the Mixkit Sound Effects Free License\r\n\r\nCinematic Documentary Romantic
+    / Lovely\r\nby Infraction\r\nOriginal Video: https://www.youtube.com/watch?v=F0fFcsBHoOc&list=PL7pkSK1xbGD6Jua6GhFN72kClZfobdnCV&index=30\r\n\r\nSounds\r\n\r\nWalking
+    on Stones Loop\r\nby Mixkit under the Mixkit Sound Effects Free License\r\nThis
+    Sound was edited for the purposes of the Video Game.\r\n\r\nFall on Foam Splash\r\nby
+    Mixkit under the Mixkit Sound Effects Free License\r\nThis Sound was edited for
+    the purposes of the Video Game.\r\n\r\nOw Exclamation of Pain\r\nby Mixkit under
+    the Mixkit Sound Effects Free License\r\nThis Sound was edited for the purposes
+    of the Video Game.\r\n\r\nMouth Plops\r\nby Pixabay\r\nThis Sound was edited
+    for the purposes of the Video Game.\r\n\r\nArrow Whoosh\r\nby Mixkit under the
+    Mixkit Sound Effects Free License\r\nThis Sound was edited for the purposes of
+    the Video Game.\r\n\r\nWooden Long Sliding Door\r\nby Mixkit under the Mixkit
+    Sound Effects Free License\r\nThis Sound was edited for the purposes of the Video
+    Game.\r\n\r\nBuzzing Bee Sound Effect - Track 4\r\nby Nagaty Studio - Sound Effects\r\nOriginal
+    Video - https://www.youtube.com/watch?v=gKWeISABS_M\r\nThis Sound was edited
+    for the purposes of the Video Game.\r\n\r\nCrackling Fireplace Nature Sounds\r\nby
+    JuliusH from Pixabay\r\nThis Sound was edited for the purposes of the Video Game.\r\n\r\nSqueaky
+    (Swing/Door/Metal Hinge) Sound Effect\r\nby SOUND and IMAGE FX\r\nOriginal Video:
+    https://www.youtube.com/watch?v=iwfCAylZ610\r\nThis Sound was edited for the
+    purposes of the Video Game."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fbb3c774f937a749ba6ff6292559d71, type: 2}
   m_sharedMaterial: {fileID: 6330238879192514668, guid: 1fbb3c774f937a749ba6ff6292559d71, type: 2}
@@ -851,7 +869,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -0.0001221173, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -900,8 +918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -287.8781}
-  m_SizeDelta: {x: 400, y: 204.92}
+  m_AnchoredPosition: {x: -0.000015259, y: -332.47}
+  m_SizeDelta: {x: 405, y: 294.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &520997923
 MonoBehaviour:
@@ -923,8 +941,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A Game By\n\nJenny D\xF6ring\r\nAaron Kammer\r\nOlga Molzan\r\nUlrike
-    Katzschmann"
+  m_text: 'A Game By
+
+
+    Aaron Kammer
+
+    Jenny Doering
+
+    Olga Molzan
+
+    Ulrike
+    Katzschmann
+
+
+    Developed in the Summer Term 2022 during the course "Indiegame
+    Development Lab II" at Bauhaus University Weimar'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1fbb3c774f937a749ba6ff6292559d71, type: 2}
   m_sharedMaterial: {fileID: 6330238879192514668, guid: 1fbb3c774f937a749ba6ff6292559d71, type: 2}
@@ -1013,7 +1044,6 @@ GameObject:
   - component: {fileID: 551929368}
   - component: {fileID: 551929367}
   - component: {fileID: 551929366}
-  - component: {fileID: 551929365}
   m_Layer: 5
   m_Name: BlackImage
   m_TagString: Untagged
@@ -1041,19 +1071,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &551929365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551929363}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd3a345762925b409be4c6944cf2af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!114 &551929366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,7 +1215,6 @@ GameObject:
   - component: {fileID: 642021066}
   - component: {fileID: 642021065}
   - component: {fileID: 642021064}
-  - component: {fileID: 642021063}
   m_Layer: 5
   m_Name: BlackImage (1)
   m_TagString: Untagged
@@ -1226,19 +1242,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &642021063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642021061}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd3a345762925b409be4c6944cf2af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!114 &642021064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1310,6 +1313,10 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontColor.b
@@ -1485,7 +1492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doAutoContinue: 1
-  scrollSpeed: 5
+  scrollSpeed: 3
   ppu: 16
   clickCooldownTime: 0.5
 --- !u!1001 &750458818
@@ -1638,7 +1645,6 @@ GameObject:
   - component: {fileID: 760280956}
   - component: {fileID: 760280955}
   - component: {fileID: 760280954}
-  - component: {fileID: 760280953}
   m_Layer: 5
   m_Name: BlackImage (3)
   m_TagString: Untagged
@@ -1667,19 +1673,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &760280953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760280951}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd3a345762925b409be4c6944cf2af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!114 &760280954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,6 +2009,10 @@ PrefabInstance:
       value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -2235,10 +2232,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.14266607
-    y: 0.033678755
-    width: 0.7133304
-    height: 0.93264246
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2342,7 +2339,6 @@ GameObject:
   - component: {fileID: 1276849067}
   - component: {fileID: 1276849066}
   - component: {fileID: 1276849065}
-  - component: {fileID: 1276849064}
   m_Layer: 5
   m_Name: BlackImage (2)
   m_TagString: Untagged
@@ -2370,19 +2366,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1276849064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276849062}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd3a345762925b409be4c6944cf2af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!114 &1276849065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2452,6 +2435,10 @@ PrefabInstance:
     - target: {fileID: 46580164842726559, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
       propertyPath: m_fontSize
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 46580164842726559, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 46580164842726559, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
       propertyPath: m_fontColor.b
@@ -2669,7 +2656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'My Father may not recognize my achievements, but that is not important
+      value: 'My father may not recognize my achievements, but that is not important
         to me anymore. '
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
@@ -3138,6 +3125,10 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontColor.b

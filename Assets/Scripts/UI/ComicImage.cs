@@ -66,7 +66,6 @@ public class ComicImage : ComicElement {
 	}
 
 	public override void Deactivate() {
-		Debug.Log("go my children");
 		_isActive = false;
 	}
 	

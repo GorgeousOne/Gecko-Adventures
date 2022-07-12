@@ -11,7 +11,6 @@ public class ComicDelay : ComicElement {
 	
 	public override void Activate(Action deactivateCallback) {
 		base.Activate(deactivateCallback);
-		Debug.Log("woooh mommy");
 		StartCoroutine(DeactivateTimed());
 	}
 

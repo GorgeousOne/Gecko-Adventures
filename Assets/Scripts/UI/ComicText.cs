@@ -60,7 +60,7 @@ public class ComicText : ComicElement {
 	}
 
 	protected override void Interact() {
-		if (IsTextComplete()) {
+		if (IsTextComplete() && _coolDown <= 0) {
 			_isActive = false;
 			return;
 		}

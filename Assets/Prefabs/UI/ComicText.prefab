@@ -89,7 +89,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -148,5 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98146d56d5dd4ca2a2d8a86520e5c312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickCooldownTime: 0.4
+  doAutoContinue: 0
+  autoTextStayTime: 3
+  clickCooldownTime: 0.2
   timePerChar: 0.02

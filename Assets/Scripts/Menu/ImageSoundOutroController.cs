@@ -36,7 +36,7 @@ public class ImageSoundOutroController : MonoBehaviour {
         _continueBlack = _outro.transform.GetChild(1).gameObject;
         _continueWhite = _outro.transform.GetChild(2).gameObject;
         _comicTextMuseum = _outro.transform.GetChild(8).gameObject;
-        _blackImage = _outro.transform.GetChild(13).gameObject;
+        _blackImage = _outro.transform.GetChild(12).gameObject;
     }
 
     // Update is called once per frame

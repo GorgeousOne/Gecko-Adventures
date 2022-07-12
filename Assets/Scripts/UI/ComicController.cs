@@ -29,8 +29,8 @@ public class ComicController : MonoBehaviour {
 			}
 		}
 		if (_comicsElements.Any()) {
-			_activeComicIndex = 0;
-			_comicsElements[_activeComicIndex].Activate();
+			_activeComicIndex = -1;
+			ActivateNextComic();
 		} else {
 			Debug.LogWarning($"No elements found in comic \"{gameObject.name}\".");
 			gameObject.SetActive(false);
@@ -51,13 +51,13 @@ public class ComicController : MonoBehaviour {
 	}
 
 	private void DeactivateCurrentComic() {
-		bool hasNextComic = _activeComicIndex + 1 < _comicsElements.Count;
-		_comicsElements[_activeComicIndex].Deactivate(hasNextComic ? ActivateNextComic : EndComic);
+		_comicsElements[_activeComicIndex].Deactivate();
 	}
 
 	private void ActivateNextComic() {
 		++_activeComicIndex;
-		_comicsElements[_activeComicIndex].Activate();
+		bool hasNextComic = _activeComicIndex + 1 < _comicsElements.Count;
+		_comicsElements[_activeComicIndex].Activate(hasNextComic ? ActivateNextComic : EndComic);
 	}
 
 	private void EndComic() {

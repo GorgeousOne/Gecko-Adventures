@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -8,8 +10,10 @@ using UnityEngine;
 
 public class ComicText : ComicElement {
 
-	//Jan Ehlers formula :D after .4 seconds of not being able to interact the user gets impatient
-	[SerializeField] private float clickCooldownTime = .4f;
+	[SerializeField] private float autoTextStayTime = 3;
+	
+	[Header("Text")]
+	[SerializeField] private float clickCooldownTime = .2f;
 	[SerializeField] private float timePerChar = 0.02f;
 
 	private TMP_Text uiText;
@@ -27,11 +31,15 @@ public class ComicText : ComicElement {
 		uiText.text = null;
 	}
 
-	public override void Activate() {
-		base.Activate();
+	public override void Activate(Action deactivateCallback) {
+		base.Activate(deactivateCallback);
 		charIndex = 0;
 		_isActive = true;
 		_coolDown = clickCooldownTime;
+
+		if (doAutoContinue) {
+			StartCoroutine(DeactivateTimed());
+		}
 	}
 	
 	private void Update() { 
@@ -73,5 +81,11 @@ public class ComicText : ComicElement {
 	public void WriteAll() {
 		uiText.text = textToWrite;
 		charIndex = textToWrite.Length;
+	}
+
+	private IEnumerator DeactivateTimed() {
+		yield return new WaitUntil(IsTextComplete);
+		yield return new WaitForSeconds(autoTextStayTime);
+		Deactivate();
 	}
 }

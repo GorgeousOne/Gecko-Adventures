@@ -87,5 +87,6 @@ public class ComicText : ComicElement {
 		yield return new WaitUntil(IsTextComplete);
 		yield return new WaitForSeconds(autoTextStayTime);
 		Deactivate();
+		OnInteract();
 	}
 }

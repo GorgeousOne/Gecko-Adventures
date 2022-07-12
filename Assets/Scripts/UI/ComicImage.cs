@@ -45,7 +45,7 @@ public class ComicImage : ComicElement {
 				_coolDown -= Time.deltaTime;
 			}
 		} else {
-			if (color.a > 0) {
+			if (fadeOutTime > 0 && color.a > 0) {
 				color.a = MathF.Max(0, color.a - (1 / fadeOutTime) * Time.deltaTime);
 				_image.color = color;
 			} else {
@@ -66,11 +66,13 @@ public class ComicImage : ComicElement {
 	}
 
 	public override void Deactivate() {
+		Debug.Log("go my children");
 		_isActive = false;
 	}
 	
 	private IEnumerator DeactivateTimed() {
 		yield return new WaitForSeconds(autoStayTime);
 		Deactivate();
+		OnInteract();
 	}
 }

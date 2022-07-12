@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 1112714471}
   - component: {fileID: 1112714472}
   m_Layer: 5
-  m_Name: Empty
+  m_Name: TextDelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,9 +1485,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112714470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1996cbe86f8749628294bad9aeb13d79, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cbbe359b1b44b42980ba684782d3055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doAutoContinue: 1
+  waitTime: 1
 --- !u!1 &1161428518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7749484930218394154, guid: d152900e1dffd914792e5d442a27f523, type: 3}
@@ -1691,10 +1693,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.14266607
-    y: 0.033678755
-    width: 0.7133304
-    height: 0.93264246
+    x: 0
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2516,7 +2518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8d17cbfe6b64a1fbe10ab27da31da25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doAutoContinue: 0
+  autoStayTime: 3
   fadeInTime: 2
+  fadeOutTime: 0.5
   clickCooldownTime: 1
 --- !u!114 &2001554158
 MonoBehaviour:

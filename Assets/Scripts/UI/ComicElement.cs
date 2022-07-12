@@ -13,7 +13,7 @@ public class ComicElement : MonoBehaviour {
 	[SerializeField] protected bool doAutoContinue;
 
 	protected List<ComicElement> ChildComics;
-	protected int ActiveChildIndex;
+	protected int ActiveChildIndex = -1;
 	protected Action DeactivateCallback;
 	
 	protected void OnEnable() {
@@ -45,10 +45,13 @@ public class ComicElement : MonoBehaviour {
 			Interact();
 
 			if (!IsSelfActive()) {
-				ActiveChildIndex = -1;
 				ActivateNextChild();
 			}
 		} else {
+			if (ActiveChildIndex == -1) {
+				ActivateNextChild();
+				return;
+			}
 			if (ActiveChildIndex >= ChildComics.Count) {
 				return;
 			}

@@ -19,7 +19,7 @@ public class ImageSoundMenuController : MonoBehaviour {
         // background audio
         _listOfMenuAudios[0].enabled = true;
         _intro = canvas.transform.GetChild(3).gameObject;
-        _blackImage = _intro.transform.GetChild(6).gameObject;
+        _blackImage = _intro.transform.GetChild(8).gameObject;
         _blackImageAudio = _blackImage.transform.GetChild(0).gameObject;
 
         _otherBlackImage = canvas.transform.GetChild(2).gameObject;

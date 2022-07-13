@@ -41,7 +41,6 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 		if (_keyHintBubble != null) {
 			Destroy(_keyHintBubble);
 		}
-
 		_keyHintBubble = new GameObject("KeyHintBubble");
 		_keyHintBubble.SetActive(false);
 		_keyHintBubble.transform.parent = transform;

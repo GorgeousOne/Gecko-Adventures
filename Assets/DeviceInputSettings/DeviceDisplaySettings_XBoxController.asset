@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99af58a1e46e407c8052d26ce15e2a69, type: 3}
   m_Name: DeviceDisplaySettings_XBoxController
   m_EditorClassIdentifier: 
-  moveIcon: {fileID: -1308239048, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  moveIcon: {fileID: -959571241, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
   jumpIcon: {fileID: -1308239048, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
   crouchIcon: {fileID: -800194899, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
   interactIcon: {fileID: 2039063870, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}

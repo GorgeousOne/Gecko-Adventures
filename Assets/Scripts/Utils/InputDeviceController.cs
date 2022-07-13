@@ -24,25 +24,11 @@ public class InputDeviceController : MonoBehaviour {
 		}
 	}
 
-	//This is automatically called from PlayerInput, when the input device has been disconnected and can not be identified
-	//IE: Device unplugged or has run out of batteries
-
-	// public void OnDeviceLost() {
-	// 	// playerVisualsBehaviour.SetDisconnectedDeviceVisuals();
-	// }
-	//
-	// public void OnDeviceRegained() {
-	// 	StartCoroutine(WaitForDeviceToBeRegained());
-	// }
-	//
-	// IEnumerator WaitForDeviceToBeRegained()
-	// {
-	// 	yield return new WaitForSeconds(0.1f);
-	// 	// playerVisualsBehaviour.UpdatePlayerVisuals();
-	// }
-
 	private void UpdateKeyHintVisuals(DeviceDisplaySettings settings) {
-		foreach (SimpleKeyHint hint in FindObjectsOfType<SimpleKeyHint>(true)) {
+		foreach (IKeyHint hint in FindObjectsOfType<SimpleKeyHint>(true)) {
+			hint.UpdateKeyHint(settings);
+		}
+		foreach (IKeyHint hint in FindObjectsOfType<Interactable>(true)) {
 			hint.UpdateKeyHint(settings);
 		}
 	}

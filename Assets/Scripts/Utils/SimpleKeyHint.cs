@@ -12,19 +12,19 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 	[SerializeField] private Vector2 keyHintOffset = new (0, .03125f);
 
 	private GameObject _keyHintBubble;
-	private bool _isPlayInRange;
+	private bool _isPlayerInRange;
 
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			_isPlayInRange = true;
-			SetHintVisible(_isPlayInRange);
+			_isPlayerInRange = true;
+			SetHintVisible(_isPlayerInRange);
 		}
 	}
 
 	private void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			_isPlayInRange = false;
-			SetHintVisible(_isPlayInRange);
+			_isPlayerInRange = false;
+			SetHintVisible(_isPlayerInRange);
 		}
 	}
 	
@@ -34,7 +34,7 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 
 	public void UpdateKeyHint(DeviceDisplaySettings settings) {
 		CreateKeyHint(settings);
-		SetHintVisible(_isPlayInRange);
+		SetHintVisible(_isPlayerInRange);
 	}
 	
 	private void CreateKeyHint(DeviceDisplaySettings settings) {

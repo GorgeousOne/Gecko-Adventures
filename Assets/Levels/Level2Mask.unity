@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: sceneName
       value: Level3
       objectReference: {fileID: 0}
+    - target: {fileID: 4752560709699241048, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
+      propertyPath: bubbleOffset.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4752560709699241049, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -3685,19 +3689,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.12174941
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.1323829
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.7565012
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.73319757
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}

@@ -4,8 +4,7 @@ public class WallSwitchController : InteractableSwitch {
 
 	private SpriteRenderer _renderer;
 	
-	protected new void Start() {
-		base.Start();
+	protected void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
 	}
 	

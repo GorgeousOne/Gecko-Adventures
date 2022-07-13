@@ -7,6 +7,7 @@ public class DeviceDisplaySettings : ScriptableObject {
 	public Sprite moveIcon;
 	public Sprite jumpIcon;
 	public Sprite crouchIcon;
+	public Sprite interactIcon;
 	public Sprite tongueShootIcon;
 	public Sprite tongueLengthChangeIcon;
 
@@ -18,6 +19,8 @@ public class DeviceDisplaySettings : ScriptableObject {
 				return jumpIcon;
 			case "crouch":
 				return crouchIcon;
+			case "interact":
+				return interactIcon;
 			case "tongue-shoot":
 				return tongueShootIcon;
 			case "tongue-length-change":

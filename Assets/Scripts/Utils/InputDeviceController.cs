@@ -19,7 +19,7 @@ public class InputDeviceController : MonoBehaviour {
 	//This is automatically called from PlayerInput, when the input device has changed
 	//(IE: Keyboard -> Xbox Controller)
 	public void OnControlsChanged() {
-
+		Debug.Log("new control " + _playerInput.currentControlScheme);
 		if(_playerInput.currentControlScheme != _currentControlScheme) {
 			_currentControlScheme = _playerInput.currentControlScheme;
 			UpdateKeyHintVisuals(keyHints.GetDeviceSettings(_playerInput));

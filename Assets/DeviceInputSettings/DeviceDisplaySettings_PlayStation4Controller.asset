@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99af58a1e46e407c8052d26ce15e2a69, type: 3}
   m_Name: DeviceDisplaySettings_PlayStation4Controller
   m_EditorClassIdentifier: 
-  deviceDisplayName: PlayStation 4
-  moveIcon: {fileID: 0}
-  jumpIcon: {fileID: 0}
-  crouchIcon: {fileID: 0}
-  tongueShootIcon: {fileID: 0}
-  tonguChangeLengthIcon: {fileID: 0}
+  moveIcon: {fileID: -959571241, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  jumpIcon: {fileID: -1308239048, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  crouchIcon: {fileID: -800194899, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  interactIcon: {fileID: 419735195, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  tongueShootIcon: {fileID: 1809194413, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}
+  tongueLengthChangeIcon: {fileID: -125393508, guid: cc2fa3b66aa608449ba153860258c8ab, type: 3}

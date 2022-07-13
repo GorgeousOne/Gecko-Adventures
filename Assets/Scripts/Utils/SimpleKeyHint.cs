@@ -7,10 +7,11 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 	
 	[SerializeField] private string keyAction;
 	[SerializeField] private Sprite hintBackground;
-	[SerializeField] private float padding = .25f;
-	[SerializeField] private Vector2 keyHintOffset = new (0, 1);
+	[SerializeField] private float padding = .3125f;
+	[SerializeField] private Vector2 bubbleOffset = new (0, 1);
+	[SerializeField] private Vector2 keyHintOffset = new (0, .03125f);
 
-	private GameObject _keyHint;
+	private GameObject _keyHintBubble;
 	private bool _isPlayInRange;
 
 	private void OnTriggerEnter2D(Collider2D other) {
@@ -28,7 +29,7 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 	}
 	
 	private void SetHintVisible(bool state) {
-		_keyHint.SetActive(state);
+		_keyHintBubble.SetActive(state);
 	}
 
 	public void UpdateKeyHint(DeviceDisplaySettings settings) {
@@ -37,31 +38,40 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 	}
 	
 	private void CreateKeyHint(DeviceDisplaySettings settings) {
-		if (_keyHint != null) {
-			Destroy(_keyHint);
+		if (_keyHintBubble != null) {
+			Destroy(_keyHintBubble);
 		}
-		_keyHint = new GameObject("KeyHint");
-		_keyHint.SetActive(false);
-		_keyHint.transform.parent = transform;
-		_keyHint.transform.localPosition = keyHintOffset;
-	
-		SpriteRenderer binding = _keyHint.AddComponent<SpriteRenderer>();
-		Sprite keySprite = settings.GetBindingSprite(keyAction);
-		binding.sprite = keySprite;
-		binding.sortingLayerName = "Fore";
-		binding.sortingOrder = 2;
 
-		SpriteRenderer bubble = _keyHint.AddComponent<SpriteRenderer>();
+		_keyHintBubble = new GameObject("KeyHintBubble");
+		_keyHintBubble.SetActive(false);
+		_keyHintBubble.transform.parent = transform;
+		_keyHintBubble.transform.localPosition = bubbleOffset;
+
+		SpriteRenderer bubble = _keyHintBubble.AddComponent<SpriteRenderer>();
 		bubble.sprite = hintBackground;
 		bubble.sortingLayerName = "Fore";
 		bubble.sortingOrder = 1;
 		bubble.drawMode = SpriteDrawMode.Sliced;
+		
+		GameObject keyHint = new GameObject("KeyHint");
+		keyHint.transform.parent = _keyHintBubble.transform;
 
-		float pixelScale = 1f / keySprite.pixelsPerUnit;
-		Vector2 keySize = keySprite.rect.size;
-		Vector2 bubbleSize = new Vector2(
-			keySize.x * pixelScale + padding,
-			keySize.y * pixelScale + padding);
-		_keyHint.transform.localScale = bubbleSize;
+		Sprite keySprite = settings.GetBindingSprite(keyAction);
+
+		SpriteRenderer binding = keyHint.AddComponent<SpriteRenderer>();
+		binding.sprite = keySprite;
+		binding.color = Color.black;
+		binding.sortingLayerName = "Fore";
+		binding.sortingOrder = 2;
+		binding.transform.localPosition = keyHintOffset;
+		
+		//update bubble to fit key hint
+		Vector2 keySize = binding.size;
+		Vector2 bubbleSize = bubble.size;
+		
+		Vector2 newBubbleSize = new Vector2(
+			Mathf.Max(bubbleSize.x,keySize.x + padding),
+			Mathf.Max(bubbleSize.y, keySize.y + padding));
+		bubble.size = newBubbleSize;
 	}
 }

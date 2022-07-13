@@ -12,6 +12,7 @@ public class InputDeviceController : MonoBehaviour {
 	
 	private void OnEnable() {
 		_playerInput = GetComponent<PlayerInput>();
+		OnControlsChanged();
 	}
 
 	//INPUT SYSTEM AUTOMATIC CALLBACKS --------------
@@ -19,7 +20,6 @@ public class InputDeviceController : MonoBehaviour {
 	//This is automatically called from PlayerInput, when the input device has changed
 	//(IE: Keyboard -> Xbox Controller)
 	public void OnControlsChanged() {
-		Debug.Log("new control " + _playerInput.currentControlScheme);
 		if(_playerInput.currentControlScheme != _currentControlScheme) {
 			_currentControlScheme = _playerInput.currentControlScheme;
 			UpdateKeyHintVisuals(keyHints.GetDeviceSettings(_playerInput));
@@ -44,8 +44,8 @@ public class InputDeviceController : MonoBehaviour {
 	// }
 
 	private void UpdateKeyHintVisuals(DeviceDisplaySettings settings) {
-		foreach (Resettable resettable in FindObjectsOfType<Resettable>(true)) {
-			
+		foreach (SimpleKeyHint hint in FindObjectsOfType<SimpleKeyHint>(true)) {
+			hint.UpdateKeyHint(settings);
 		}
 	}
 }

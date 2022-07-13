@@ -116,4 +116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyAction: interact
   hintBackground: {fileID: 21300000, guid: bdfd63b35cf52d84899d8ebc2458fc1f, type: 3}
-  keyHintOffset: {x: 0, y: 1}
+  padding: 0.5625
+  bubbleOffset: {x: 0, y: 1}
+  keyHintOffset: {x: 0, y: 0.03125}

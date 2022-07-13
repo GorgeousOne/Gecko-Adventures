@@ -59643,14 +59643,6 @@ PrefabInstance:
       propertyPath: bubbleOffset.y
       value: 2.3
       objectReference: {fileID: 0}
-    - target: {fileID: 4752560709699241048, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
-      propertyPath: keyHintOffset.x
-      value: -1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4752560709699241048, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
-      propertyPath: keyHintOffset.y
-      value: 2.3
-      objectReference: {fileID: 0}
     - target: {fileID: 4752560709699241051, guid: f1ef3556fa1f40b4aa65239770cb3289, type: 3}
       propertyPath: m_Name
       value: Passage

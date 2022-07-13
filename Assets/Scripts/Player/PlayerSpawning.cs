@@ -41,13 +41,6 @@ public class PlayerSpawning : MonoBehaviour {
 
 	private void LoadLastPlayerPos() {
 		Vector3 savedPosition = levelCheckpoints.GetCurrentSpawnPoint();
-		string sceneName = SceneManager.GetActiveScene().name;
-
-		if (PlayerPrefs.HasKey("Player_X_" + sceneName)) {
-			savedPosition.x = PlayerPrefs.GetFloat("Player_X_" + sceneName);
-			savedPosition.y = PlayerPrefs.GetFloat("Player_Y_" + sceneName);
-			savedPosition.z = PlayerPrefs.GetFloat("Player_Z_" + sceneName);
-		}
 		transform.position = savedPosition;
 	}
 

@@ -838,7 +838,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.5, y: 0.625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1365,7 +1365,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle-Animation V2-Sheet_12: 1563755572
+      Idle-Animation V2-Sheet_58: -2078252498
       Idle-Animation V2-Sheet_18: 745048569
       Idle-Animation V2-Sheet_37: 446791890
       Idle-Animation V2-Sheet_43: 1304400558
@@ -1422,7 +1422,7 @@ TextureImporter:
       Idle-Animation V2-Sheet_7: 812336491
       Idle-Animation V2-Sheet_38: 856115166
       Idle-Animation V2-Sheet_54: 899929556
-      Idle-Animation V2-Sheet_58: -2078252498
+      Idle-Animation V2-Sheet_12: 1563755572
       Idle-Animation V2-Sheet_26: 663886987
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -27,7 +27,7 @@ public class PlatformController : Triggerable {
 	/**
 	 * Interpolates platform position over time making it move between start and target
 	 */
-	private void Update() {
+	private void FixedUpdate() {
 		if (isEnabled) {
 			if (PassedMovementTime()) {
 				_isMovingForward = !_isMovingForward;

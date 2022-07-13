@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float _defaultHeight;
 	private float _defaultCapsuleOffY;
 
-	private AudioSource[] _listOfWalkingAudios;
+	private AudioSource[] _walkingAudios;
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
@@ -78,10 +78,10 @@ public class PlayerMovement : MonoBehaviour {
 		_playerSpawning = GetComponent<PlayerSpawning>();
 		_playerSpawning.playerDeathEvent.AddListener(tongue.Detach);
 
-		_listOfWalkingAudios = GetComponents<AudioSource>();
-		_listOfWalkingAudios[0].enabled = false;
-		_listOfWalkingAudios[1].enabled = false;
-		_listOfWalkingAudios[2].enabled = false;
+		_walkingAudios = GetComponents<AudioSource>();
+		_walkingAudios[0].enabled = false;
+		_walkingAudios[1].enabled = false;
+		_walkingAudios[2].enabled = false;
 	}
 
 	private void OnDisable() {
@@ -110,33 +110,32 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (tongue.IsAttached()) {
 			// disable jumping sound
-			_listOfWalkingAudios[2].enabled = false;
+			_walkingAudios[2].enabled = false;
 		}
 
 		// enable sound for walking & disable sound otherwise
 		if (_lastMovementInput != 0 && !tongue.IsAttached() && !_isCrouching) {
-			_listOfWalkingAudios[0].enabled = true;
+			_walkingAudios[0].enabled = true;
 		}
 		else {
-			_listOfWalkingAudios[0].enabled = false;
+			_walkingAudios[0].enabled = false;
 		}
 
 		// enable sound for crouching & disable sound otherwise
 		if (_lastMovementInput != 0 && !tongue.IsAttached() && _isCrouching) {
-			_listOfWalkingAudios[1].enabled = true;
+			_walkingAudios[1].enabled = true;
 		}
 		else {
-			_listOfWalkingAudios[1].enabled = false;
+			_walkingAudios[1].enabled = false;
 		}
 	}
 
 	private void FixedUpdate() {
-		
 		if (IsBeingCrushed()) {
 			_playerSpawning.Die();
 		}
 		bool isGrounded = CheckGrounding();
-
+		
 		if (!_playerSpawning.IsDead()) {
 			CheckCrouching();
 			CheckJumping();
@@ -159,7 +158,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (isGrounded) {
 			_groundedRemember = groundedRememberDuration;
 			// disable jumping sound
-			_listOfWalkingAudios[2].enabled = false;
+			_walkingAudios[2].enabled = false;
 		}
 		return isGrounded;
 	}
@@ -168,16 +167,15 @@ public class PlayerMovement : MonoBehaviour {
 	 * Creates a capsule close below the players capsule and checks if it intersects with any ground
 	 */
 	private bool IsGrounded() {
-		Vector2 capsuleOffset = capsule.offset;
 		Vector2 capsuleSize = capsule.size;
 		
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
 		
-		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsuleOffset + new Vector2(0, -0.1f);
+		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsule.offset + new Vector2(0, -0.3f);
 		Physics2D.queriesHitTriggers = false;
 		bool isGrounded = Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
-		Physics2D.queriesHitTriggers = false;
+		Physics2D.queriesHitTriggers = true;
 		return isGrounded;
 	}
 	
@@ -187,7 +185,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (tongue.IsAttached()) {
 				tongue.Detach();
 				// enable jumping sound after detaching
-				_listOfWalkingAudios[2].enabled = true;
+				_walkingAudios[2].enabled = true;
 				return;
 			}
 			_jumpPressedRemember = jumpPressedRememberDuration;
@@ -196,7 +194,7 @@ public class PlayerMovement : MonoBehaviour {
 		if(_jumpPressedRemember > 0 && _groundedRemember > 0) {
 			ApplyJumpVelocity();
 			// enable jumping sound
-			_listOfWalkingAudios[2].enabled = true;
+			_walkingAudios[2].enabled = true;
 		}		
 	}
 

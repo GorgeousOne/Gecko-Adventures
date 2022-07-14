@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpikeController : Resettable {
+public class SpikeController : MonoBehaviour, Resettable {
 	
 	[Header("Sprites")]
 	[SerializeField] private Collider2D damageCollider;
@@ -73,11 +73,11 @@ public class SpikeController : Resettable {
 		return MathUtil.FloorMod(LevelTime.time - extendOffset, extendTime + retractTime) < extendTime;
 	}
 	
-	public override void SaveState() {
+	public void SaveState() {
 		_savedWasExtended = _isExtended;
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		_isExtended = _savedWasExtended;
 	}
 }

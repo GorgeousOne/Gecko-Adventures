@@ -32,7 +32,7 @@ public class LevelCheckpoints : MonoBehaviour {
 	public void ResetToLastCheckpoint() {
 		LevelTime.SetTime(_currentCheckpointTime);
 		
-		foreach (Resettable resettable in FindObjectsOfType<Resettable>(true)){
+		foreach (Resettable resettable in FindObjectsOfType<MonoBehaviour>(true).OfType<Resettable>()){
 			resettable.ResetState();
 		}
 	}
@@ -42,7 +42,7 @@ public class LevelCheckpoints : MonoBehaviour {
 			_currentCheckpoint = checkpoint;
 			_currentCheckpointTime = LevelTime.time;
 			
-			foreach (Resettable resettable in FindObjectsOfType<Resettable>(true)){
+			foreach (Resettable resettable in FindObjectsOfType<MonoBehaviour>(true).OfType<Resettable>()){
 				resettable.SaveState();
 			}
 		}

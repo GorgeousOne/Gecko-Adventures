@@ -19,9 +19,9 @@ public class ChangeScene : Interactable {
             }
         }
     }
-    public override void SaveState() {
+    public void SaveState() {
     }
 
-    public override void ResetState() {
+    public void ResetState() {
     }
 }

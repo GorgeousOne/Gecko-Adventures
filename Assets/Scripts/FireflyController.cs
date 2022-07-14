@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FireflyController : Resettable {
+public class FireflyController : MonoBehaviour, Resettable {
 
     private Animator _animator;
     private Vector3 _savedPos;
@@ -12,12 +12,12 @@ public class FireflyController : Resettable {
         SaveState();    
     }
 
-    public override void SaveState() {
+    public void SaveState() {
         _savedWasActive = gameObject.activeSelf;
         _savedPos = transform.position;
     }
 
-    public override void ResetState() {
+    public void ResetState() {
         gameObject.SetActive(_savedWasActive);
         transform.position = _savedPos;
     }

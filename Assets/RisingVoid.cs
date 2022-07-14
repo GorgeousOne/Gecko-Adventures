@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class RisingVoid : Resettable {
+public class RisingVoid : MonoBehaviour, Resettable {
 
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float playerOffsetY = 10;
@@ -22,11 +22,11 @@ public class RisingVoid : Resettable {
         }
     }
 
-    public override void SaveState() {
+    public void SaveState() {
         _savedPos = transform.position;
     }
 
-    public override void ResetState() {
+    public void ResetState() {
         transform.position = _savedPos;
     }
 }

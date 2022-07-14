@@ -36,11 +36,11 @@ public class TripwireController : Trigger {
 		}
 	}
 
-	public override void SaveState() {
+	public void SaveState() {
 		_savedIsIntact = gameObject.activeSelf;
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		gameObject.SetActive(_savedIsIntact);
 	}
 }

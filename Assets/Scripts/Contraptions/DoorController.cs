@@ -63,12 +63,12 @@ public class DoorController : Triggerable {
 		Gizmos.DrawLine(position, position + openOffset);
 	}
 
-	public override void SaveState() {
+	public void SaveState() {
 		_savedWasOpen = _isOpening;
 		_savedMoveStart = _moveStartTime;
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		_isOpening = _savedWasOpen;
 		_moveStartTime = _savedMoveStart;
 	}

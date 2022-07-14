@@ -49,11 +49,11 @@ public class FallingObjectController : Triggerable {
 		Gizmos.DrawIcon(transform.position, "sv_icon_dot14_pix16_gizmo.png", true);
 	}
 
-    public override void SaveState() {
+    public void SaveState() {
 		
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		if (_newFallingObject != null) {
             Destroy(_newFallingObject);
         }

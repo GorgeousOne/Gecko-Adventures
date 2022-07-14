@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Resettable : MonoBehaviour {
+public interface Resettable {
 
-	public abstract void SaveState();
-	public abstract void ResetState();
+	public void SaveState();
+	public void ResetState();
 }

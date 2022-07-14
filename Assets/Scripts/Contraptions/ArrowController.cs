@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowController : Resettable {
+public class ArrowController : MonoBehaviour, Resettable {
 
 	[SerializeField] [Min(0f)] private float despawnRate = 5;
 	
@@ -32,9 +32,9 @@ public class ArrowController : Resettable {
 		// transform.parent = other.transform;
 	}
 
-	public override void SaveState() {}
+	public void SaveState() {}
 
-	public override void ResetState() {
+	public void ResetState() {
 		Destroy(gameObject);
 	}
 }

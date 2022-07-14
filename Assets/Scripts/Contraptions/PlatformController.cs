@@ -98,14 +98,14 @@ public class PlatformController : Triggerable {
 		Gizmos.DrawLine(position, position + targetOffset);
 	}
 	
-	public override void SaveState() {
+	public void SaveState() {
 		_savedPos = transform.position;
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
 		_saveWasEnabled = isEnabled;
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		transform.position = _savedPos;
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;

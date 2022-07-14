@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,10 +26,7 @@ public class InputDeviceController : MonoBehaviour {
 	}
 
 	private void UpdateKeyHintVisuals(DeviceDisplaySettings settings) {
-		foreach (IKeyHint hint in FindObjectsOfType<SimpleKeyHint>(true)) {
-			hint.UpdateKeyHint(settings);
-		}
-		foreach (IKeyHint hint in FindObjectsOfType<Interactable>(true)) {
+		foreach (IKeyHint hint in FindObjectsOfType<MonoBehaviour>(true).OfType<IKeyHint>()) {
 			hint.UpdateKeyHint(settings);
 		}
 	}

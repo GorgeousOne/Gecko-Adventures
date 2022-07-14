@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6872663922335979629}
   - component: {fileID: 70941333674305513}
   - component: {fileID: 6872663922335979624}
+  - component: {fileID: 8898675831166523373}
   m_Layer: 0
   m_Name: WallSwitch
   m_TagString: Untagged
@@ -119,3 +120,20 @@ MonoBehaviour:
   bubbleOffset: {x: 0, y: 1.5}
   keyHintOffset: {x: 0, y: 0.03125}
   connected: []
+--- !u!114 &8898675831166523373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6872663922335979625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7d76ca44e9beb4eb59d45ca3de32f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyAction: interact
+  hintBackground: {fileID: 21300000, guid: bdfd63b35cf52d84899d8ebc2458fc1f, type: 3}
+  padding: 0.3125
+  bubbleOffset: {x: 0, y: 1.5}
+  keyHintOffset: {x: 0, y: 0.03125}

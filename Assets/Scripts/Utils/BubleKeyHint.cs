@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleKeyHint : MonoBehaviour, IKeyHint {
-
+public class BubleKeyHint : MonoBehaviour, IKeyHint {
 	
 	[SerializeField] private string keyAction;
 	[SerializeField] private Sprite hintBackground;
@@ -28,7 +27,7 @@ public class SimpleKeyHint : MonoBehaviour, IKeyHint {
 		}
 	}
 	
-	private void SetHintVisible(bool state) {
+	public void SetHintVisible(bool state) {
 		_keyHintBubble.SetActive(state);
 	}
 

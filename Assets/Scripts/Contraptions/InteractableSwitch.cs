@@ -30,11 +30,11 @@ public abstract class InteractableSwitch : Interactable {
 		}
 	}
 
-	public override void SaveState() {
+	public void SaveState() {
 		_savedWasEnabled = IsEnabled;
 	}
 
-	public override void ResetState() {
+	public void ResetState() {
 		IsEnabled = _savedWasEnabled;
 	}
 }

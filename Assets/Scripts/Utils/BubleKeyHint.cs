@@ -6,7 +6,7 @@ public class BubleKeyHint : MonoBehaviour, IKeyHint {
 	
 	[SerializeField] private string keyAction;
 	[SerializeField] private Sprite hintBackground;
-	[SerializeField] private float padding = .3125f;
+	[SerializeField] private Vector2 padding = new Vector2(.25f, .28125f);
 	[SerializeField] private Vector2 bubbleOffset = new (0, 1);
 	[SerializeField] private Vector2 keyHintOffset = new (0, .03125f);
 
@@ -66,10 +66,19 @@ public class BubleKeyHint : MonoBehaviour, IKeyHint {
 		//update bubble to fit key hint
 		Vector2 keySize = binding.size;
 		Vector2 bubbleSize = bubble.size;
-		
+
 		Vector2 newBubbleSize = new Vector2(
-			Mathf.Max(bubbleSize.x,keySize.x + padding),
-			Mathf.Max(bubbleSize.y, keySize.y + padding));
+			Mathf.Max(bubbleSize.x,keySize.x + 2 * padding.x),
+			Mathf.Max(bubbleSize.y, keySize.y + 2 * padding.y));
+
 		bubble.size = newBubbleSize;
+		
+		float ppu = keySprite.pixelsPerUnit;
+		if (bubble.size.x * ppu % 2 != 0) {
+			bubble.transform.localPosition += new Vector3(.5f / ppu, 0, 0);
+		}
+		if (bubble.size.y * ppu % 2 != 0) {
+			bubble.transform.localPosition += new Vector3(0, .5f / ppu, 0);
+		}
 	}
 }

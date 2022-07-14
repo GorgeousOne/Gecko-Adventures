@@ -30,15 +30,6 @@ public class PauseMenu : MonoBehaviour {
 		}
 	}
 	
-	private void GoBackInMenu() {
-		if (optionsMenu.activeSelf) {
-			optionsMenu.SetActive(false);
-			DisplayMenu(pauseMenu);
-		} else {
-			CloseMenu();
-		}
-	}
-
 	public void OpenMenu() {
 		Time.timeScale = 0.0f;
 		background.SetActive(true);
@@ -51,6 +42,13 @@ public class PauseMenu : MonoBehaviour {
 		pauseMenu.SetActive(false);
 		optionsMenu.SetActive(false);
 		Time.timeScale = 1.0f;
+	}
+
+	private void GoBackInMenu() {
+		if (optionsMenu.activeSelf) {
+			optionsMenu.SetActive(false);
+			DisplayMenu(pauseMenu);
+		}
 	}
 
 	private bool IsMenuOpen() {

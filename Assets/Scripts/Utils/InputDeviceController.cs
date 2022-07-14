@@ -10,8 +10,9 @@ public class InputDeviceController : MonoBehaviour {
 	private PlayerInput _playerInput;
 	private string _currentControlScheme;
 	
-	private void Start() {
+	private void OnEnable() {
 		_playerInput = GetComponent<PlayerInput>();
+		OnDeviceRegained();
 	}
 
 	//INPUT SYSTEM AUTOMATIC CALLBACKS --------------
@@ -25,8 +26,7 @@ public class InputDeviceController : MonoBehaviour {
 		}
 	}
 
-	public void OnDeviceRegained()
-	{
+	public void OnDeviceRegained() {
 		StartCoroutine(WaitForDeviceToBeRegained());
 	}
 

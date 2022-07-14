@@ -19,10 +19,8 @@ public abstract class Trigger : MonoBehaviour, Resettable {
 	}
 
 	public void SaveState() {
-		throw new System.NotImplementedException();
 	}
 
 	public void ResetState() {
-		throw new System.NotImplementedException();
 	}
 }

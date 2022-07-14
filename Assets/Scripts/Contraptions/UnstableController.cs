@@ -29,11 +29,11 @@ public class UnstableController : Trigger {
 		_renderer.enabled = false;
 	}
 	
-	public void SaveState() {
+	public new void SaveState() {
 		_wasBroken = _isBroken;
 	}
 
-	public void ResetState() {
+	public new void ResetState() {
 		_isBroken = _wasBroken;
 		_collider2D.enabled = !_wasBroken;
 		_renderer.enabled = !_wasBroken;

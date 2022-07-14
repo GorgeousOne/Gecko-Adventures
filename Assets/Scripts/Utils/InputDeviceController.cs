@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,13 +6,12 @@ using UnityEngine.InputSystem;
 public class InputDeviceController : MonoBehaviour {
 
 	[SerializeField] private KeyHintConfigurator keyHints;
-	
+
 	private PlayerInput _playerInput;
 	private string _currentControlScheme;
 	
-	private void OnEnable() {
+	private void Start() {
 		_playerInput = GetComponent<PlayerInput>();
-		OnControlsChanged();
 	}
 
 	//INPUT SYSTEM AUTOMATIC CALLBACKS --------------
@@ -25,6 +25,16 @@ public class InputDeviceController : MonoBehaviour {
 		}
 	}
 
+	public void OnDeviceRegained()
+	{
+		StartCoroutine(WaitForDeviceToBeRegained());
+	}
+
+	IEnumerator WaitForDeviceToBeRegained() {
+		yield return new WaitForSeconds(0.1f);
+		UpdateKeyHintVisuals(keyHints.GetDeviceSettings(_playerInput));
+	}
+	
 	private void UpdateKeyHintVisuals(DeviceDisplaySettings settings) {
 		foreach (IKeyHint hint in FindObjectsOfType<MonoBehaviour>(true).OfType<IKeyHint>()) {
 			hint.UpdateKeyHint(settings);

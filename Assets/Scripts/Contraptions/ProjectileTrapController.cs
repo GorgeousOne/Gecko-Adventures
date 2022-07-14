@@ -53,12 +53,12 @@ public class ProjectileTrapController : Triggerable {
 		return LevelTime.time - _lastTimedShot >= reloadTime;
 	}
 	
-	public void SaveState() {
+	public new void SaveState() {
 		_savedProjectileCount = projectileCount;
 		_savedLastTimeShot = _lastTimedShot;
 	}
 
-	public void ResetState() {
+	public new void ResetState() {
 		projectileCount = _savedProjectileCount;
 		_lastTimedShot = _savedLastTimeShot;
 	}

@@ -32,7 +32,7 @@ public class ArrowController : MonoBehaviour, Resettable {
 		// transform.parent = other.transform;
 	}
 
-	public void SaveState() {}
+	public  void SaveState() {}
 
 	public void ResetState() {
 		Destroy(gameObject);

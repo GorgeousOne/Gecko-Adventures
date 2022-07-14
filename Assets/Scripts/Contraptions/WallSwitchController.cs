@@ -13,7 +13,7 @@ public class WallSwitchController : InteractableSwitch {
 		_renderer.flipX = IsEnabled;
 	}
 
-	public void ResetState() {
+	public new void ResetState() {
 		base.ResetState();
 		_renderer.flipX = IsEnabled;
 	}

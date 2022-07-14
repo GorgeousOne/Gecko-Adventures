@@ -27,7 +27,7 @@ public class LevelTime : MonoBehaviour {
 	}
 
 	private void Start() {
-		_time = Time.time;
+		_time = 0;
 	}
 
 	private void Update() {

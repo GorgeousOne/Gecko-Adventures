@@ -103,7 +103,7 @@ public class TongueMovement : MonoBehaviour {
 	private bool WasTongueShootPerformed() {
 		return _controls.Player.TongueShoot.WasPerformedThisFrame() || 
 		       _controls.Player.TongueShootGamepad.WasPerformedThisFrame() &&
-		       !MathUtil.IsZero(_controls.Player.TongueShootGamepad.ReadValue<Vector2>().magnitude);
+		       _controls.Player.TongueShootGamepad.ReadValue<Vector2>().magnitude > .5f;
 	}
 	
 	private void FixedUpdate() {

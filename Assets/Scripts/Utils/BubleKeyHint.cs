@@ -62,9 +62,20 @@ public class BubleKeyHint : MonoBehaviour, IKeyHint {
 		binding.sortingLayerName = "Fore";
 		binding.sortingOrder = 2;
 		binding.transform.localPosition = keyHintOffset;
-		
+
+		float ppu = keySprite.pixelsPerUnit;
+		Vector4 spriteBorder = keySprite.border / ppu;
+
+		binding.transform.localPosition += new Vector3(
+				.5f * (-spriteBorder.x + spriteBorder.z),
+				.5f * (-spriteBorder.y + spriteBorder.w), 0);
+
 		//update bubble to fit key hint
 		Vector2 keySize = binding.size;
+		keySize -= new Vector2(
+			spriteBorder.x + spriteBorder.z,
+			spriteBorder.y + spriteBorder.w);
+		
 		Vector2 bubbleSize = bubble.size;
 
 		Vector2 newBubbleSize = new Vector2(
@@ -73,7 +84,6 @@ public class BubleKeyHint : MonoBehaviour, IKeyHint {
 
 		bubble.size = newBubbleSize;
 		
-		float ppu = keySprite.pixelsPerUnit;
 		if (bubble.size.x * ppu % 2 != 0) {
 			bubble.transform.localPosition += new Vector3(.5f / ppu, 0, 0);
 		}

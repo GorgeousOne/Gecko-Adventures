@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour, Resettable {
+public abstract class Interactable : MonoBehaviour {
 
 	// [SerializeField] private Sprite hintBackground;
 	// [SerializeField] private float padding = .3125f;
@@ -46,11 +46,5 @@ public abstract class Interactable : MonoBehaviour, Resettable {
 			_isPlayerInRange = false;
 			// _keyHint.SetHintVisible(_isPlayerInRange);
 		}
-	}
-
-	public void SaveState() {
-	}
-
-	public void ResetState() {
 	}
 }

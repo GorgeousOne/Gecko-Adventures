@@ -1,19 +1,27 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractableSwitch : Interactable {
+public class InteractableSwitch : Interactable, Resettable {
 
 	[SerializeField] private List<Triggerable> connected;
 
 	protected bool IsEnabled;
 	protected bool _savedWasEnabled;
-	
+	private SpriteRenderer _renderer;
+
+	private void Start() {
+		_renderer = GetComponent<SpriteRenderer>();
+
+	}
+
 	protected override void OnInteract() {
 		Toggle();
 	}
 
 	protected void Toggle() {
 		IsEnabled = !IsEnabled;
+		_renderer.flipX = IsEnabled;
 
 		foreach (Triggerable toggleable in connected) {
 			toggleable.OnSwitchToggle(IsEnabled);
@@ -30,11 +38,12 @@ public abstract class InteractableSwitch : Interactable {
 		}
 	}
 
-	public new void SaveState() {
+	public void SaveState() {
 		_savedWasEnabled = IsEnabled;
 	}
 
-	public new void ResetState() {
+	public void ResetState() {
 		IsEnabled = _savedWasEnabled;
+		_renderer.flipX = IsEnabled;
 	}
 }

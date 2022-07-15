@@ -19,9 +19,4 @@ public class ChangeScene : Interactable {
             }
         }
     }
-    public new void SaveState() {
-    }
-
-    public new void ResetState() {
-    }
 }

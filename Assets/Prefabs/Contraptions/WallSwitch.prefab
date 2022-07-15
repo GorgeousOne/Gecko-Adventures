@@ -112,13 +112,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6872663922335979625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad9698f22bd4ca4586aaad9a230adb3, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a4675266d04108a5396cdc2d50a373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hintBackground: {fileID: 21300000, guid: bdfd63b35cf52d84899d8ebc2458fc1f, type: 3}
-  padding: 0.3125
-  bubbleOffset: {x: 0, y: 1.5}
-  keyHintOffset: {x: 0, y: 0.03125}
   connected: []
 --- !u!114 &8898675831166523373
 MonoBehaviour:
@@ -134,6 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyAction: interact
   hintBackground: {fileID: 21300000, guid: bdfd63b35cf52d84899d8ebc2458fc1f, type: 3}
-  padding: 0.3125
+  padding: {x: 0.25, y: 0.28125}
   bubbleOffset: {x: 0, y: 1.5}
   keyHintOffset: {x: 0, y: 0.03125}

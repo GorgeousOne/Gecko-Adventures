@@ -17,5 +17,5 @@ MonoBehaviour:
     deviceDisplaySettings: {fileID: 11400000, guid: 8ca6d89237ff85948b33271f2291dee5, type: 2}
   - deviceRawPath: XInputControllerWindows:/XInputControllerWindows
     deviceDisplaySettings: {fileID: 11400000, guid: bde7fbbd4093a5846bf63233e04cc12b, type: 2}
-  - deviceRawPath: DualShock4GamepadHID:/DualShock4GamepadHID
+  - deviceRawPath: DualShock4GamepadHID:/DualShock4GamepadHID2
     deviceDisplaySettings: {fileID: 11400000, guid: d9d87c015c3f6d347a468253348cb459, type: 2}

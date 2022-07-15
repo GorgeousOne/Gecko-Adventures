@@ -119,13 +119,13 @@ TextureImporter:
       name: Keyinds_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 57
-        width: 15
-        height: 7
+        x: 1
+        y: 56
+        width: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -161,13 +161,13 @@ TextureImporter:
       name: Keyinds_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 49
-        width: 10
-        height: 7
+        x: 1
+        y: 48
+        width: 12
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 2, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -182,13 +182,13 @@ TextureImporter:
       name: Keyinds_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 49
-        width: 25
-        height: 7
+        x: 65
+        y: 48
+        width: 28
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 3, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -203,13 +203,13 @@ TextureImporter:
       name: Keyinds_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 41
-        width: 10
-        height: 7
+        x: 1
+        y: 40
+        width: 12
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 2, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -224,13 +224,13 @@ TextureImporter:
       name: Keyinds_14
       rect:
         serializedVersion: 2
-        x: 64
-        y: 41
-        width: 25
-        height: 7
+        x: 65
+        y: 40
+        width: 28
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 3, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -245,13 +245,13 @@ TextureImporter:
       name: Keyinds_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 33
-        width: 5
-        height: 7
+        x: 1
+        y: 32
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 3, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -266,13 +266,13 @@ TextureImporter:
       name: Keyinds_19
       rect:
         serializedVersion: 2
-        x: 32
-        y: 33
-        width: 7
-        height: 7
+        x: 33
+        y: 32
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -287,13 +287,13 @@ TextureImporter:
       name: Keyinds_20
       rect:
         serializedVersion: 2
-        x: 64
-        y: 33
-        width: 4
-        height: 7
+        x: 65
+        y: 32
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 4, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -308,13 +308,13 @@ TextureImporter:
       name: Keyinds_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 15
-        height: 7
+        x: 1
+        y: 24
+        width: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -329,13 +329,13 @@ TextureImporter:
       name: Keyinds_24
       rect:
         serializedVersion: 2
-        x: 64
-        y: 25
-        width: 16
-        height: 7
+        x: 65
+        y: 24
+        width: 20
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 4, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -350,13 +350,13 @@ TextureImporter:
       name: Keyinds_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 17
-        width: 15
-        height: 7
+        x: 1
+        y: 16
+        width: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -371,13 +371,13 @@ TextureImporter:
       name: Keyinds_29
       rect:
         serializedVersion: 2
-        x: 32
-        y: 17
-        width: 19
-        height: 7
+        x: 33
+        y: 16
+        width: 24
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 5, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -392,13 +392,13 @@ TextureImporter:
       name: Keyinds_31
       rect:
         serializedVersion: 2
-        x: 64
-        y: 17
-        width: 37
-        height: 7
+        x: 65
+        y: 16
+        width: 40
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 3, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -420,8 +420,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Keyinds_2: -702381442
-      Keyinds_17: 736319626
+      Keyinds_19: 419735195
+      Keyinds_27: -1735207007
       Keyinds_22: -160512010
       Keyinds_9: 1553679028
       Keyinds_6: -1308239048
@@ -433,7 +433,7 @@ TextureImporter:
       Keyinds_15: 459553745
       Keyinds_0: -959571241
       Keyinds_36: -1497521195
-      Keyinds_19: 419735195
+      Keyinds_2: -702381442
       Keyinds_25: -2041203297
       Keyinds_11: 693168706
       Keyinds_18: 2039063870
@@ -456,7 +456,7 @@ TextureImporter:
       Keyinds_13: -632626852
       Keyinds_4: 2018405089
       Keyinds_7: -533989723
-      Keyinds_27: -1735207007
+      Keyinds_17: 736319626
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

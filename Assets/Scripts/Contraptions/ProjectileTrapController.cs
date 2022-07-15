@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ProjectileTrapController : Triggerable {
+public class ProjectileTrapController : Triggerable, Resettable {
 	
 	[Header("Shooting")]
 	[SerializeField] [Min(-1)] private int projectileCount = 1;
@@ -53,12 +53,12 @@ public class ProjectileTrapController : Triggerable {
 		return LevelTime.time - _lastTimedShot >= reloadTime;
 	}
 	
-	public new void SaveState() {
+	public void SaveState() {
 		_savedProjectileCount = projectileCount;
 		_savedLastTimeShot = _lastTimedShot;
 	}
 
-	public new void ResetState() {
+	public void ResetState() {
 		projectileCount = _savedProjectileCount;
 		_lastTimedShot = _savedLastTimeShot;
 	}

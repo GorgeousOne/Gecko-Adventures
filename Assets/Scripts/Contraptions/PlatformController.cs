@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlatformController : Triggerable {
+public class PlatformController : Triggerable, Resettable {
 
 	[SerializeField] private Vector2 targetOffset;
 	[SerializeField] private float moveOffset;
@@ -98,14 +98,15 @@ public class PlatformController : Triggerable {
 		Gizmos.DrawLine(position, position + targetOffset);
 	}
 	
-	public new void SaveState() {
+	public void SaveState() {
 		_savedPos = transform.position;
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
 		_saveWasEnabled = isEnabled;
 	}
 
-	public new void ResetState() {
+	
+	public void ResetState() {
 		transform.position = _savedPos;
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;

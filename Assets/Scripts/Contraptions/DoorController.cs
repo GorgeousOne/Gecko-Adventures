@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DoorController : Triggerable {
+public class DoorController : Triggerable, Resettable {
 
 	[SerializeField] private Vector2 openOffset;
 	[FormerlySerializedAs("moveTime")] [SerializeField] private float openingTime = 1;
@@ -63,12 +63,13 @@ public class DoorController : Triggerable {
 		Gizmos.DrawLine(position, position + openOffset);
 	}
 
-	public new void SaveState() {
+	
+	public void SaveState() {
 		_savedWasOpen = _isOpening;
 		_savedMoveStart = _moveStartTime;
 	}
-
-	public new void ResetState() {
+	
+	public void ResetState() {
 		_isOpening = _savedWasOpen;
 		_moveStartTime = _savedMoveStart;
 	}

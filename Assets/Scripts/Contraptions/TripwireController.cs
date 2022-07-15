@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TripwireController : Trigger {
+public class TripwireController : Trigger, Resettable {
 
 	private LineRenderer _line;
 	private bool _savedIsIntact;
@@ -36,11 +36,11 @@ public class TripwireController : Trigger {
 		}
 	}
 
-	public new void SaveState() {
+	public void SaveState() {
 		_savedIsIntact = gameObject.activeSelf;
 	}
 
-	public new void ResetState() {
+	public void ResetState() {
 		gameObject.SetActive(_savedIsIntact);
 	}
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingObjectController : Triggerable {
+public class FallingObjectController : Triggerable, Resettable {
 
     [SerializeField] public GameObject fallingObject;
     [SerializeField] private bool isEnabled = true;
@@ -49,11 +49,11 @@ public class FallingObjectController : Triggerable {
 		Gizmos.DrawIcon(transform.position, "sv_icon_dot14_pix16_gizmo.png", true);
 	}
 
-    public new void SaveState() {
+    public void SaveState() {
 		
 	}
 
-	public new void ResetState() {
+	public void ResetState() {
 		if (_newFallingObject != null) {
             Destroy(_newFallingObject);
         }

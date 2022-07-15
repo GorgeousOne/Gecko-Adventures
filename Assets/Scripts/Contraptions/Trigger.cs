@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Trigger : MonoBehaviour, Resettable {
+public abstract class Trigger : MonoBehaviour {
 	
 	[SerializeField] private List<Triggerable> connected;
 
@@ -16,11 +16,5 @@ public abstract class Trigger : MonoBehaviour, Resettable {
 		foreach (Triggerable triggerable in connected) {
 			Gizmos.DrawLine(transform.position, triggerable.gameObject.transform.position);
 		}
-	}
-
-	public void SaveState() {
-	}
-
-	public void ResetState() {
 	}
 }

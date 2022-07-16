@@ -1,8 +1,6 @@
-using System;
-using System.Security.Cryptography;
 using UnityEngine;
 
-public class UnstableController : Trigger {
+public class UnstableController : Trigger, Resettable {
 
 	private bool _isBroken;
 	private bool _wasBroken;
@@ -29,11 +27,11 @@ public class UnstableController : Trigger {
 		_renderer.enabled = false;
 	}
 	
-	public new void SaveState() {
+	public void SaveState() {
 		_wasBroken = _isBroken;
 	}
 
-	public new void ResetState() {
+	public void ResetState() {
 		_isBroken = _wasBroken;
 		_collider2D.enabled = !_wasBroken;
 		_renderer.enabled = !_wasBroken;

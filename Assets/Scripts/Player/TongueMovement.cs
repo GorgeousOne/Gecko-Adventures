@@ -1,22 +1,15 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-// using UnityEngine.Rendering.Universal;
 
 public class TongueMovement : MonoBehaviour {
 
 	[SerializeField] private float extendTime = 0.2f;
 	[SerializeField] private float stayExtendedTime = 0.2f;
-	// [SerializeField] private Transform _pivot;
 	[SerializeField] private LayerMask attachLayerMask;
 	[SerializeField] private LayerMask collectLayerMask;
 	[SerializeField] private TriggerEvent attachAction;
 	[SerializeField] private UnityEvent detachAction;
-	// added for lighting the gecko after eating a firefly
-	// [SerializeField] private GameObject player;
-	// [SerializeField] private float additionalLightTime = 15.0f;
-	// [SerializeField] private float remainingLightTime = 0.0f;
-	// ***************************************************
 
 	private PlayerControls _controls;
 	private Transform _pivot;
@@ -72,16 +65,19 @@ public class TongueMovement : MonoBehaviour {
 			AlignTongueToPoint(GetAttachPoint());
 		} else if (IsExtending()) {
 			UpdateExtendLength();
-		} else if (_pickup) {
-			_pickupHandler.ProcessPickup(_pickup);
-			_pickup.SetActive(false);
-			_pickup.transform.parent = null;
-			_pickup = null;
+		} else {
+			_collider.enabled = false;
+			
+			if (_pickup) {
+				_pickupHandler.ProcessPickup(_pickup);
+				_pickup.SetActive(false);
+				_pickup.transform.parent = null;
+				_pickup = null;
+			}
 		}
-		if(WasTongueShootPerformed()) {
+		if (WasTongueShootPerformed()) {
 			_tongueShootPressed = true;
 		}
-
 		if (!IsAttached()) {
 			_tongueAudio.enabled = false;
 		}
@@ -138,10 +134,6 @@ public class TongueMovement : MonoBehaviour {
 		return _length;
 	}
 
-	public float GetExtendDistance() {
-		return _extendDistance;
-	}
-	
 	public bool IsExtending() {
 		return Time.time - _extendStart < 2 * extendTime + stayExtendedTime;
 	}
@@ -168,6 +160,7 @@ public class TongueMovement : MonoBehaviour {
 
 	public void PlayExtend() {
 		_extendStart = Time.time;
+		_collider.enabled = true;
 	}
 
 	public void AttachTo(Collider2D other) {
@@ -189,18 +182,14 @@ public class TongueMovement : MonoBehaviour {
 
 	public float GetExtendProgress() {
 		float dt = (Time.time - _extendStart);
-		float progress = dt / extendTime;
 
 		if (dt < extendTime) {
 			return dt / extendTime;
-		} else if (dt > extendTime + stayExtendedTime) {
+		}
+		if (dt > extendTime + stayExtendedTime) {
 			return (2 * extendTime + stayExtendedTime - dt) / extendTime;
 		}
 		return 1;
-		// float halfTime = extendTime + 0.5f * stayExtendedTime;
-		// float dt = (Time.time - _extendStart);
-		// float shiftedDt = Math.Abs((dt - (extendTime + 0.25f * stayExtendedTime)) / extendTime - halfTime) - stayExtendedTime / (4 * extendTime);
-		// return 1 - Mathf.Clamp01(shiftedDt);
 	}
 
 	public void SetExtendProgress(float percent) {
@@ -221,7 +210,6 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void OnTriggerEnter2D(Collider2D other) {
-		// if (!IsExtending() || IsBehindTongue(other.transform.position)) {
 		if (!IsExtending()) {
 			return;
 		}

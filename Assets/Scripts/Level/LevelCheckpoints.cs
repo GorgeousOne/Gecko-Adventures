@@ -38,9 +38,14 @@ public class LevelCheckpoints : MonoBehaviour {
 	}
 	
 	public void OnCheckpointReach(Checkpoint checkpoint) {
-		if (_checkpoints.IndexOf(checkpoint) > _checkpoints.IndexOf(_currentCheckpoint)) {
+		// if (_checkpoints.IndexOf(checkpoint) > _checkpoints.IndexOf(_currentCheckpoint)) {
+		if (checkpoint != _currentCheckpoint) {
+			if (_currentCheckpoint != null) {
+				_currentCheckpoint.UnhoistFlag();
+			}
 			_currentCheckpoint = checkpoint;
 			_currentCheckpointTime = LevelTime.time;
+			_currentCheckpoint.PlayFlagHoist();
 			
 			foreach (Resettable resettable in FindObjectsOfType<MonoBehaviour>(true).OfType<Resettable>()){
 				resettable.SaveState();

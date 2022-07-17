@@ -1,16 +1,33 @@
+using System;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
 
 	private LevelCheckpoints _level;
 	private Color _gizmoColor = CheckpointColor.unreached();
-	
+	private Animator _flagAnimator;
+	private AudioSource _hoistSound;
+
+	private void Start() {
+		_flagAnimator = GetComponentInChildren<Animator>();
+		_hoistSound = GetComponentInChildren<AudioSource>();
+	}
+
 	public void SetGame(LevelCheckpoints level) {
 		_level = level;
 	}
 
 	public Vector2 GetSpawnPoint() {
 		return transform.position;
+	}
+
+	public void PlayFlagHoist() {
+		_flagAnimator.SetBool("hoist", true);
+		_hoistSound.Play();
+	}
+
+	public void UnhoistFlag() {
+		_flagAnimator.SetBool("hoist", false);
 	}
 	
 	private void OnTriggerEnter2D(Collider2D other) {

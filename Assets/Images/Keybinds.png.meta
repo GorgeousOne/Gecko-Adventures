@@ -121,11 +121,11 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 56
-        width: 16
+        width: 12
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 1, w: 1}
+      border: {x: 0, y: 0, z: 3, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -310,11 +310,11 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 24
-        width: 16
+        width: 12
         height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 1, w: 0}
+      border: {x: 0, y: 0, z: 3, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -420,8 +420,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Keyinds_17: 736319626
       Keyinds_19: 419735195
-      Keyinds_27: -1735207007
       Keyinds_22: -160512010
       Keyinds_9: 1553679028
       Keyinds_6: -1308239048
@@ -433,7 +433,7 @@ TextureImporter:
       Keyinds_15: 459553745
       Keyinds_0: -959571241
       Keyinds_36: -1497521195
-      Keyinds_2: -702381442
+      Keyinds_27: -1735207007
       Keyinds_25: -2041203297
       Keyinds_11: 693168706
       Keyinds_18: 2039063870
@@ -456,7 +456,7 @@ TextureImporter:
       Keyinds_13: -632626852
       Keyinds_4: 2018405089
       Keyinds_7: -533989723
-      Keyinds_17: 736319626
+      Keyinds_2: -702381442
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

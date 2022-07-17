@@ -171,8 +171,9 @@ public class PlayerMovement : MonoBehaviour {
 		
 		//shrinks capsule width to avoid wall jumps
 		capsuleSize.x -= 0.1f;
+		float groundCheckHeight = transform.parent == null ? .1f : .3f;
 		
-		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsule.offset + new Vector2(0, -0.3f);
+		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsule.offset - new Vector2(0, groundCheckHeight);
 		Physics2D.queriesHitTriggers = false;
 		bool isGrounded = Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
 		Physics2D.queriesHitTriggers = true;

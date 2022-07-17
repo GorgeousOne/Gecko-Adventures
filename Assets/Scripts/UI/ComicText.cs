@@ -24,10 +24,13 @@ public class ComicText : ComicElement {
 	private bool _isActive;
 	private float _coolDown;
 
-	protected new void OnEnable() {
-		base.OnEnable();
+	private void Start() {
 		uiText = GetComponent<TMP_Text>();
 		textToWrite = uiText.text;
+	}
+
+	protected new void OnEnable() {
+		base.OnEnable();
 		uiText.text = null;
 	}
 

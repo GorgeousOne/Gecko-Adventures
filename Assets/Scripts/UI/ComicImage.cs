@@ -17,16 +17,12 @@ public class ComicImage : ComicElement {
 	private bool _isActive;
 	private float _coolDown;
 	
-	protected new void OnEnable() {
-		base.OnEnable();
-		_image = GetComponent<Image>();
-	}
-
 	public override void Activate(Action deactivateCallback) {
 		base.Activate(deactivateCallback);
-		_image.color = fadeInTime > 0 ? new Color(1, 1, 1, 0) : Color.white;
 		_isActive = true;
 		_coolDown = clickCooldownTime;
+		_image = GetComponent<Image>();
+		_image.color = fadeInTime > 0 ? new Color(1, 1, 1, 0) : Color.white;
 
 		if (doAutoContinue) {
 			StartCoroutine(DeactivateTimed());

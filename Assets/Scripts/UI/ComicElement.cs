@@ -28,10 +28,6 @@ public class ComicElement : MonoBehaviour {
 		}
 	}
 	
-	public void Activate() {
-		Activate(null);
-	}
-	
 	public virtual void Activate(Action deactivateCallback) {
 		gameObject.SetActive(true);
 		DeactivateCallback = deactivateCallback;

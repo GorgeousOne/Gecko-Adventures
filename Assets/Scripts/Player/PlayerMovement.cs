@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 	[SerializeField] private float swingForce = 17;
 	[SerializeField] private float ropingSpeed = 10;
 
+	private bool _isEnabled = true;
 	private PlayerSpawning _playerSpawning;
 	private float _jumpPressedRemember;
 	private float _groundedRemember;
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour {
 	/// Reads control inputs
 	/// </summary>
 	private void Update() {
-		if (_playerSpawning.IsDead()) {
+		if (_playerSpawning.IsDead() || !_isEnabled) {
 			return;
 		}
 		_lastMovementInput = _controls.Player.Move.ReadValue<float>();
@@ -114,20 +115,9 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		// enable sound for walking & disable sound otherwise
-		if (_lastMovementInput != 0 && !tongue.IsAttached() && !_isCrouching) {
-			_walkingAudios[0].enabled = true;
-		}
-		else {
-			_walkingAudios[0].enabled = false;
-		}
-
+		_walkingAudios[0].enabled = _lastMovementInput != 0 && !tongue.IsAttached() && !_isCrouching;
 		// enable sound for crouching & disable sound otherwise
-		if (_lastMovementInput != 0 && !tongue.IsAttached() && _isCrouching) {
-			_walkingAudios[1].enabled = true;
-		}
-		else {
-			_walkingAudios[1].enabled = false;
-		}
+		_walkingAudios[1].enabled = _lastMovementInput != 0 && !tongue.IsAttached() && _isCrouching;
 	}
 
 	private void FixedUpdate() {
@@ -148,6 +138,11 @@ public class PlayerMovement : MonoBehaviour {
 		bodyAnimator.SetFloat("VelY", _rigid.velocity.y);
 		bodyAnimator.SetBool("Crouching", _isCrouching);
 		bodyAnimator.SetFloat("Speed", isGrounded ? Mathf.Abs(_rigid.velocity.x) : 0f);
+	}
+
+	public void SetMovingEnabled(bool state) {
+		_isEnabled = state;
+		tongue.SetExtendingEnabled(state);
 	}
 
 	public bool CheckGrounding() {

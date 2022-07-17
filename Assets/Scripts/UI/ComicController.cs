@@ -11,11 +11,16 @@ public class ComicController : MonoBehaviour {
 	private int _activeComicIndex;
 	private PlayerControls _controls;
 
+	private PlayerMovement _playerMove;
+
 	private void OnEnable() {
 		_controls = new PlayerControls();
 		_controls.Player.Interact.performed += _ => InteractOnComic();
 		_controls.Enable();
 		LoadElements();
+		
+		_playerMove = FindObjectOfType<PlayerMovement>();
+		_playerMove?.SetMovingEnabled(false);
 	}
 	
 	private void LoadElements() {
@@ -55,6 +60,8 @@ public class ComicController : MonoBehaviour {
 	}
 
 	private void ActivateNextComic() {
+		
+		
 		++_activeComicIndex;
 		bool hasNextComic = _activeComicIndex + 1 < _comicsElements.Count;
 		_comicsElements[_activeComicIndex].Activate(hasNextComic ? ActivateNextComic : EndComic);
@@ -62,6 +69,7 @@ public class ComicController : MonoBehaviour {
 
 	private void EndComic() {
 		comicEndEvent.Invoke();
+		_playerMove?.SetMovingEnabled(true);
 		gameObject.SetActive(false);
 	}
 }

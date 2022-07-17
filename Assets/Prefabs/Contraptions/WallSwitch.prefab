@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a4675266d04108a5396cdc2d50a373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disabledSprite: {fileID: 692284727, guid: 629ac8652e41ff4438636018505bbaf6, type: 3}
+  enabledSprite: {fileID: -980318888, guid: 629ac8652e41ff4438636018505bbaf6, type: 3}
   connected: []
 --- !u!114 &8898675831166523373
 MonoBehaviour:

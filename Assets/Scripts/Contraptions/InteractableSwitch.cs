@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class InteractableSwitch : Interactable, Resettable {
 
+	[SerializeField] private Sprite disabledSprite;
+	[SerializeField] private Sprite enabledSprite;
 	[SerializeField] private List<Triggerable> connected;
-
+	
 	protected bool IsEnabled;
 	protected bool _savedWasEnabled;
 	private SpriteRenderer _renderer;
@@ -21,7 +23,7 @@ public class InteractableSwitch : Interactable, Resettable {
 
 	protected void Toggle() {
 		IsEnabled = !IsEnabled;
-		_renderer.flipX = IsEnabled;
+		_renderer.sprite = IsEnabled ? enabledSprite : disabledSprite;
 
 		foreach (Triggerable toggleable in connected) {
 			toggleable.OnSwitchToggle(IsEnabled);
@@ -44,6 +46,6 @@ public class InteractableSwitch : Interactable, Resettable {
 
 	public void ResetState() {
 		IsEnabled = _savedWasEnabled;
-		_renderer.flipX = IsEnabled;
+		_renderer.sprite = IsEnabled ? enabledSprite : disabledSprite;
 	}
 }

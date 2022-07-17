@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public class UnstableController : Trigger, Resettable {
+public class UnstableController : MonoBehaviour, Resettable {
 
+	public UnityEvent BreakEvent;
+	
 	private bool _isBroken;
 	private bool _wasBroken;
 
@@ -20,11 +23,11 @@ public class UnstableController : Trigger, Resettable {
 	}
 
 	public void Break() {
-		Activate();
 		GetComponentInChildren<ParticleSystem>().Play();
 		_isBroken = true;
 		_collider2D.enabled = false;
 		_renderer.enabled = false;
+		BreakEvent.Invoke();
 	}
 	
 	public void SaveState() {

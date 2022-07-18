@@ -32,9 +32,11 @@ public class PickupHandler : MonoBehaviour {
 	private void OnEnable() {
 		_isDarkLevel = FindGlobalLight().intensity < .2f;
 		
+		_playerLight = GetComponent<Light2D>();
+		_playerLight.enabled = true;
+		_playerLight.intensity = 0;
+		
 		if (_isDarkLevel) {
-			_playerLight = GetComponent<Light2D>();
-			_playerLight.enabled = true;
 			_playerSpawning = GetComponent<PlayerSpawning>();
 			_playerSpawning.playerSpawnEvent.AddListener(OnPlayerSpawn);
 			_remainingLightTime = spawnLightTime;
@@ -46,17 +48,13 @@ public class PickupHandler : MonoBehaviour {
 	// }
 
 	private void Update() {
-		if (!_isDarkLevel) {
-			return;
-		}
 		if (_remainingLightTime <= 0) {
-			if (!_playerSpawning.IsDead()) {
+			if (_isDarkLevel && !_playerSpawning.IsDead()) {
 				_playerSpawning.Die();
 			}
 			return;
 		}
 		_remainingLightTime = Mathf.Max(0, _remainingLightTime - Time.deltaTime);
-		// _playerLight.intensity = MathUtil.SquareIn(_remainingLightTime / (maxLightTime * 0.3f)) * maxLightIntensity;
 		UpdateLightSettings();
 	}
 
@@ -67,10 +65,8 @@ public class PickupHandler : MonoBehaviour {
 			_playerLight.pointLightOuterRadius = fullLightRadius;
 			_playerLight.intensity = fullLightIntensity;
 			
-			// _playerLight.color = fullLightColor;
 		} else {
 			if (_remainingLightTime > lightDropTime) {
-				// float intensity = MathUtil.Map(_remainingLightTime, halfTime - halfLightIntensityLerpTime, halfTime, halfLightIntensity, fullLightIntensity);
 				float lerpPercent = Mathf.InverseLerp(halfTime - halfLightIntensityLerpTime, halfTime, _remainingLightTime);
 				_playerLight.pointLightOuterRadius = MathUtil.Map(_remainingLightTime, lightDropTime, halfTime, halfLightRadius, fullLightRadius);
 				_playerLight.intensity = Mathf.SmoothStep(halfLightIntensity, fullLightIntensity, lerpPercent);
@@ -86,7 +82,7 @@ public class PickupHandler : MonoBehaviour {
 	public void ProcessPickup(GameObject pickup) {
 		if (pickup.CompareTag("Mask")) {
 			maskCollectEvent.Invoke();
-		} else if (_isDarkLevel && pickup.CompareTag("Light Source")) {
+		} else if (pickup.CompareTag("Light Source")) {
 			_remainingLightTime = Mathf.Min(_remainingLightTime + lightSourceTime, maxLightTime);
 		}
 	}

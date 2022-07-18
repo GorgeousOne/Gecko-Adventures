@@ -7,11 +7,12 @@ using UnityEngine.Serialization;
 public class PlayerSpawning : MonoBehaviour {
 
 	[SerializeField] private LevelCheckpoints levelCheckpoints;
-	[SerializeField] private CameraFollow mainCamera = null;
+	// [SerializeField] private CameraFollow mainCamera = null;
 	[SerializeField] private Animator bodyAnimator;
 	public UnityEvent playerSpawnEvent;
 	public UnityEvent playerDeathEvent;
-	
+
+	private CameraFollow _mainCam;
 	private Rigidbody2D _rigid;
 	private bool _isDead;
 
@@ -22,7 +23,6 @@ public class PlayerSpawning : MonoBehaviour {
 		if (FindObjectOfType<LevelTime>() == null) {
 			Debug.LogError("No LevelTime script found. Please add exactly 1 LevelTime prefab to the scene.");
 			Application.Quit();
-			// UnityEditor.EditorApplication.isPlaying = false;
 		}
 		if (levelCheckpoints == null) {
 			Debug.LogWarning("No respawn points set for PlayerSpawning script. Please add a reference a LevelCheckpoints object.");
@@ -30,6 +30,7 @@ public class PlayerSpawning : MonoBehaviour {
 		_rigid = GetComponent<Rigidbody2D>();
 		LoadLastPlayerPos();
 
+		_mainCam = FindObjectOfType<CameraFollow>();
 		_listOfPlayerAudios = GetComponents<AudioSource>();
 		_deathAudio = _listOfPlayerAudios[3];
 		_deathAudio.enabled = false;
@@ -59,11 +60,8 @@ public class PlayerSpawning : MonoBehaviour {
 	public void Die() {
 		if (!IsDead()) {
 			_isDead = true;
-			if (mainCamera) {
-				mainCamera.PauseFollow();
-			}
+			_mainCam.PauseFollow();
 			LevelTime.Pause();
-			// bodyRenderer.color = Color.red;
 			bodyAnimator.SetBool("IsDead", _isDead);
 			StartCoroutine(RestartFromCheckpoint(1));
 			playerDeathEvent.Invoke();
@@ -78,16 +76,13 @@ public class PlayerSpawning : MonoBehaviour {
 
 	private void Revive() {
 		_isDead = false;
-		if (mainCamera) {
-			mainCamera.UnpauseFollow();
-		}
 		transform.parent = null;
 		transform.position = levelCheckpoints.GetCurrentSpawnPoint();
-		// bodyRenderer.color = Color.white;
 		bodyAnimator.SetBool("IsDead", _isDead);
 		_rigid.velocity = Vector2.zero;
 		LevelTime.UnPause();
 		playerSpawnEvent.Invoke();
+		_mainCam.UnpauseFollow();
 	}
 
 	private IEnumerator RestartFromCheckpoint(float delay) {

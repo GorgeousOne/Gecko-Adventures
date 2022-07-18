@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 // [ExecuteAlways]
@@ -35,7 +35,6 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	private void LateUpdate() {
-		// Vector3 lerpPos = Vector3.Lerp(transform.position, target.position + (Vector3) targetOffset, smoothSpeed);
 		if (target == null || _isFollowingPaused) {
 			return;
 		}
@@ -50,8 +49,6 @@ public class CameraFollow : MonoBehaviour {
 			
 			float snapProgress = (Time.time - _snapStartTime) / snapTime;
 			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
-			// Vector3 finalPos = Vector3.Slerp(_snapStartPos, newGoalPos, snapProgress);
-			// transform.position = GetPixelPoint(finalPos, ppu);
 			transform.position = finalPos;
 
 		} else {
@@ -66,6 +63,12 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	public void UnpauseFollow() {
+		// delays camera following so camera guides touched during respawn have time to trigger events
+		StartCoroutine(DelayUnpause());
+	}
+
+	private IEnumerator DelayUnpause() {
+		yield return new WaitForSeconds(.1f);
 		_isFollowingPaused = false;
 	}
 
@@ -80,9 +83,4 @@ public class CameraFollow : MonoBehaviour {
 		_snapStartPos = transform.position;
 		_snapStartTime = Time.time;
 	}
-
-	// private Vector3 GetPixelPoint(Vector3 point, int ppu) {
-		// Vector3 pixelPoint = Vector3Int.RoundToInt(ppu * point);
-		// return 1f / ppu * pixelPoint;
-	// }
 }

@@ -1639,6 +1639,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Deco_1_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 18
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979de5f678d1bc3459599df979c6d55f
+      internalID: 130066344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1654,6 +1675,7 @@ TextureImporter:
       Deco_1_70: -1897492831
       Deco_1_25: -1393588487
       Deco_1_44: 584382597
+      Deco_1_13: -1649938028
       Deco_1_37: 957178450
       Deco_1_3: -1614661701
       Deco_1_77: 337346706
@@ -1667,7 +1689,6 @@ TextureImporter:
       Deco_1_108: 755490888
       Deco_1_0: -109361645
       Deco_1_12: 1767583938
-      Deco_1_211: -1102526703
       Deco_1_11: -1882538997
       Deco_1_81: 435255141
       Deco_1_89: -1639485175
@@ -1715,8 +1736,8 @@ TextureImporter:
       Deco_1_19: 1708017745
       Deco_1_27: 957342821
       Deco_1_99: 1045572179
-      Deco_1_85: 486827877
       Deco_1_47: -829684554
+      Deco_1_85: 486827877
       Deco_1_102: 979778223
       Deco_1_31: 1312593772
       Deco_1_227: 1962716851
@@ -1724,11 +1745,11 @@ TextureImporter:
       Deco_1_79: 607997242
       Deco_1_17: 1466688987
       Deco_1_218: 672468925
-      Deco_1_95: -186463746
-      Deco_1_78: 1094887692
       Deco_1_90: 1044641078
-      Deco_1_41: -1226314659
+      Deco_1_78: 1094887692
+      Deco_1_95: -186463746
       Deco_1_210: -275923825
+      Deco_1_41: -1226314659
       Deco_1_212: -340818243
       Deco_1_60: 701762441
       Deco_1_228: 2099715083
@@ -1782,11 +1803,11 @@ TextureImporter:
       Deco_1_35: 880332223
       Deco_1_4: -2008525237
       Deco_1_224: 1213429363
-      Deco_1_46: -931154228
       Deco_1_26: 278067642
+      Deco_1_46: -931154228
       Deco_1_209: -31004399
       Deco_1_216: -1882571117
-      Deco_1_13: -1649938028
+      Deco_1_211: -1102526703
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

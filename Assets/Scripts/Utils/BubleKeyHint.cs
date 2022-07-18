@@ -56,39 +56,34 @@ public class BubleKeyHint : MonoBehaviour, IKeyHint {
 
 		Sprite keySprite = settings.GetBindingSprite(keyAction);
 
-		SpriteRenderer binding = keyHint.AddComponent<SpriteRenderer>();
-		binding.sprite = keySprite;
-		binding.color = Color.black;
-		binding.sortingLayerName = "Fore";
-		binding.sortingOrder = 2;
-		binding.transform.localPosition = keyHintOffset;
+		SpriteRenderer keyBind = keyHint.AddComponent<SpriteRenderer>();
+		keyBind.sprite = keySprite;
+		keyBind.color = Color.black;
+		keyBind.sortingLayerName = "Fore";
+		keyBind.sortingOrder = 2;
+		keyBind.transform.localPosition = keyHintOffset;
 
 		float ppu = keySprite.pixelsPerUnit;
 		Vector4 spriteBorder = keySprite.border / ppu;
 
-		binding.transform.localPosition += new Vector3(
+		keyBind.transform.localPosition += new Vector3(
 				.5f * (-spriteBorder.x + spriteBorder.z),
 				.5f * (-spriteBorder.y + spriteBorder.w), 0);
 
 		//update bubble to fit key hint
-		Vector2 keySize = binding.size;
+		Vector2 keySize = keyBind.size;
 		keySize -= new Vector2(
 			spriteBorder.x + spriteBorder.z,
 			spriteBorder.y + spriteBorder.w);
 		
 		Vector2 bubbleSize = bubble.size;
-
 		Vector2 newBubbleSize = new Vector2(
 			Mathf.Max(bubbleSize.x,keySize.x + 2 * padding.x),
 			Mathf.Max(bubbleSize.y, keySize.y + 2 * padding.y));
 
+		//make pixel count even
+		newBubbleSize.x += newBubbleSize.x % (2f / ppu);
+		newBubbleSize.y += newBubbleSize.y % (2f / ppu);
 		bubble.size = newBubbleSize;
-		
-		if (bubble.size.x * ppu % 2 != 0) {
-			bubble.transform.localPosition += new Vector3(.5f / ppu, 0, 0);
-		}
-		if (bubble.size.y * ppu % 2 != 0) {
-			bubble.transform.localPosition += new Vector3(0, .5f / ppu, 0);
-		}
 	}
 }

@@ -32,32 +32,34 @@ public class CameraFollow : MonoBehaviour {
 				guide.enterEvent.AddListener(OnCameraGuideEnter);
 			}
 		}
+		_snapStartTime = -snapTime;
 	}
 
 	private void LateUpdate() {
 		if (target == null || _isFollowingPaused) {
 			return;
 		}
-		Vector3 targetPos = target.position;
-		Vector3 currentPos = transform.position;
-		Vector3 newGoalPos = new Vector3(0, 0, currentPos.z);
+		Vector3 newGoalPos = GetSnapPoint();
 		
+		//interpolate between current position and guide target point
 		if (_IsSnapping()) {
-			Vector3 snapTarget = _guide.GetTargetPoint();
-			newGoalPos.x = followX ? targetPos.x : snapTarget.x;
-			newGoalPos.y = followY ? targetPos.y : snapTarget.y;
-			
-			float snapProgress = (Time.time - _snapStartTime) / snapTime;
+			float snapProgress = (LevelTime.time - _snapStartTime) / snapTime;
 			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
 			transform.position = finalPos;
-
+		//move camera along target
 		} else {
-			newGoalPos.x = followX ? targetPos.x : currentPos.x;
-			newGoalPos.y = followY ? targetPos.y : currentPos.y;
 			transform.position = newGoalPos;
 		}
 	}
 
+	private Vector2 GetSnapPoint() {
+		Vector3 snapPos = _guide != null ? _guide.GetTargetPoint() : transform.position;
+		Vector3 targetPos = target.position;
+		return new Vector2(
+				followX ? targetPos.x : snapPos.x,
+				followY ? targetPos.y : snapPos.y);
+	}
+	
 	public void PauseFollow() {
 		_isFollowingPaused = true;
 	}
@@ -73,14 +75,20 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	private bool _IsSnapping() {
-		return _guide != null && Time.time - _snapStartTime < snapTime;
+		return _guide != null && LevelTime.time - _snapStartTime < snapTime;
 	}
 	
 	public void OnCameraGuideEnter(CameraGuide guide) {
 		followX = guide.followX;
 		followY = guide.followY;
 		_guide = guide;
-		_snapStartPos = transform.position;
-		_snapStartTime = Time.time;
+		
+		//instantly move to guide target on level starts
+		if (LevelTime.time > snapTime) {
+			_snapStartPos = transform.position;
+			_snapStartTime = LevelTime.time;
+		} else {
+			transform.position = GetSnapPoint();
+		}
 	}
 }

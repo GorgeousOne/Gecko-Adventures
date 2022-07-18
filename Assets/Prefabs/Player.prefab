@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 285922387}
   - component: {fileID: 4013604811783711612}
   - component: {fileID: 7006818886497933646}
+  - component: {fileID: 4638394427630740885}
   m_Layer: 6
   m_Name: Body
   m_TagString: Player
@@ -117,7 +118,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361859270099735512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 51ebe696a2aaada4fa67dbee966391b1, type: 2}
   m_IsTrigger: 0
@@ -137,6 +138,32 @@ SortingGroup:
   m_SortingLayerID: -862980261
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!61 &4638394427630740885
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361859270099735512}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.125, y: -0.375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.625}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.375, y: 1.5}
+  m_EdgeRadius: 0.125
 --- !u!1 &1688615465564069138
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +665,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3857400769282164727}
-  - component: {fileID: 3857400769282164712}
   - component: {fileID: 3857400769282164713}
   - component: {fileID: 1557194575}
   - component: {fileID: 5433256748530262006}
@@ -676,22 +702,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3857400769282164712
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3857400769282164724}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 51ebe696a2aaada4fa67dbee966391b1, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.875}
-  m_Size: {x: 0.75, y: 1.75}
-  m_Direction: 0
 --- !u!50 &3857400769282164713
 Rigidbody2D:
   serializedVersion: 4
@@ -708,7 +718,7 @@ Rigidbody2D:
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 51ebe696a2aaada4fa67dbee966391b1, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
@@ -807,6 +817,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   capsule: {fileID: 4013604811783711612}
+  box: {fileID: 4638394427630740885}
   tongue: {fileID: 865660118}
   bodyAnimator: {fileID: 285922387}
   maxWalkSpeed: 10
@@ -833,7 +844,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelCheckpoints: {fileID: 0}
-  mainCamera: {fileID: 0}
   bodyAnimator: {fileID: 285922387}
   playerSpawnEvent:
     m_PersistentCalls:
@@ -1116,7 +1126,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 597ece6d2eaa00e42be9b1645530ad99, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

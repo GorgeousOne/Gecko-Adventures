@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 public class ProjectileTrapController : Triggerable, Resettable {
 	
 	[Header("Shooting")]
-	[SerializeField] [Min(-1)] private int projectileCount = 1;
 	[SerializeField] private GameObject projectileType;
 	[SerializeField] private float projectileSpeed = 30;
 
@@ -37,16 +36,13 @@ public class ProjectileTrapController : Triggerable, Resettable {
 	}
 	
 	public void Shoot() {
-		if (projectileCount != 0) {
-			GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity);
-			Quaternion shootRotation = transform.rotation;
+		GameObject projectile = Instantiate(projectileType, transform.position, Quaternion.identity);
+		Quaternion shootRotation = transform.rotation;
 
-			if (transform.localScale.x < 0) {
-				shootRotation *= Quaternion.Euler(0, 0, 180);
-			}
-			projectile.GetComponent<Rigidbody2D>().velocity = shootRotation * Vector2.right * projectileSpeed;
-			projectileCount -= 1;
+		if (transform.localScale.x < 0) {
+			shootRotation *= Quaternion.Euler(0, 0, 180);
 		}
+		projectile.GetComponent<Rigidbody2D>().velocity = shootRotation * Vector2.right * projectileSpeed;
 	}
 	
 	private bool ReloadTimePassed() {
@@ -54,12 +50,10 @@ public class ProjectileTrapController : Triggerable, Resettable {
 	}
 	
 	public void SaveState() {
-		_savedProjectileCount = projectileCount;
 		_savedLastTimeShot = _lastTimedShot;
 	}
 
 	public void ResetState() {
-		projectileCount = _savedProjectileCount;
 		_lastTimedShot = _savedLastTimeShot;
 	}
 }

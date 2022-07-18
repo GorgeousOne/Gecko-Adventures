@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	[Header("General")]
 	[SerializeField] private LayerMask solidsLayerMask;
 	[SerializeField] private CapsuleCollider2D capsule;
+	[SerializeField] private BoxCollider2D box;
 	[SerializeField] private TongueMovement tongue;
 	[SerializeField] private Animator bodyAnimator;
 	
@@ -92,8 +93,10 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private void Start() {
 		_rigid = GetComponent<Rigidbody2D>();
-		_defaultHeight = capsule.size.y;
-		_defaultCapsuleOffY = capsule.offset.y;
+		// _defaultHeight = capsule.size.y;
+		// _defaultCapsuleOffY = capsule.offset.y;
+		_defaultHeight = box.size.y + 2 * box.edgeRadius;
+		_defaultCapsuleOffY = box.offset.y;
 	}
 	
 	/// <summary>
@@ -162,15 +165,20 @@ public class PlayerMovement : MonoBehaviour {
 	 * Creates a capsule close below the players capsule and checks if it intersects with any ground
 	 */
 	private bool IsGrounded() {
-		Vector2 capsuleSize = capsule.size;
+		// Vector2 capsuleSize = capsule.size;
+		float edge = box.edgeRadius;
+		Vector2 boxSize = box.size + new Vector2(2*edge, 2*edge);
 		
 		//shrinks capsule width to avoid wall jumps
-		capsuleSize.x -= 0.1f;
+		// capsuleSize.x -= 0.1f;
+		boxSize.x -= 0.1f;
 		float groundCheckHeight = transform.parent == null ? .1f : .3f;
 		
-		Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsule.offset - new Vector2(0, groundCheckHeight);
+		// Vector2 capsuleOrigin = (Vector2) capsule.transform.position + capsule.offset - new Vector2(0, groundCheckHeight);
+		Vector2 boxOrigin = (Vector2) box.transform.position + box.offset - new Vector2(0, groundCheckHeight);
 		Physics2D.queriesHitTriggers = false;
-		bool isGrounded = Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
+		// bool isGrounded = Physics2D.OverlapCapsule(capsuleOrigin, capsuleSize, capsule.direction, 0, solidsLayerMask);
+		bool isGrounded = Physics2D.OverlapBox(boxOrigin, boxSize, 0, solidsLayerMask);
 		Physics2D.queriesHitTriggers = true;
 		return isGrounded;
 	}
@@ -332,8 +340,10 @@ public class PlayerMovement : MonoBehaviour {
 		_isCrouching = true;
 		tongue.SetExtendingEnabled(false);
 		
-		capsule.size = new Vector2(capsule.size.x, crouchHeight);
-		capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
+		// capsule.size = new Vector2(capsule.size.x, crouchHeight);
+		// capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
+		box.size = new Vector2(box.size.x, crouchHeight - 2 * box.edgeRadius);
+		box.offset = new Vector2(box.offset.x, _defaultCapsuleOffY - (_defaultHeight - crouchHeight) / 2);
 		
 		_rigid.velocity = new Vector2(
 			Mathf.Clamp(_rigid.velocity.x, -maxCrouchSpeed, maxCrouchSpeed),
@@ -365,8 +375,10 @@ public class PlayerMovement : MonoBehaviour {
 	private void StandUp() {
 		_isCrouching = false;
 		tongue.SetExtendingEnabled(true);
-		capsule.size = new Vector2(capsule.size.x, _defaultHeight);
-		capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY);
+		// capsule.size = new Vector2(capsule.size.x, _defaultHeight - 2 * box.edgeRadius);
+		// capsule.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY);
+		box.size = new Vector2(capsule.size.x, _defaultHeight - 2 * box.edgeRadius);
+		box.offset = new Vector2(capsule.offset.x, _defaultCapsuleOffY);
 	}
 	
 	/// <summary>

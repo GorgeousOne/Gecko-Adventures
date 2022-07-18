@@ -43,10 +43,6 @@ public class PickupHandler : MonoBehaviour {
 		}
 	}
 
-	// private void OnDisable() {
-		// _playerSpawning.playerSpawnEvent.RemoveListener(OnPlayerSpawn);
-	// }
-
 	private void Update() {
 		if (_remainingLightTime <= 0) {
 			if (_isDarkLevel && !_playerSpawning.IsDead()) {

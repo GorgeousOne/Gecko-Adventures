@@ -3,7 +3,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 // [ExecuteAlways]
-public class CameraFollow : MonoBehaviour {
+public class CameraFollow : MonoBehaviour, Resettable {
 
 	[SerializeField] private Transform target;
 	[SerializeField] [Min(0)] private float snapTime = 1f;
@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour {
 				guide.enterEvent.AddListener(OnCameraGuideEnter);
 			}
 		}
-		_snapStartTime = -snapTime;
+		ResetState();
 	}
 
 	private void LateUpdate() {
@@ -40,7 +40,6 @@ public class CameraFollow : MonoBehaviour {
 			return;
 		}
 		Vector3 newGoalPos = GetSnapPoint();
-		
 		//interpolate between current position and guide target point
 		if (_IsSnapping()) {
 			float snapProgress = (LevelTime.time - _snapStartTime) / snapTime;
@@ -70,7 +69,7 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	private IEnumerator DelayUnpause() {
-		yield return new WaitForSeconds(.1f);
+		yield return new WaitForSeconds(.05f);
 		_isFollowingPaused = false;
 	}
 
@@ -84,11 +83,17 @@ public class CameraFollow : MonoBehaviour {
 		_guide = guide;
 		
 		//instantly move to guide target on level starts
-		if (LevelTime.time > snapTime) {
+		if (LevelTime.time < snapTime) {
+			transform.position = GetSnapPoint();
+		} else {
 			_snapStartPos = transform.position;
 			_snapStartTime = LevelTime.time;
-		} else {
-			transform.position = GetSnapPoint();
 		}
+	}
+
+	public void SaveState() {}
+
+	public void ResetState() {
+		_snapStartTime = -snapTime;
 	}
 }

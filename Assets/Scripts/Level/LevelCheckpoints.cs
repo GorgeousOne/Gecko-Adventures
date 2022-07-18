@@ -38,8 +38,8 @@ public class LevelCheckpoints : MonoBehaviour {
 	}
 	
 	public void OnCheckpointReach(Checkpoint checkpoint) {
-		// if (_checkpoints.IndexOf(checkpoint) > _checkpoints.IndexOf(_currentCheckpoint)) {
-		if (checkpoint != _currentCheckpoint) {
+		if (_checkpoints.IndexOf(checkpoint) > _checkpoints.IndexOf(_currentCheckpoint)) {
+		// if (checkpoint != _currentCheckpoint) {
 			if (_currentCheckpoint != null) {
 				_currentCheckpoint.UnhoistFlag();
 			}

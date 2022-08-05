@@ -43,7 +43,8 @@ public class CameraFollow : MonoBehaviour, Resettable {
 		//interpolate between current position and guide target point
 		if (_IsSnapping()) {
 			float snapProgress = (LevelTime.time - _snapStartTime) / snapTime;
-			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
+			// Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, MathUtil.SquareIn(snapProgress));
+			Vector3 finalPos = Vector3.Lerp(_snapStartPos, newGoalPos, Mathf.SmoothStep(0, 1, snapProgress));
 			transform.position = finalPos;
 		//move camera along target
 		} else {

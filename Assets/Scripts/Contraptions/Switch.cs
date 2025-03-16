@@ -11,7 +11,7 @@ public abstract class Switch : MonoBehaviour {
 		IsEnabled = !IsEnabled;
 
 		foreach (Triggerable toggleable in connected) {
-			toggleable.OnSwitchToggle(IsEnabled);
+			toggleable.OnReceiveToggleSignal(IsEnabled);
 		}
 	}
 	

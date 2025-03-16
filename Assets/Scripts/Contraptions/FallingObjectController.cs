@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingObjectController : Triggerable, Resettable {
+public class FallingObjectController : Triggerable, IResettable {
 
     [SerializeField] public GameObject fallingObject;
     [SerializeField] private bool isEnabled = true;
@@ -14,7 +12,6 @@ public class FallingObjectController : Triggerable, Resettable {
     float _lastTimedObject;
 
     private void Start() {
-
         _startTransform = fallingObject.transform;
     }
 
@@ -37,7 +34,7 @@ public class FallingObjectController : Triggerable, Resettable {
         }
     }
 
-    public override void OnSwitchToggle(bool isEnabled) {
+    protected override void OnToggle(bool isEnabled) {
         InstantiateObject(isEnabled);
 	}
 
@@ -49,14 +46,10 @@ public class FallingObjectController : Triggerable, Resettable {
 		Gizmos.DrawIcon(transform.position, "sv_icon_dot14_pix16_gizmo.png", true);
 	}
 
-    public void SaveState() {
-		
-	}
-
-	public void ResetState() {
+	public new void ResetState() {
+        base.ResetState();
 		if (_newFallingObject != null) {
             Destroy(_newFallingObject);
         }
 	}
-
 }

@@ -7,7 +7,7 @@ public abstract class Trigger : MonoBehaviour {
 
 	protected void Activate() {
 		foreach (Triggerable triggerable in connected) {
-			triggerable.OnSwitchToggle(true);
+			triggerable.OnReceiveToggleSignal(true);
 		}
 	}
 	

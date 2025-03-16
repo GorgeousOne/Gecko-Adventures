@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class RisingVoid : MonoBehaviour, Resettable {
+public class RisingVoid : MonoBehaviour, IResettable {
 
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float playerOffsetY = 10;

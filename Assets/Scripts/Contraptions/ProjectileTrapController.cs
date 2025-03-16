@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class ProjectileTrapController : Triggerable, Resettable {
+public class ProjectileTrapController : Triggerable, IResettable {
 	
 	[Header("Shooting")]
 	[SerializeField] private GameObject projectileType;
@@ -29,7 +27,7 @@ public class ProjectileTrapController : Triggerable, Resettable {
 		}
 	}
 
-	public override void OnSwitchToggle(bool isEnabled) {
+	protected override void OnToggle(bool isEnabled) {
 		if (isEnabled) {
 			Shoot();
 		}
@@ -49,11 +47,13 @@ public class ProjectileTrapController : Triggerable, Resettable {
 		return LevelTime.time - _lastTimedShot >= reloadTime;
 	}
 	
-	public void SaveState() {
+	public new void SaveState() {
+		base.SaveState();
 		_savedLastTimeShot = _lastTimedShot;
 	}
 
-	public void ResetState() {
+	public new void ResetState() {
+		base.ResetState();
 		_lastTimedShot = _savedLastTimeShot;
 	}
 }

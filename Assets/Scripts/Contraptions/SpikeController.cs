@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpikeController : MonoBehaviour, Resettable {
+public class SpikeController : MonoBehaviour, IResettable {
 	
 	[Header("Sprites")]
 	[SerializeField] private Collider2D damageCollider;

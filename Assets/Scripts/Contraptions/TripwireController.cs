@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TripwireController : Trigger, Resettable {
+public class TripwireController : Trigger, IResettable {
 
 	private LineRenderer _line;
 	private bool _savedIsIntact;

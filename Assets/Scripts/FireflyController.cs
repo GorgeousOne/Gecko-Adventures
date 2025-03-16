@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FireflyController : MonoBehaviour, Resettable {
+public class FireflyController : MonoBehaviour, IResettable {
 
     private Animator _animator;
     private Vector3 _savedPos;

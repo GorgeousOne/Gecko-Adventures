@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DoorController : Triggerable, Resettable {
+public class DoorController : Triggerable, IResettable {
 
 	[SerializeField] private Vector2 openOffset;
-	[FormerlySerializedAs("moveTime")] [SerializeField] private float openingTime = 1;
+	[SerializeField] private float openingTime = 1;
 	[SerializeField] private float closingTime = 1;
 
 	private Vector2 _startPos;
@@ -27,7 +27,7 @@ public class DoorController : Triggerable, Resettable {
 	}
 
 	// Update is called once per frame
-	void Update() {
+	new void Update() {
 		float moveDuration = LevelTime.time - _moveStartTime;
 		float openingProgress;
 
@@ -43,7 +43,7 @@ public class DoorController : Triggerable, Resettable {
 		transform.position = Vector2.Lerp(_startPos, _startPos + openOffset, openingProgress);
 	}
 
-	public override void OnSwitchToggle(bool isEnabled) {
+	protected override void OnToggle(bool isEnabled) {
 		if (isEnabled == _isOpening) {
 			return;
 		}
@@ -64,12 +64,14 @@ public class DoorController : Triggerable, Resettable {
 	}
 
 	
-	public void SaveState() {
+	public new void SaveState() {
+		base.SaveState();
 		_savedWasOpen = _isOpening;
 		_savedMoveStart = _moveStartTime;
 	}
 	
-	public void ResetState() {
+	public new void ResetState() {
+		base.ResetState();
 		_isOpening = _savedWasOpen;
 		_moveStartTime = _savedMoveStart;
 	}

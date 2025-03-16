@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class UnstableController : MonoBehaviour, Resettable {
+public class UnstableController : MonoBehaviour, IResettable {
 
 	public UnityEvent BreakEvent;
 	

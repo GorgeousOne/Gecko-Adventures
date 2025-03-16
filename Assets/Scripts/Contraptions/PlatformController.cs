@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class PlatformController : Triggerable, Resettable {
+												//somehow resetting only works if IResettable inherited directly
+public class PlatformController : Triggerable, IResettable {
 
 	[SerializeField] private Vector2 targetOffset;
 	[SerializeField] private float moveOffset;
 	[SerializeField] private float moveTime = 2;
 	[SerializeField] private float waitTime = 2;
-	[SerializeField] private bool isEnabled = true;
-	[SerializeField] private float enableDelay = 0;
+	[SerializeField] private bool _isTriggered = true;
 
 	private Vector2 _startPos;
 	private bool _isMovingForward = true;
@@ -16,7 +16,7 @@ public class PlatformController : Triggerable, Resettable {
 	private Vector2 _savedPos;
 	private bool _savedWasMovingForward;
 	private float _savedMoveStart;
-	private bool _saveWasEnabled;
+	private bool _saveWasTriggered;
 	
 	private void Start() {
 		_startPos = transform.position;
@@ -27,8 +27,9 @@ public class PlatformController : Triggerable, Resettable {
 	/**
 	 * Interpolates platform position over time making it move between start and target
 	 */
-	private void FixedUpdate() {
-		if (isEnabled) {
+	private new void FixedUpdate() {
+		base.FixedUpdate();
+		if (_isTriggered) {
 			if (PassedMovementTime()) {
 				_isMovingForward = !_isMovingForward;
 				_moveStart += moveTime + waitTime;
@@ -64,12 +65,13 @@ public class PlatformController : Triggerable, Resettable {
 		return moveDistance / totalDistance;
 	}
 
-	public override void OnSwitchToggle(bool isEnabled) {
-		this.isEnabled = isEnabled;
+	protected override void OnToggle(bool isEnabled) {
+		Debug.Log("oh boy " + isEnabled);
+		_isTriggered = isEnabled;
 
 		if (isEnabled) {
 			float moveProgress = _GetMoveProgress();
-			_moveStart = LevelTime.time - moveProgress * moveTime + enableDelay;
+			_moveStart = LevelTime.time - moveProgress * moveTime;
 		}
 	}
 
@@ -98,18 +100,22 @@ public class PlatformController : Triggerable, Resettable {
 		Gizmos.DrawLine(position, position + targetOffset);
 	}
 	
-	public void SaveState() {
+	public new void SaveState() {
+		base.SaveState();
 		_savedPos = transform.position;
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
-		_saveWasEnabled = isEnabled;
+		_saveWasTriggered = _isTriggered;
+		Debug.Log("save trigger " + _isTriggered);
 	}
 
 	
-	public void ResetState() {
+	public new void ResetState() {
+		base.ResetState();
 		transform.position = _savedPos;
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;
-		isEnabled = _saveWasEnabled;
+		_isTriggered = _saveWasTriggered;
+		Debug.Log("load trigger " + _saveWasTriggered);
 	}
 }

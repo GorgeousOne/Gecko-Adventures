@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6872663922335979624}
   - component: {fileID: 8898675831166523373}
   m_Layer: 0
-  m_Name: WallSwitch
+  m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -862980261
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 692284727, guid: 629ac8652e41ff4438636018505bbaf6, type: 3}
+  m_Sprite: {fileID: 1663832817, guid: 45a264f619213ab4a8892022fee48439, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,8 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54a4675266d04108a5396cdc2d50a373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disabledSprite: {fileID: 692284727, guid: 629ac8652e41ff4438636018505bbaf6, type: 3}
-  enabledSprite: {fileID: -980318888, guid: 629ac8652e41ff4438636018505bbaf6, type: 3}
+  disabledSprite: {fileID: 1663832817, guid: 45a264f619213ab4a8892022fee48439, type: 3}
+  enabledSprite: {fileID: 1245940355, guid: 45a264f619213ab4a8892022fee48439, type: 3}
   connected: []
 --- !u!114 &8898675831166523373
 MonoBehaviour:

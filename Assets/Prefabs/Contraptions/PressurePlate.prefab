@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6859728513180509421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: -0.011628827}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -917301813
   m_SortingLayer: -1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 130066344, guid: 29c184f5a565cd54fb10eb9d4cccca7a, type: 3}
+  m_Sprite: {fileID: -259897101, guid: 45a264f619213ab4a8892022fee48439, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6957260076335445513}
   - component: {fileID: 8812904031642053384}
   m_Layer: 0
-  m_Name: FloorSwitch
+  m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +161,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.40625}
+  m_Offset: {x: 0, y: 0.40625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -188,4 +188,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connected: []
   rendering: {fileID: 3269017084380983741}
-  pressedOffset: {x: 0, y: 0}
+  pressedOffset: {x: 0, y: -0.1875}

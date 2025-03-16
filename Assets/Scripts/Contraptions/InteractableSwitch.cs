@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableSwitch : Interactable, Resettable {
+public class InteractableSwitch : Interactable, IResettable {
 
 	[SerializeField] private Sprite disabledSprite;
 	[SerializeField] private Sprite enabledSprite;
@@ -26,7 +26,7 @@ public class InteractableSwitch : Interactable, Resettable {
 		_renderer.sprite = IsEnabled ? enabledSprite : disabledSprite;
 
 		foreach (Triggerable toggleable in connected) {
-			toggleable.OnSwitchToggle(IsEnabled);
+			toggleable.OnReceiveToggleSignal(IsEnabled);
 		}
 	}
 	

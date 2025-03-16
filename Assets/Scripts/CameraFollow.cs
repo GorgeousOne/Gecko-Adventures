@@ -3,7 +3,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 // [ExecuteAlways]
-public class CameraFollow : MonoBehaviour, Resettable {
+public class CameraFollow : MonoBehaviour, IResettable {
 
 	[SerializeField] private Transform target;
 	[SerializeField] [Min(0)] private float snapTime = 1f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrowController : MonoBehaviour, Resettable {
+public class ArrowController : MonoBehaviour, IResettable {
 
 	[SerializeField] [Min(0f)] private float despawnRate = 5;
 	

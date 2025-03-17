@@ -361,6 +361,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level3
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -469,6 +489,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -575,6 +615,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level0
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -681,6 +741,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Outro
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -787,6 +867,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level3
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -893,6 +993,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3190967647486550006}
     m_Modifications:
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelLoader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907569051970111374, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Level1
+      objectReference: {fileID: 0}
     - target: {fileID: 1907569051970111375, guid: 310e2ea94bbd5064ca66925722d3173a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

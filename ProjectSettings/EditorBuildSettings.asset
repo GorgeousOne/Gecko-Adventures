@@ -18,12 +18,9 @@ EditorBuildSettings:
     path: Assets/Levels/Level2.unity
     guid: 62a5ff8580af3614fb0a198d5142732b
   - enabled: 1
-    path: Assets/Levels/Level2Mask.unity
-    guid: e5d19c212603a4049bac958194b74450
-  - enabled: 1
-    path: Assets/Levels/Level3.unity
-    guid: 28acf6bc7a563c74b880c822a8fa2bd0
-  - enabled: 1
     path: Assets/Levels/Outro.unity
     guid: df04c88166cdd314e9a6f9eb7090af94
+  - enabled: 1
+    path: Assets/Levels/Level3.unity
+    guid: 7f594c8c80ba0e942a67748a58daef37
   m_configObjects: {}

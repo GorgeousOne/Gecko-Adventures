@@ -27,7 +27,7 @@ public class DoorController : Triggerable, IResettable {
 	}
 
 	// Update is called once per frame
-	new void Update() {
+	void Update() {
 		float moveDuration = LevelTime.time - _moveStartTime;
 		float openingProgress;
 

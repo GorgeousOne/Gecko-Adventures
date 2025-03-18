@@ -1,7 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SpikeController : MonoBehaviour, IResettable {
+public class SpikeController : Triggerable, IResettable {
+	
+	[SerializeField] private bool isExtended = true;
 	
 	[Header("Sprites")]
 	[SerializeField] private Collider2D damageCollider;
@@ -19,7 +22,6 @@ public class SpikeController : MonoBehaviour, IResettable {
 	[SerializeField] private float trampleTriggerOffset = 1f;
 	[SerializeField] [Min(.1f)] private float trampleTriggerExtendTime = 3;
 
-	private bool _isExtended = true;
 	private SpriteRenderer _renderer;
 
 	private bool _savedWasExtended;
@@ -29,33 +31,34 @@ public class SpikeController : MonoBehaviour, IResettable {
 	private void OnEnable() {
 		_spikeExtendAudio = GetComponent<AudioSource>();
 
-		if (!timedActivationEnabled && !trampleActivationEnabled) {
+		if (isExtended && !timedActivationEnabled && !trampleActivationEnabled) {
 			Destroy(this);
 		}
 		_renderer = GetComponent<SpriteRenderer>();
-		SetExtended(_isExtended && !trampleActivationEnabled);
+		SetExtended(isExtended && !trampleActivationEnabled);
 	}
 	
 	private void Update() {
 		// _spikeExtendAudio = GetComponent<AudioSource>();
 
 		if (timedActivationEnabled && !trampleActivationEnabled) {
-			if (_isExtended != CalcTimedExtendedState()) {
-				SetExtended(!_isExtended);
+			if (isExtended != CalcTimedExtendedState()) {
+				SetExtended(!isExtended);
 			}
 		}
 	}
 	
 	public void SetExtended(bool state) {
-		_isExtended = state;
-		_renderer.sprite = _isExtended ? extended : retracted;
-		damageCollider.enabled = _isExtended;
+		isExtended = state;
+		_renderer.sprite = isExtended ? extended : retracted;
+		damageCollider.enabled = isExtended;
 		// _spikeExtendAudio = GetComponent<AudioSource>();
-		_spikeExtendAudio.enabled = _isExtended;
+		_spikeExtendAudio.enabled = isExtended;
+		_savedWasExtended = isExtended;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if (!_isExtended && trampleActivationEnabled && other.CompareTag("Player")) {
+		if (!isExtended && trampleActivationEnabled && other.CompareTag("Player")) {
 			StartCoroutine(TrampleExtend());
 		}
 	}
@@ -72,12 +75,16 @@ public class SpikeController : MonoBehaviour, IResettable {
 	private bool CalcTimedExtendedState() {
 		return MathUtil.FloorMod(LevelTime.time - extendOffset, extendTime + retractTime) < extendTime;
 	}
-	
-	public void SaveState() {
-		_savedWasExtended = _isExtended;
+
+	protected override void OnToggle(bool isEnabled) {
+		SetExtended(true);
 	}
 
-	public void ResetState() {
-		_isExtended = _savedWasExtended;
+	public new void SaveState() {
+		_savedWasExtended = isExtended;
+	}
+
+	public new void ResetState() {
+		isExtended = _savedWasExtended;
 	}
 }

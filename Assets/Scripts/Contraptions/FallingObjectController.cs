@@ -30,7 +30,8 @@ public class FallingObjectController : Triggerable, IResettable {
         }
 
         if (isEnabled) {
-            _newFallingObject = Instantiate(fallingObject, transform.position, Quaternion.identity);
+            _newFallingObject = Instantiate(fallingObject, transform.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
+            _newFallingObject.GetComponent<Rigidbody2D>().angularVelocity = Random.Range(-100, 100);
         }
     }
 

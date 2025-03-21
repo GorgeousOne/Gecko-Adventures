@@ -487,34 +487,10 @@ MonoBehaviour:
     m_Bits: 1024
   attachAction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5433256748530262006}
-        m_TargetAssemblyTypeName: PlayerMovement2, Assembly-CSharp
-        m_MethodName: OnTongueAttach
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   detachAction:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5433256748530262006}
-        m_TargetAssemblyTypeName: PlayerMovement2, Assembly-CSharp
-        m_MethodName: OnTongueDetach
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!82 &883600741
 AudioSource:
   m_ObjectHideFlags: 0
@@ -830,7 +806,7 @@ MonoBehaviour:
   ceilingCheck: {fileID: 5804040253721151812}
   crushCheck: {fileID: 2248802424566103193}
   swingForce: 17
-  ropingSpeed: 10
+  detachBoost: 17
 --- !u!114 &8144296564121727022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,14 +1359,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 71ec0013-73b5-4b3e-9fe6-a95e9c6889b7
     m_ActionName: Player/TongueShootGamepad[/XInputControllerWindows/rightStick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fdcce477-f2dc-4d87-aef4-b43eee4c9148
-    m_ActionName: Player/TongueRetract[/Mouse/rightButton,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0f6aa197-337e-4d36-88e5-00329ce4a97a
-    m_ActionName: Player/TongueExtend[/Mouse/leftButton,/XInputControllerWindows/buttonNorth]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 26b1b899-9331-44f9-b332-fead2f50c579

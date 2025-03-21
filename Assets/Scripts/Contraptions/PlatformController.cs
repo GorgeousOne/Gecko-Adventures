@@ -106,7 +106,6 @@ public class PlatformController : Triggerable, IResettable {
 		_savedWasMovingForward = _isMovingForward;
 		_savedMoveStart = _moveStart;
 		_saveWasTriggered = _isTriggered;
-		Debug.Log("save trigger " + _isTriggered);
 	}
 
 	
@@ -116,6 +115,5 @@ public class PlatformController : Triggerable, IResettable {
 		_isMovingForward = _savedWasMovingForward;
 		_moveStart = _savedMoveStart;
 		_isTriggered = _saveWasTriggered;
-		Debug.Log("load trigger " + _saveWasTriggered);
 	}
 }

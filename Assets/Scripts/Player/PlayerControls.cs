@@ -91,24 +91,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""TongueRetract"",
-                    ""type"": ""Button"",
-                    ""id"": ""fdcce477-f2dc-4d87-aef4-b43eee4c9148"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TongueExtend"",
-                    ""type"": ""Button"",
-                    ""id"": ""0f6aa197-337e-4d36-88e5-00329ce4a97a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""26b1b899-9331-44f9-b332-fead2f50c579"",
@@ -339,50 +321,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a3853670-6ba3-43e8-a9d3-08151371b169"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""TongueRetract"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""11200629-5800-4146-8a7c-b062c828f79b"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""TongueRetract"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3b316bbd-f181-4133-b8c5-7fb35f7dab66"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""TongueExtend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""784e7cc8-45e1-46b8-b867-5aa3e06414e1"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TongueExtend"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8c2d5931-efa4-40bb-a9f2-191407769707"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -467,8 +405,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_TongueAim = m_Player.FindAction("TongueAim", throwIfNotFound: true);
         m_Player_TongueShoot = m_Player.FindAction("TongueShoot", throwIfNotFound: true);
         m_Player_TongueShootGamepad = m_Player.FindAction("TongueShootGamepad", throwIfNotFound: true);
-        m_Player_TongueRetract = m_Player.FindAction("TongueRetract", throwIfNotFound: true);
-        m_Player_TongueExtend = m_Player.FindAction("TongueExtend", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
     }
@@ -537,8 +473,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_TongueAim;
     private readonly InputAction m_Player_TongueShoot;
     private readonly InputAction m_Player_TongueShootGamepad;
-    private readonly InputAction m_Player_TongueRetract;
-    private readonly InputAction m_Player_TongueExtend;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_Back;
     public struct PlayerActions
@@ -552,8 +486,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @TongueAim => m_Wrapper.m_Player_TongueAim;
         public InputAction @TongueShoot => m_Wrapper.m_Player_TongueShoot;
         public InputAction @TongueShootGamepad => m_Wrapper.m_Player_TongueShootGamepad;
-        public InputAction @TongueRetract => m_Wrapper.m_Player_TongueRetract;
-        public InputAction @TongueExtend => m_Wrapper.m_Player_TongueExtend;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -586,12 +518,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueShootGamepad.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueShootGamepad;
                 @TongueShootGamepad.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueShootGamepad;
                 @TongueShootGamepad.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueShootGamepad;
-                @TongueRetract.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
-                @TongueRetract.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
-                @TongueRetract.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueRetract;
-                @TongueExtend.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
-                @TongueExtend.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
-                @TongueExtend.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTongueExtend;
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
@@ -623,12 +549,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @TongueShootGamepad.started += instance.OnTongueShootGamepad;
                 @TongueShootGamepad.performed += instance.OnTongueShootGamepad;
                 @TongueShootGamepad.canceled += instance.OnTongueShootGamepad;
-                @TongueRetract.started += instance.OnTongueRetract;
-                @TongueRetract.performed += instance.OnTongueRetract;
-                @TongueRetract.canceled += instance.OnTongueRetract;
-                @TongueExtend.started += instance.OnTongueExtend;
-                @TongueExtend.performed += instance.OnTongueExtend;
-                @TongueExtend.canceled += instance.OnTongueExtend;
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
@@ -666,8 +586,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnTongueAim(InputAction.CallbackContext context);
         void OnTongueShoot(InputAction.CallbackContext context);
         void OnTongueShootGamepad(InputAction.CallbackContext context);
-        void OnTongueRetract(InputAction.CallbackContext context);
-        void OnTongueExtend(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnBack(InputAction.CallbackContext context);
     }

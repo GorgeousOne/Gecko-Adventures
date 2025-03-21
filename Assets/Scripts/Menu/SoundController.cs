@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SoundController : MonoBehaviour{
 
-    [FormerlySerializedAs("VolumeSlider")] [SerializeField] private Slider volumeSlider;
+    [SerializeField] private Slider volumeSlider;
 
     // Start is called before the first frame update
     private void Start() {

@@ -55,10 +55,31 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 8400000, guid: 059cce3732051ca468451d7064f9ffa5, type: 2}
+    - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 213927269298951080, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 213927269298951083, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
       propertyPath: m_Name
       value: GrabPass
       objectReference: {fileID: 0}
+    - target: {fileID: 6407650930441895462, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+      propertyPath: m_Name
+      value: ObsoleteIneritanceThing
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 213927269298951082, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
+    - {fileID: 233743795975074673, guid: 8d68751fd435cb842852359ddb937d00, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d68751fd435cb842852359ddb937d00, type: 3}

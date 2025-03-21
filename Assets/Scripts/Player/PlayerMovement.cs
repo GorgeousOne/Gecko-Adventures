@@ -1,6 +1,8 @@
 using System;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class PlayerMovement : MonoBehaviour {
 	
@@ -38,8 +40,8 @@ public class PlayerMovement : MonoBehaviour {
 	
 	[Header("Swing")]
 	[SerializeField] private float swingForce = 17;
-	[SerializeField] private float ropingSpeed = 10;
-
+	[SerializeField] private float detachBoost = 10;
+	
 	private bool _isEnabled = true;
 	private PlayerSpawning _playerSpawning;
 	private float _jumpPressedRemember;
@@ -48,15 +50,13 @@ public class PlayerMovement : MonoBehaviour {
 	private float _stopRunTime;
 	private float _stopRunVelocity;
 	private bool _wasRunning;
-	private bool _isFacingRight;
+	//allow faster air movement after tongue detaching for smoother jumps
+	private bool _isAirBoosted;
 
 	private Rigidbody2D _rigid;
 	// private CapsuleCollider2D capsule;
 	private PlayerControls _controls;
 	private DistanceJoint2D _tongueConnection;
-
-	private bool _isExtendingTongue;
-	private bool _isRetractingTongue;
 
 	private float _lastMovementInput;
 	private bool _jumpInputPerformed;
@@ -69,21 +69,21 @@ public class PlayerMovement : MonoBehaviour {
 	
 	private void OnEnable() {
 		_controls = new PlayerControls();
-		_controls.Player.TongueExtend.performed += _ => _isExtendingTongue = true;
-		_controls.Player.TongueExtend.canceled += _ => _isExtendingTongue = false;
-		_controls.Player.TongueRetract.performed += _ => _isRetractingTongue = true;
-		_controls.Player.TongueRetract.canceled += _ => _isRetractingTongue = false;
 		_controls.Player.Crouch.performed += _ => _wantsCrouch = true;
 		_controls.Player.Crouch.canceled += _ => _wantsCrouch = false;
 		_controls.Enable();
 
 		_playerSpawning = GetComponent<PlayerSpawning>();
-		_playerSpawning.playerDeathEvent.AddListener(tongue.Detach);
+		_playerSpawning.playerDeathEvent.AddListener(() => SetMovingEnabled(false)); 
+		_playerSpawning.playerSpawnEvent.AddListener(() => SetMovingEnabled(true));
 
 		_walkingAudios = GetComponents<AudioSource>();
 		_walkingAudios[0].enabled = false;
 		_walkingAudios[1].enabled = false;
 		_walkingAudios[2].enabled = false;
+
+		tongue.attachAction.AddListener(OnTongueAttach);
+		tongue.detachAction.AddListener(OnTongueDetach);
 	}
 
 	private void OnDisable() {
@@ -104,10 +104,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// </summary>
 	private void Update() {
 		if (_playerSpawning.IsDead() || !_isEnabled) {
+			_lastMovementInput = 0;
 			return;
 		}
 		_lastMovementInput = _controls.Player.Move.ReadValue<float>();
-		
 		if (_controls.Player.Jump.WasPerformedThisFrame()) {
 			_jumpInputPerformed = true;
 		}
@@ -128,14 +128,14 @@ public class PlayerMovement : MonoBehaviour {
 			_playerSpawning.Die();
 		}
 		bool isGrounded = CheckGrounding();
+		_isAirBoosted &= !isGrounded;
 		
 		if (!_playerSpawning.IsDead()) {
 			CheckCrouching();
 			CheckJumping();
-			CheckTongueLengthChange();
 		}
 		CheckHorizontalMovement(tongue.IsAttached() && !isGrounded);
-		_lastMovementInput = 0;
+		// _lastMovementInput = 0;
 		_jumpInputPerformed = false;
 		
 		bodyAnimator.SetFloat("VelY", _rigid.velocity.y);
@@ -146,6 +146,10 @@ public class PlayerMovement : MonoBehaviour {
 	public void SetMovingEnabled(bool state) {
 		_isEnabled = state;
 		tongue.SetExtendingEnabled(state);
+
+		if (!_isEnabled) {
+			_rigid.velocity = Vector2.zero;
+		}
 	}
 
 	public bool CheckGrounding() {
@@ -202,26 +206,10 @@ public class PlayerMovement : MonoBehaviour {
 		}		
 	}
 
-	/// <summary>
-	/// Extends swinging tongue on right click and extends it on left click
-	/// </summary>
-	private void CheckTongueLengthChange() {
-		if (tongue.IsAttached()) {
-			float newTongueLength = _tongueConnection.distance;
-			
-			if (_isExtendingTongue) {
-				newTongueLength += ropingSpeed * Time.fixedDeltaTime;
-			} else if (_isRetractingTongue) {
-				newTongueLength -= ropingSpeed * Time.fixedDeltaTime;
-			}
-			_tongueConnection.distance = Mathf.Clamp(newTongueLength, 1, tongue.GetMaxLength());
-		}
-	}
-	
-	private void CheckHorizontalMovement(bool isHanging) {
+	private void CheckHorizontalMovement(bool isSwinging) {
 		float horizontalInput = _lastMovementInput;
 
-		_rigid.velocity = isHanging ?
+		_rigid.velocity = isSwinging ?
 				CalcSwingVelocity(_rigid.velocity, horizontalInput) :
 				CalcWalkVelocity(_rigid.velocity, horizontalInput);
 	}
@@ -263,7 +251,7 @@ public class PlayerMovement : MonoBehaviour {
 			return velocity;
 		}
 		//adds an impulse to velocity based on the swinging angle and input direction
-		Vector2 impulse = GetSwingRightVector2() * (Mathf.Sign(horizontalInput) * swingForce * Time.fixedDeltaTime);
+		Vector2 impulse = GetSwingRightVector() * (Mathf.Sign(horizontalInput) * swingForce * Time.fixedDeltaTime);
 		return velocity + impulse;
 	}
 	
@@ -271,7 +259,7 @@ public class PlayerMovement : MonoBehaviour {
 	/// returns like... the tangent direction of the current point on the swinging circle
 	/// </summary>
 	/// <returns></returns>
-	public Vector2 GetSwingRightVector2() {
+	public Vector2 GetSwingRightVector() { 
 		if (tongue.IsAttached()) {
 			Vector2 attachDirection = tongue.GetAttachPoint() - transform.position;
 			return new Vector2(attachDirection.y, -attachDirection.x).normalized;
@@ -303,6 +291,10 @@ public class PlayerMovement : MonoBehaviour {
 	/// <returns></returns>
 	private float GetAccelerated(float currentSpeed, float direction) {
 		float maxMovementSpeed = _isCrouching ? maxCrouchSpeed : maxWalkSpeed;
+		//keep smooth trajectory when exiting a swing point
+		if (_isAirBoosted) {
+			maxMovementSpeed = Mathf.Max(maxMovementSpeed, Math.Abs(currentSpeed));
+		}
 		float acceleration = Time.fixedDeltaTime / accelerateTime * maxMovementSpeed;
 		float newSpeed = currentSpeed + direction * acceleration;
 		return Math.Clamp(newSpeed, -maxMovementSpeed, maxMovementSpeed);
@@ -400,6 +392,15 @@ public class PlayerMovement : MonoBehaviour {
 	/// Removes tongue joint on tongue detach
 	/// </summary>
 	public void OnTongueDetach() {
+		Debug.Log("lets detach");
 		Destroy(_tongueConnection);
+		
+		if (_lastMovementInput != 0) {
+			Vector2 boost = detachBoost * Mathf.Sign(_lastMovementInput) * GetSwingRightVector();
+			boost.y = _rigid.velocity.y;
+			Debug.Log(boost);
+			_rigid.velocity = boost;
+			_isAirBoosted = true;
+		}
 	}
 }

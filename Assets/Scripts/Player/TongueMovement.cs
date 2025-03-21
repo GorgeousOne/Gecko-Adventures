@@ -8,8 +8,8 @@ public class TongueMovement : MonoBehaviour {
 	[SerializeField] private float stayExtendedTime = 0.2f;
 	[SerializeField] private LayerMask attachLayerMask;
 	[SerializeField] private LayerMask collectLayerMask;
-	[SerializeField] private TriggerEvent attachAction;
-	[SerializeField] private UnityEvent detachAction;
+	public UnityColliderEvent attachAction;
+	public UnityEvent detachAction;
 
 	private PlayerControls _controls;
 	private Transform _pivot;
@@ -121,6 +121,10 @@ public class TongueMovement : MonoBehaviour {
 
 	public void SetExtendingEnabled(bool state) {
 		_canExtend = state;
+
+		if (!state) {
+			Detach();
+		}
 	}
 	
 	private Vector2 GetAimDir(Vector2 aim) {
@@ -173,9 +177,10 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void Detach() {
+		Debug.Log("THIS IS NOT A DRILL");
+		detachAction.Invoke();
 		_attachment = null;
 		SetExtendDistance(0);
-		detachAction.Invoke();
 		_extendStart = -100;
 		UpdateExtendLength();
 	}
@@ -229,4 +234,4 @@ public class TongueMovement : MonoBehaviour {
 }
 
 [Serializable]
-public class TriggerEvent : UnityEvent<Collider2D> {}
+public class UnityColliderEvent : UnityEvent<Collider2D> {}

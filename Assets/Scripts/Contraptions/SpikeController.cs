@@ -54,7 +54,6 @@ public class SpikeController : Triggerable, IResettable {
 		damageCollider.enabled = isExtended;
 		// _spikeExtendAudio = GetComponent<AudioSource>();
 		_spikeExtendAudio.enabled = isExtended;
-		_savedWasExtended = isExtended;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
@@ -85,6 +84,6 @@ public class SpikeController : Triggerable, IResettable {
 	}
 
 	public new void ResetState() {
-		isExtended = _savedWasExtended;
+		SetExtended(_savedWasExtended);
 	}
 }

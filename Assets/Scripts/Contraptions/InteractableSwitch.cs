@@ -6,15 +6,17 @@ public class InteractableSwitch : Interactable, IResettable {
 
 	[SerializeField] private Sprite disabledSprite;
 	[SerializeField] private Sprite enabledSprite;
+	[SerializeField] private float deepPitch = 0.8f;
 	[SerializeField] private List<Triggerable> connected;
 	
 	protected bool IsEnabled;
 	protected bool _savedWasEnabled;
 	private SpriteRenderer _renderer;
-
+	private AudioSource _sound;
+	
 	private void Start() {
 		_renderer = GetComponent<SpriteRenderer>();
-
+		_sound = GetComponent<AudioSource>();
 	}
 
 	protected override void OnInteract() {
@@ -28,6 +30,10 @@ public class InteractableSwitch : Interactable, IResettable {
 		foreach (Triggerable toggleable in connected) {
 			toggleable.OnReceiveToggleSignal(IsEnabled);
 		}
+
+		_sound.pitch = IsEnabled ? 1f : deepPitch;
+		_sound.Play();
+		
 	}
 	
 	protected void OnDrawGizmos() {

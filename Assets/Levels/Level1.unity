@@ -326,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: shootOffset
@@ -692,6 +692,7 @@ Transform:
   - {fileID: 2113812968}
   - {fileID: 422828390}
   - {fileID: 1991169537}
+  - {fileID: 1755916526}
   - {fileID: 1420681173}
   - {fileID: 206099568}
   m_Father: {fileID: 0}
@@ -1324,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: shootOffset
@@ -2202,6 +2203,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de530247546666946adcb0695e6202aa, type: 3}
+--- !u!1001 &397469289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 150142065}
+    m_Modifications:
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852525404899271293, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+      propertyPath: m_Name
+      value: Checkpoint (4.5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
 --- !u!4 &398266559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645638648957679950, guid: de530247546666946adcb0695e6202aa, type: 3}
@@ -2871,7 +2929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: projectileSpeed
@@ -3268,7 +3326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 3.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: shootOffset
@@ -3352,11 +3410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 35
+      value: 138.5
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4465,7 +4523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 3.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: shootOffset
@@ -318647,7 +318705,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -319891,6 +319949,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1670514054}
     m_Modifications:
     - target: {fileID: 3567254593456412904, guid: b247d759401a2ca4b80c3b0547688cc9, type: 3}
+      propertyPath: reloadTime
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567254593456412904, guid: b247d759401a2ca4b80c3b0547688cc9, type: 3}
       propertyPath: projectileSpeed
       value: 20
       objectReference: {fileID: 0}
@@ -320040,7 +320102,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -320245,7 +320307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: reloadTime
-      value: 3.75
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5435425931369086633, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
       propertyPath: shootOffset
@@ -321180,19 +321242,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: -0.16115701
+      value: -0.06737588
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.19072165
+      value: 0.14426878
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1.322314
+      value: 1.1347518
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.61855674
+      value: 0.7114625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
@@ -321531,6 +321593,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de530247546666946adcb0695e6202aa, type: 3}
+--- !u!4 &1755916526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
+  m_PrefabInstance: {fileID: 397469289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1762973530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321612,8 +321679,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1670514054}
     m_Modifications:
     - target: {fileID: 3567254593456412904, guid: b247d759401a2ca4b80c3b0547688cc9, type: 3}
+      propertyPath: reloadTime
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567254593456412904, guid: b247d759401a2ca4b80c3b0547688cc9, type: 3}
       propertyPath: shootOffset
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 3567254593456412904, guid: b247d759401a2ca4b80c3b0547688cc9, type: 3}
       propertyPath: projectileSpeed
@@ -322341,7 +322412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950342167691250928, guid: d5aae1f0aeaa9604d82cf1caf44025b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 109.5
+      value: 110.5
       objectReference: {fileID: 0}
     - target: {fileID: 5950342167691250928, guid: d5aae1f0aeaa9604d82cf1caf44025b4, type: 3}
       propertyPath: m_LocalPosition.y

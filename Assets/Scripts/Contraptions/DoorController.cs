@@ -6,39 +6,39 @@ public class DoorController : Triggerable, IResettable {
 	[SerializeField] private Vector2 openOffset;
 	[SerializeField] private float openingTime = 1;
 	[SerializeField] private float closingTime = 1;
-
+	[SerializeField] private float deepPitch = 0.9f;
+	
 	private Vector2 _startPos;
 	private bool _isOpening;
 	private float _moveStartTime;
 
-	private bool _savedWasOpen;
+	private bool _savedWasOpen;	
 	private float _savedMoveStart;
 
-	private AudioSource[] _listOfDoorAudios;
+	private AudioSource _sound;
 	
 	private void Start() {
 		_startPos = transform.position;
 		//set door to end of moving animation
 		_moveStartTime = Time.deltaTime - (_isOpening ? openingTime : closingTime);
 		SaveState();
-		_listOfDoorAudios = GetComponents<AudioSource>();
-		_listOfDoorAudios[0].enabled = false;
-		_listOfDoorAudios[1].enabled = false;
+		_sound = GetComponent<AudioSource>();
 	}
 
-	// Update is called once per frame
 	void Update() {
 		float moveDuration = LevelTime.time - _moveStartTime;
 		float openingProgress;
 
 		if (_isOpening) {
 			openingProgress = Mathf.Clamp01(moveDuration / openingTime);
-			_listOfDoorAudios[0].enabled = true;
-			_listOfDoorAudios[1].enabled = false;
+			if (openingProgress >= 1) {
+				_sound.Stop();
+			}
 		} else {
 			openingProgress = 1 - Mathf.Clamp01(moveDuration / closingTime);
-			_listOfDoorAudios[0].enabled = false;
-			_listOfDoorAudios[1].enabled = true;
+			if (openingProgress <= 0) {
+				_sound.Stop();
+			}
 		}
 		transform.position = Vector2.Lerp(_startPos, _startPos + openOffset, openingProgress);
 	}
@@ -55,6 +55,8 @@ public class DoorController : Triggerable, IResettable {
 			_moveStartTime = LevelTime.time - openingTime * openingProgress;
 		}
 		_isOpening = isEnabled;
+		_sound.pitch = _isOpening ? 1f : deepPitch;
+		_sound.Play();
 	}
 
 	private void OnDrawGizmos() {

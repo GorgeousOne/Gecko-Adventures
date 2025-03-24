@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2c3fa30af252ee458bc1da52aa3f532
+guid: 88fcd4d320f820549bf174d4f60e2c1c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallBlack_0
+      name: WallMossy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dda2b42a3b28ad74e84dd550b537884d
-      internalID: 879481031
+      spriteID: c559653bbdc9ae64b8d0204f89fed426
+      internalID: -726874728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_1
+      name: WallMossy_1
       rect:
         serializedVersion: 2
         x: 16
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1efdfabf43e097a4f8ae9485c232f071
-      internalID: 246880686
+      spriteID: 28d6cc051f13d844eb70ac1af2e095ed
+      internalID: -855989582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_2
+      name: WallMossy_2
       rect:
         serializedVersion: 2
         x: 32
@@ -172,35 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 465e98cd28a91f343af5f4d6dff9cc0e
-      internalID: -1146401692
+      spriteID: 598effe62bf7dee44a0df73d4fa331ed
+      internalID: 65437555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 11c597c3c70e8d348afaa1c4545d5e0e
-      internalID: 1009307908
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_4
+      name: WallMossy_3
       rect:
         serializedVersion: 2
         x: 0
@@ -214,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89a58b6bc4e277043bb7371f5a2ab0aa
-      internalID: 872263118
+      spriteID: fa848e28242d5b24f988394a23e9801c
+      internalID: -1100653000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_5
+      name: WallMossy_4
       rect:
         serializedVersion: 2
         x: 16
@@ -235,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9c50f66267dca949bbc6934413421d4
-      internalID: -223659999
+      spriteID: a0d4afed583e2b24db795ff256bb5bb9
+      internalID: 71909195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_6
+      name: WallMossy_5
       rect:
         serializedVersion: 2
         x: 32
@@ -256,35 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fdd5f3e2738bab4e9e86fed222e55bf
-      internalID: -589394376
+      spriteID: 2fffb21479f832943956c1804cd3247f
+      internalID: -1093298458
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_7
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a7c288b12d1faa459725364469c37d1
-      internalID: 1447141104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_8
+      name: WallMossy_6
       rect:
         serializedVersion: 2
         x: 0
@@ -298,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e457610c9df18174ea8b638747cf16c2
-      internalID: 1922310429
+      spriteID: 0f2aa39be4c4fd347bdd7cfb282e0e53
+      internalID: -363116897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_9
+      name: WallMossy_7
       rect:
         serializedVersion: 2
         x: 16
@@ -319,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d14e734b3388b7341ac1e1082c5f1373
-      internalID: -1975825211
+      spriteID: 8741c2218aa820f47a4a079daebceef2
+      internalID: -1091986175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_10
+      name: WallMossy_8
       rect:
         serializedVersion: 2
         x: 32
@@ -340,29 +298,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 925933818bea5d647ba97f9a707de4d6
-      internalID: 1976014689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69b1434e8e75abb4888213759386412a
-      internalID: 506291399
+      spriteID: a5b07fdf38809df4da754a68358cdb23
+      internalID: -430021789
       vertices: []
       indices: 
       edges: []
@@ -378,18 +315,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WallBlack_2: -1146401692
-      WallBlack_10: 1976014689
-      WallBlack_3: 1009307908
-      WallBlack_9: -1975825211
-      WallBlack_11: 506291399
-      WallBlack_7: 1447141104
-      WallBlack_8: 1922310429
-      WallBlack_4: 872263118
-      WallBlack_5: -223659999
-      WallBlack_6: -589394376
-      WallBlack_1: 246880686
-      WallBlack_0: 879481031
+      WallMossy_2: 65437555
+      WallMossy_7: -1091986175
+      WallMossy_5: -1093298458
+      WallMossy_3: -1100653000
+      WallMossy_6: -363116897
+      WallMossy_0: -726874728
+      WallMossy_8: -430021789
+      WallMossy_4: 71909195
+      WallMossy_1: -855989582
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

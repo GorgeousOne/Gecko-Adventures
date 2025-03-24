@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2c3fa30af252ee458bc1da52aa3f532
+guid: 30cb3c3386ab19140b12db646e4bcd79
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WallBlack_0
+      name: Pillar_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dda2b42a3b28ad74e84dd550b537884d
-      internalID: 879481031
+      spriteID: eb94bd9be53a6aa49a618a3b84af5738
+      internalID: 2101541813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_1
+      name: Pillar_1
       rect:
         serializedVersion: 2
         x: 16
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1efdfabf43e097a4f8ae9485c232f071
-      internalID: 246880686
+      spriteID: cb97d38e4ed49194ebe4b5301e9ef502
+      internalID: -1718169441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_2
+      name: Pillar_2
       rect:
         serializedVersion: 2
         x: 32
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 465e98cd28a91f343af5f4d6dff9cc0e
-      internalID: -1146401692
+      spriteID: 4dcfbce28a9f6df46a3502cd27c017e9
+      internalID: -928852640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_3
+      name: Pillar_3
       rect:
         serializedVersion: 2
         x: 48
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11c597c3c70e8d348afaa1c4545d5e0e
-      internalID: 1009307908
+      spriteID: 7a97dae7d8348ef4696a854d2d716588
+      internalID: 391350938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_4
+      name: Pillar_4
       rect:
         serializedVersion: 2
         x: 0
@@ -214,14 +214,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89a58b6bc4e277043bb7371f5a2ab0aa
-      internalID: 872263118
+      spriteID: b62476fb91028be428178061ecf22d2e
+      internalID: -1553032190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_5
+      name: Pillar_5
       rect:
         serializedVersion: 2
         x: 16
@@ -235,14 +235,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9c50f66267dca949bbc6934413421d4
-      internalID: -223659999
+      spriteID: d77d0babffa7d4742841e5433155f5fd
+      internalID: 1277990511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_6
+      name: Pillar_6
       rect:
         serializedVersion: 2
         x: 32
@@ -256,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fdd5f3e2738bab4e9e86fed222e55bf
-      internalID: -589394376
+      spriteID: 501a89345fa778046bae8aadd2cec384
+      internalID: 690600903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WallBlack_7
+      name: Pillar_7
       rect:
         serializedVersion: 2
         x: 48
@@ -277,92 +277,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a7c288b12d1faa459725364469c37d1
-      internalID: 1447141104
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e457610c9df18174ea8b638747cf16c2
-      internalID: 1922310429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_9
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d14e734b3388b7341ac1e1082c5f1373
-      internalID: -1975825211
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_10
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 925933818bea5d647ba97f9a707de4d6
-      internalID: 1976014689
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WallBlack_11
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69b1434e8e75abb4888213759386412a
-      internalID: 506291399
+      spriteID: 4b0fea43cbda736469bdbe099eb41310
+      internalID: 1241460415
       vertices: []
       indices: 
       edges: []
@@ -378,18 +294,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WallBlack_2: -1146401692
-      WallBlack_10: 1976014689
-      WallBlack_3: 1009307908
-      WallBlack_9: -1975825211
-      WallBlack_11: 506291399
-      WallBlack_7: 1447141104
-      WallBlack_8: 1922310429
-      WallBlack_4: 872263118
-      WallBlack_5: -223659999
-      WallBlack_6: -589394376
-      WallBlack_1: 246880686
-      WallBlack_0: 879481031
+      Pillar_4: -1553032190
+      Pillar_6: 690600903
+      Pillar_1: -1718169441
+      Pillar_2: -928852640
+      Pillar_0: 2101541813
+      Pillar_7: 1241460415
+      Pillar_3: 391350938
+      Pillar_5: 1277990511
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

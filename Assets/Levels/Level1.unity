@@ -342,37 +342,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e7b70e177516914bb2d116e22f1e2db, type: 3}
---- !u!1 &55643611
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 55643612}
-  m_Layer: 0
-  m_Name: Platforms (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &55643612
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55643611}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 646754589}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &58341529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1839,10 +1808,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -2489,10 +2454,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -2752,37 +2713,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de530247546666946adcb0695e6202aa, type: 3}
---- !u!1 &476458287
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 476458288}
-  m_Layer: 0
-  m_Name: Platforms (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &476458288
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 476458287}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 646754589}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &476924624 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7167942033823440287, guid: 182e6a1ca9ba0654e970e1f550d2c3e8, type: 3}
@@ -3371,8 +3301,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1614598115}
-  - {fileID: 55643612}
-  - {fileID: 476458288}
   - {fileID: 714059878}
   m_Father: {fileID: 0}
   m_RootOrder: 15
@@ -3410,11 +3338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 138.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 6549227058267431364, guid: de39054b7a75cfd45bd8c75962498f1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3800,7 +3728,7 @@ Transform:
   - {fileID: 330373818}
   - {fileID: 2058247598}
   m_Father: {fileID: 646754589}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &721807757
 GameObject:
@@ -4067,10 +3995,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -4267,10 +4191,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -622862,10 +622782,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5
@@ -623057,10 +622973,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365480860031701683, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -60881840, guid: 3bbcfdb02612e884ca7ee725f74cd358, type: 3}
     - target: {fileID: 7365480860031701692, guid: 3a49cb9945c9a8a47947a0b9a9192e2e, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.5

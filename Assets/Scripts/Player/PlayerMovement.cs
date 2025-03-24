@@ -392,13 +392,11 @@ public class PlayerMovement : MonoBehaviour {
 	/// Removes tongue joint on tongue detach
 	/// </summary>
 	public void OnTongueDetach() {
-		Debug.Log("lets detach");
 		Destroy(_tongueConnection);
 		
 		if (_lastMovementInput != 0) {
 			Vector2 boost = detachBoost * Mathf.Sign(_lastMovementInput) * GetSwingRightVector();
 			boost.y = _rigid.velocity.y;
-			Debug.Log(boost);
 			_rigid.velocity = boost;
 			_isAirBoosted = true;
 		}

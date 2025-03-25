@@ -209,6 +209,11 @@ public class TongueMovement : MonoBehaviour {
 		}
 		_pickup = pickup;
 		_pickup.transform.parent = transform;
+		
+		//prevent weird glitch where collected firefly can trigger spike collision
+		foreach(Collider2D c in _pickup.GetComponents<Collider2D> ()) {
+			c.enabled = false;
+		}
 	}
 
 	public void OnTriggerEnter2D(Collider2D other) {

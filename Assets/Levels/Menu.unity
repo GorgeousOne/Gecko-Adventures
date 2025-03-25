@@ -241,10 +241,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'I only have to find the correct ruins.
+      value: 'Why can I not find any ruin that matches the ancient scriptures?!
 
-        I will take my plane
-        to scout out the jungle for a further expedition sight.'
+        I
+        have to try one last time to scout the jungle for a new expedition!'
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -273,10 +273,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -1076,19 +1072,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: -0.042372882
+      value: 0.030746706
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.19072165
+      value: 0.23214287
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1.0847458
+      value: 0.9370425
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.61855674
+      value: 0.53571427
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
@@ -1188,8 +1184,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: The long-lost relic I heard about in those old legends from our ancestors,
-        I know they are true!
+      value: The legends of our great ancestors tell about long-lost relic, I know
+        there has to be something true about them!
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -1218,10 +1214,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -1331,8 +1323,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: Unless a miracle happens, I will be forced to return empty-handed. I'll
-        have to work in my father's factory for the rest of my life as a disgrace
+      value: I have to prove him otherwise, I cannot return empty handed. Othwerwise
+        I'll have to work in my father's factory for the rest of my life as a disgrace
         to my family.
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
@@ -1362,10 +1354,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -1830,10 +1818,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'Day 137:
+      value: 'Day 76:
 
-        I am running short on supplies for my expedition
-        and am almost out of gas.'
+        I am running short on supplies for my expedition and
+        am almost out of gas.'
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -1862,10 +1850,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -2415,8 +2399,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: My father does not want to support my archeology project any further.
-        A "hobby for fools" is what he calls it.
+      value: My father calls my archeology projects a "hobby for fools".
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -2445,10 +2428,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x

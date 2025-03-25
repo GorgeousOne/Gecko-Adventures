@@ -192,19 +192,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.14269789
+      value: 0.079947576
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.033678755
+      value: 0.24028777
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.7134894
+      value: 0.83879423
       objectReference: {fileID: 0}
     - target: {fileID: 8846424118331551255, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.93264246
+      value: 0.5179856
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dbbb4e24d239e4791350c252bf0cf5, type: 3}
@@ -977,7 +977,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'Day 155:
+      value: 'Day 83:
 
         I survived my adventure!'
       objectReference: {fileID: 0}
@@ -1007,15 +1007,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -1299,8 +1295,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: It is significant for future generations to remember the history of
-        our ancestors.
+      value: This ancient mask is a treasure vault about the history of our ancestors!
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -1906,10 +1901,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'But that''s not all! The expedition is complete, and I finally found
-        the relic!
+      value: 'The expedition is complete, and I finally found the relic!
 
-        The ancient artifact belongs in a museum.'
+        The
+        ancient artifact belongs in a museum!'
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -1942,10 +1937,6 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x
@@ -2278,6 +2269,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+    - target: {fileID: 3869307318736658947, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869307318736658947, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869307318736658947, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3869307318736658947, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3869307318736658947, guid: 3157596a062530a47b57dce18e0f6155, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2754,8 +2761,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: I have accomplished the goal I set my mind to. To preserve our history
-        and fight against oblivion!
+      value: 'I have accomplished my greatest dream: To preserve an important part
+        of our history and bring knowledge into future generations!'
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -2784,6 +2791,10 @@ PrefabInstance:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: timePerChar
@@ -2960,9 +2971,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_text
-      value: 'I was able to find an old, abandoned boat. I must be the luckiest Gecko
-        alive because it still worked. The untamable currents brought me back to
-        civilization. '
+      value: 'This wreck of a boat I found has definetely seen better days, but it
+        still floats!
+
+        I must be the luckiest Gecko alive! From this river
+        I will definetely find my way back home.'
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontSize
@@ -2990,15 +3003,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4278190080
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1738326360694972300, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4577534962086693473, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
-      propertyPath: timePerChar
-      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5780536144389744276, guid: 5a4c05878ca1e40469889099658d5c8a, type: 3}
       propertyPath: m_Pivot.x

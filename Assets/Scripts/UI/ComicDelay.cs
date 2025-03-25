@@ -3,6 +3,9 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// idk what this does, probably adding a timed pause in an active comic
+/// </summary>
 public class ComicDelay : ComicElement {
 
 	[SerializeField] [Min(0.1f)] private float waitTime = 3f;

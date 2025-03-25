@@ -3,6 +3,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// A controller to show children comic elements one after another if clicked at.
+/// Non comic children will simply be enabled while their parent element is enabled.
+/// Comic elements have to be disabled in the editor manually before starting :(
+/// </summary>
 public class ComicController : MonoBehaviour {
 
 	[SerializeField] private UnityEvent comicEndEvent;

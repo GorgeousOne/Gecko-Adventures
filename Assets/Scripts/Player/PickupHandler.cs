@@ -81,6 +81,7 @@ public class PickupHandler : MonoBehaviour {
 		} else if (pickup.CompareTag("Light Source")) {
 			_remainingLightTime = Mathf.Min(_remainingLightTime + lightSourceTime, maxLightTime);
 		}
+		Destroy(pickup);
 	}
 
 	private void OnPlayerSpawn() {

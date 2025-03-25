@@ -70,8 +70,6 @@ public class TongueMovement : MonoBehaviour {
 			
 			if (_pickup) {
 				_pickupHandler.ProcessPickup(_pickup);
-				_pickup.SetActive(false);
-				_pickup.transform.parent = null;
 				_pickup = null;
 			}
 		}
@@ -177,7 +175,6 @@ public class TongueMovement : MonoBehaviour {
 	}
 
 	public void Detach() {
-		Debug.Log("THIS IS NOT A DRILL");
 		detachAction.Invoke();
 		_attachment = null;
 		SetExtendDistance(0);
